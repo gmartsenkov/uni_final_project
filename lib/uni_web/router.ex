@@ -10,12 +10,25 @@ defmodule UniWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :protected do
+    plug Uni.Plugs.Auth
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/", UniWeb do
     pipe_through :browser
+
+    live "/register", AuthenticationLive.Register, :register
+    post "/login", AuthenticationController, :login
+    live "/login", AuthenticationLive.Login, :login
+  end
+
+  # Protected routes
+  scope "/", UniWeb do
+    pipe_through [:browser, :protected]
 
     live "/", PageLive, :index
   end

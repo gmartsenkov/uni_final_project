@@ -29,6 +29,11 @@ defmodule Uni.UsersTest do
       assert Users.get_user!(user.id) == user
     end
 
+    test "get_by_email/1 returns the user with given an email" do
+      user = user_fixture()
+      assert Users.get_by_email(user.email) == user
+    end
+
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Users.create_user(@valid_attrs)
       assert user.email == "some email"
