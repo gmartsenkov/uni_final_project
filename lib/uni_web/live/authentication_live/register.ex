@@ -1,3 +1,4 @@
+
 defmodule UniWeb.AuthenticationLive.Register do
   use UniWeb, :live_view
 
@@ -5,7 +6,8 @@ defmodule UniWeb.AuthenticationLive.Register do
   alias Uni.Users.User
 
   @impl true
-  def mount(_params, _session, socket) do
+  def mount(_params, session, socket) do
+    socket = assign_defaults(socket, session)
     {:ok, assign(socket, %{changeset: Users.change_user(%User{})})}
   end
 
@@ -27,7 +29,7 @@ defmodule UniWeb.AuthenticationLive.Register do
         {:noreply,
          socket
          |> put_flash(:info, "User created successfuly")
-         |> push_redirect(to: "/login")}
+         |> redirect(to: "/login")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, changeset: changeset)}

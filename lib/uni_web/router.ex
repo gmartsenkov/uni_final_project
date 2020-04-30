@@ -23,7 +23,7 @@ defmodule UniWeb.Router do
 
     live "/register", AuthenticationLive.Register, :register
     post "/login", AuthenticationController, :login
-    live "/login", AuthenticationLive.Login, :login
+    get "/login", AuthenticationController, :login_page
   end
 
   # Protected routes
@@ -31,6 +31,9 @@ defmodule UniWeb.Router do
     pipe_through [:browser, :protected]
 
     live "/", PageLive, :index
+
+    live "/articles", ArticleLive.Index, :articles
+    live "/articles/new", ArticleLive.New, :articles
   end
 
   # Other scopes may use custom stacks.

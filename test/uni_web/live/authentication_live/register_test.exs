@@ -19,12 +19,13 @@ defmodule UniWeb.AuthenticationLive.RegisterTest do
            |> form("#register-form", user: @invalid_params)
            |> render_change() =~ "can&apos;t be blank"
 
-    {:ok, _, html} =
+    {:ok, conn} =
       register_live
       |> form("#register-form", user: @valid_params)
       |> render_submit()
-      |> follow_redirect(conn, Routes.authentication_login_path(conn, :login))
+      |> follow_redirect(conn, Routes.authentication_path(conn, :login))
 
-    assert html =~ "User created successfuly"
+    assert conn.resp_body =~ "Log In"
+    assert conn.resp_body =~ "User created successfuly"
   end
 end

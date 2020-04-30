@@ -2,7 +2,8 @@ defmodule UniWeb.PageLive do
   use UniWeb, :live_view
 
   @impl true
-  def mount(_params, _session, socket) do
+  def mount(_params, session, socket) do
+    socket = assign_defaults(socket, session)
     {:ok, assign(socket, query: "", results: %{})}
   end
 

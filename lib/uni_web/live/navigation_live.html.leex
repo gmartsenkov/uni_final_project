@@ -1,0 +1,31 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <div class="sidebar-brand-icon rotate-n-15">
+
+      </div>
+      <div class="sidebar-brand-text mx-3">Project</sup></div>
+    </a>
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+    <!-- Nav Item - Dashboard -->
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+      <%= live_redirect class: "nav-link", to: Routes.article_index_path(@socket, :articles) do %>
+        <i class="fas fa-fw fa-table"></i>
+        <span>Articles</span>
+      <% end %>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+    <li class="nav-item">
+      <a class="nav-link" href="tables.html">
+        <i class="far fa-user"></i>
+        <span><%= @navigation.user_name %></span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="tables.html">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span></a>
+    </li>
+  </ul>

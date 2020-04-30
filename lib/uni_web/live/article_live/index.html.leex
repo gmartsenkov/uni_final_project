@@ -1,0 +1,36 @@
+<div class="col-md-7">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary float-left">Articles</h6>
+      <%= live_redirect class: "btn btn-success btn-circle btn-sm float-right", to: Routes.article_new_path(@socket, :articles) do %>
+      <i class="fas fa-plus"></i>
+      <% end %>
+    </div>
+    <div class="card-body">
+      <table class="table table-responsive-xl">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Publisher</th>
+            <th scope="col">Type</th>
+            <th scope="col">Scopus</th>
+            <th scope="col">Wofscience</th>
+            <th scope="col">Year</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for article <- @articles do %>
+              <tr>
+                <th><%= article.name %></th>
+                <th><%= article.publisher %></th>
+                <th><%= article.type %></th>
+                <th><%= article.scopus %></th>
+                <th><%= article.wofscience %></th>
+                <th><%= article.year %></th>
+              </tr>
+              <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

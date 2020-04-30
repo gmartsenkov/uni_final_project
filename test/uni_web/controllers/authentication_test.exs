@@ -7,7 +7,7 @@ defmodule UniWeb.AuthenticationControllerTest do
     {:ok, user} =
       attrs
       |> Enum.into(@user_params)
-      |> Map.update("password", "1234", &(Bcrypt.hash_pwd_salt(&1)))
+      |> Map.update("password", "1234", &Bcrypt.hash_pwd_salt(&1))
       |> Uni.Users.create_user()
 
     user
@@ -22,10 +22,12 @@ defmodule UniWeb.AuthenticationControllerTest do
     end
 
     test "fails when user does not exist", %{conn: conn} do
-      conn = post(
-        conn,
-        Routes.authentication_path(conn, :login),
-        user: @user_params)
+      conn =
+        post(
+          conn,
+          Routes.authentication_path(conn, :login),
+          user: @user_params
+        )
 
       assert get_flash(conn, :error) == "User and pass dont match"
       assert redirected_to(conn) == "/login"
@@ -33,10 +35,13 @@ defmodule UniWeb.AuthenticationControllerTest do
 
     test "fails when user exists but the password is wrong", %{conn: conn} do
       user_fixture()
-      conn = post(
-        conn,
-        Routes.authentication_path(conn, :login),
-        user: @user_params |> Map.put("password", "invalid"))
+
+      conn =
+        post(
+          conn,
+          Routes.authentication_path(conn, :login),
+          user: @user_params |> Map.put("password", "invalid")
+        )
 
       assert get_flash(conn, :error) == "User and pass dont match"
       assert redirected_to(conn) == "/login"
@@ -44,10 +49,13 @@ defmodule UniWeb.AuthenticationControllerTest do
 
     test "succeeds with correct user and pass", %{conn: conn} do
       user = user_fixture()
-      conn = post(
-        conn,
-        Routes.authentication_path(conn, :login),
-        user: @user_params)
+
+      conn =
+        post(
+          conn,
+          Routes.authentication_path(conn, :login),
+          user: @user_params
+        )
 
       assert get_flash(conn) == %{}
       assert redirected_to(conn) == "/"

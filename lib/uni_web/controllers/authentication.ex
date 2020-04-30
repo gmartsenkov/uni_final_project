@@ -1,7 +1,10 @@
 defmodule UniWeb.AuthenticationController do
   use UniWeb, :controller
 
-  def login(conn, %{ "user" => params}) do
+  alias Uni.Users
+  alias Uni.Users.User
+
+  def login(conn, %{"user" => params}) do
     case Uni.Users.get_by_email(params["email"]) do
       %Uni.Users.User{} = user ->
         if Bcrypt.verify_pass(params["password"], user.password),
@@ -14,6 +17,10 @@ defmodule UniWeb.AuthenticationController do
   end
 
   def login(conn, _params), do: wrong_credentials(conn)
+
+  def login_page(conn, _params) do
+    render(conn, "login.html", changeset: Users.change_user(%User{}))
+  end
 
   defp successful_login(conn, user) do
     conn

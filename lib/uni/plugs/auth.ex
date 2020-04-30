@@ -1,5 +1,6 @@
 defmodule Uni.Plugs.Auth do
   use UniWeb, :controller
+  alias Phoenix.LiveView
 
   def init(opts), do: opts
 

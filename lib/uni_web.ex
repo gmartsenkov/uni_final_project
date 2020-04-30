@@ -46,6 +46,7 @@ defmodule UniWeb do
       use Phoenix.LiveView,
         layout: {UniWeb.LayoutView, "live.html"}
 
+      import UniWeb.Helpers.LiveHelpers
       unquote(view_helpers())
     end
   end
