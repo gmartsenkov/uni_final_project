@@ -5,7 +5,7 @@ defmodule UniWeb.ArticleLive.FormComponent do
 
   @impl true
   def mount(socket) do
-    valid_types = ["National": "national", "International": "international"]
+    valid_types = [National: "national", International: "international"]
     {:ok, assign(socket, valid_types: valid_types)}
   end
 
@@ -20,12 +20,27 @@ defmodule UniWeb.ArticleLive.FormComponent do
   end
 
   @impl true
-  def update(assigns, socket) do
-    changeset = Articles.change_article(%Articles.Article{})
+  def handle_event("validate", %{"article" => article}, socket) do
+    changeset =
+      socket.assigns.article
+      |> Articles.change_article(Map.put(article, "owner", socket.assigns.user))
+      |> Map.put(:action, :validate)
 
-    {:ok,
-     socket
-     |> assign(assigns)
-     |> assign(:changeset, changeset)}
+    {:noreply, assign(socket, :changeset, changeset)}
+  end
+
+  def handle_event("save", %{"article" => article}, socket) do
+    attrs = Map.put(article, "owner", socket.assigns.user)
+
+    case Articles.create_article(attrs) do
+      {:ok, _article} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "Article created successfuly")
+         |> push_redirect(to: Routes.article_index_path(socket, :articles))}
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:noreply, assign(socket, :changeset, changeset)}
+    end
   end
 end

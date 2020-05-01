@@ -1,4 +1,3 @@
-
 defmodule UniWeb.AuthenticationLive.Register do
   use UniWeb, :live_view
 

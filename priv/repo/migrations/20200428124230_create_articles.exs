@@ -9,7 +9,7 @@ defmodule Uni.Repo.Migrations.CreateArticles do
       add :type, :text
       add :scopus, :boolean, default: false, null: false
       add :wofscience, :boolean, default: false, null: false
-      add :owner_id, :integer
+      add :owner_id, references(:users)
 
       timestamps()
     end

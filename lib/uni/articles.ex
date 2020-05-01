@@ -18,7 +18,7 @@ defmodule Uni.Articles do
 
   """
   def list_articles do
-    Repo.all(Article)
+    Repo.all(Article) |> Repo.preload(:owner)
   end
 
   @doc """
@@ -35,7 +35,7 @@ defmodule Uni.Articles do
       ** (Ecto.NoResultsError)
 
   """
-  def get_article!(id), do: Repo.get!(Article, id)
+  def get_article!(id), do: Repo.get!(Article, id) |> Repo.preload(:owner)
 
   @doc """
   Creates a article.

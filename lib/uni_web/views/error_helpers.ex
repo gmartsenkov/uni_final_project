@@ -10,11 +10,16 @@ defmodule UniWeb.ErrorHelpers do
   """
   def error_tag(form, field) do
     Enum.map(Keyword.get_values(form.errors, field), fn error ->
-      content_tag(:span, translate_error(error),
-        class: "invalid-feedback",
+      content_tag(:div, translate_error(error),
+        class: "invalid-feedback m-1",
         phx_feedback_for: input_id(form, field)
       )
     end)
+  end
+
+  def input_class(form, field, default \\ "form-control") do
+    maybe_error = if Keyword.get(form.errors, field), do: "is-invalid", else: ""
+    "#{default} #{maybe_error}"
   end
 
   @doc """

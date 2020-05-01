@@ -3,6 +3,10 @@ defmodule UniWeb.ArticleLive.New do
 
   @impl true
   def mount(_params, session, socket) do
-    {:ok, assign_defaults(socket, session)}
+    socket =
+      assign_defaults(socket, session)
+      |> assign(:article, %Uni.Articles.Article{})
+
+    {:ok, socket}
   end
 end
