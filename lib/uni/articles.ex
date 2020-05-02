@@ -37,6 +37,23 @@ defmodule Uni.Articles do
   """
   def get_article!(id), do: Repo.get!(Article, id) |> Repo.preload(:owner)
 
+
+  @doc """
+  Gets a single article.
+
+  Returns
+
+  ## Examples
+
+      iex> get_article(123)
+      %Article{}
+
+      iex> get_article!(456)
+      nil
+
+  """
+  def get_article(id), do: Repo.get(Article, id) |> Repo.preload(:owner)
+
   @doc """
   Creates a article.
 
