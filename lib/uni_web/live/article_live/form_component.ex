@@ -6,7 +6,14 @@ defmodule UniWeb.ArticleLive.FormComponent do
   @impl true
   def mount(socket) do
     valid_types = [National: "national", International: "international"]
-    {:ok, assign(socket, valid_types: valid_types)}
+
+    socket =
+      socket
+      |> assign(valid_types: valid_types)
+      |> assign(author_search: "")
+      |> assign(selected: [])
+
+    {:ok, socket}
   end
 
   @impl true
@@ -21,11 +28,16 @@ defmodule UniWeb.ArticleLive.FormComponent do
   end
 
   @impl true
-  def handle_event("validate", %{"article" => article}, socket) do
+  def handle_event("validate", %{"article" => article} = params, socket) do
     changeset =
       socket.assigns.article
       |> Articles.change_article(Map.put(article, "owner", socket.assigns.user))
       |> Map.put(:action, :validate)
+
+    socket =
+      socket
+      |> assign(:changeset, changeset)
+      |> assign(:author_search, Map.get(params, "author_search", ""))
 
     {:noreply, assign(socket, :changeset, changeset)}
   end
@@ -35,7 +47,7 @@ defmodule UniWeb.ArticleLive.FormComponent do
   end
 
   defp handle_save(:new, params, socket) do
-	  attrs = Map.put(params, "owner", socket.assigns.user)
+    attrs = Map.put(params, "owner", socket.assigns.user)
 
     case Articles.create_article(attrs) do
       {:ok, _article} ->
@@ -51,6 +63,7 @@ defmodule UniWeb.ArticleLive.FormComponent do
 
   defp handle_save(:update, params, socket) do
     params = Map.put(params, "owner", socket.assigns.article.owner)
+
     case Articles.update_article(socket.assigns.article, params) do
       {:ok, _article} ->
         {:noreply,
@@ -60,7 +73,14 @@ defmodule UniWeb.ArticleLive.FormComponent do
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}
-      end
+    end
+  end
+
+  def handle_info({:add_author, author}, socket) do
+    {:noreply,
+     socket
+     |> assign(:selected, socket.assigns.selected ++ [author])
+     |> assign(:author_search, "")}
   end
 
   defp submit_button(:new), do: "Create"

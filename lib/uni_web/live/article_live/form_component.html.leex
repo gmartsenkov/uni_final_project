@@ -31,6 +31,15 @@ phx_target: @myself
 </div>
 
 <div class="form-group">
+    <%= live_component @socket,
+    UniWeb.AuthorMultiSelectComponent,
+    authors: ["Georgi Martsenkov", "Elena Dyankova"],
+    author_search: @author_search,
+    parent: @myself,
+    id: "author-autoselect"%>
+</div>
+
+<div class="form-group">
     <div class="form-check form-check-inline">
         <%= checkbox f, :scopus, class: "form-check-input" %>
         <label class="form-check-label">Scopus</label>
