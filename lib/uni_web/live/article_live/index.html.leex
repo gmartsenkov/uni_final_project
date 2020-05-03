@@ -16,6 +16,7 @@
                         <th scope="col">Scopus</th>
                         <th scope="col">Wofscience</th>
                         <th scope="col">Year</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,11 @@
                             <th><%= article.scopus %></th>
                             <th><%= article.wofscience %></th>
                             <th><%= article.year %></th>
+                            <th>
+                                <%= live_redirect to: Routes.article_edit_path(@socket, :articles, article) do  %>
+                                    <i class="fas fa-edit"></i>
+                                <% end %>
+                            </th>
                         </tr>
                     <% end %>
                 </tbody>

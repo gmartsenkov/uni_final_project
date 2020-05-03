@@ -17,7 +17,7 @@ defmodule UniWeb.AuthorMultiSelectComponent do
     ~L"""
     <div>
     <label>Author</label>
-    <div class="input-group" phx-update="ignore">
+    <div class="input-group">
       <input
         type="text"
         autocomplete="off"
