@@ -23,6 +23,7 @@ defmodule UniWeb.ConnCase do
       import Plug.Conn
       import Phoenix.ConnTest
       import UniWeb.ConnCase
+      import Uni.Factory
 
       alias UniWeb.Router.Helpers, as: Routes
 

@@ -3,16 +3,6 @@ defmodule UniWeb.AuthenticationControllerTest do
 
   @user_params %{"name" => "Bob", "email" => "bob@jon", "password" => "1234"}
 
-  def user_fixture(attrs \\ %{}) do
-    {:ok, user} =
-      attrs
-      |> Enum.into(@user_params)
-      |> Map.update("password", "1234", &Bcrypt.hash_pwd_salt(&1))
-      |> Uni.Users.create_user()
-
-    user
-  end
-
   describe "login" do
     test "fails where params are missing", %{conn: conn} do
       conn = post(conn, Routes.authentication_path(conn, :login))
@@ -34,7 +24,7 @@ defmodule UniWeb.AuthenticationControllerTest do
     end
 
     test "fails when user exists but the password is wrong", %{conn: conn} do
-      user_fixture()
+      insert(:user)
 
       conn =
         post(
@@ -48,7 +38,7 @@ defmodule UniWeb.AuthenticationControllerTest do
     end
 
     test "succeeds with correct user and pass", %{conn: conn} do
-      user = user_fixture()
+      user = insert(:user, email: @user_params["email"])
 
       conn =
         post(

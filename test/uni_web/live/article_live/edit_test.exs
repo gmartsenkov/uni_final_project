@@ -3,15 +3,6 @@ defmodule UniWeb.ArticleLive.EditTest do
 
   import Phoenix.LiveViewTest
 
-  @user_params %{"name" => "Bob", "email" => "bob@jon", "password" => "1234"}
-  @article_attrs %{
-    name: "some name",
-    publisher: "some publisher",
-    scopus: true,
-    type: "national",
-    wofscience: true,
-    year: 42
-  }
   @update_params %{
     "name" => "Article update",
     "publisher" => "new publisher",
@@ -26,27 +17,8 @@ defmodule UniWeb.ArticleLive.EditTest do
     "year" => nil
   }
 
-  def user_fixture(attrs \\ %{}) do
-    {:ok, user} =
-      attrs
-      |> Enum.into(@user_params)
-      |> Map.update("password", "1234", &Bcrypt.hash_pwd_salt(&1))
-      |> Uni.Users.create_user()
-
-    user
-  end
-
-  def article_fixture(attrs \\ %{}) do
-    {:ok, article} =
-      attrs
-      |> Enum.into(@article_attrs)
-      |> Uni.Articles.create_article()
-
-    article
-  end
-
   test "redirects correctly when article is not found", %{conn: conn} do
-    user = user_fixture()
+    user = insert(:user)
     conn = init_test_session(conn, %{user_id: user.id})
     article = %Uni.Articles.Article{id: 0}
 
@@ -58,9 +30,9 @@ defmodule UniWeb.ArticleLive.EditTest do
   end
 
   test "updates the article", %{conn: conn} do
-    user = user_fixture()
+    user = insert(:user)
     conn = init_test_session(conn, %{user_id: user.id})
-    article = article_fixture(owner: user)
+    article = insert(:article, owner: user)
 
     {:ok, article_live, html} = live(conn, Routes.article_edit_path(conn, :articles, article))
 

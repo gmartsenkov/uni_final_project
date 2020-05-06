@@ -2,7 +2,6 @@ defmodule Uni.ArticlesTest do
   use Uni.DataCase
 
   alias Uni.Articles
-  alias Uni.Users
 
   describe "articles" do
     alias Uni.Articles.Article
@@ -33,32 +32,18 @@ defmodule Uni.ArticlesTest do
       year: nil
     }
 
-    def owner do
-      {:ok, user} = Users.create_user(%{name: "jon", email: "jon@snow", password: "1234"})
-      user
-    end
-
-    def article_fixture(attrs \\ %{}) do
-      {:ok, article} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Articles.create_article()
-
-      article
-    end
-
     test "list_articles/0 returns all articles" do
-      article = article_fixture(%{owner: owner()})
+      article = insert(:article, owner: insert(:user))
       assert Articles.list_articles() == [article]
     end
 
     test "get_article!/1 returns the article with given id" do
-      article = article_fixture(%{owner: owner()})
+      article = insert(:article, owner: insert(:user))
       assert Articles.get_article!(article.id) == article
     end
 
     test "create_article/1 with valid data creates a article" do
-      owner = owner()
+      owner = insert(:user)
       attrs = Map.put(@valid_attrs, :owner, owner)
       assert {:ok, %Article{} = article} = Articles.create_article(attrs)
       assert article.name == "some name"
@@ -74,10 +59,23 @@ defmodule Uni.ArticlesTest do
       assert {:error, %Ecto.Changeset{}} = Articles.create_article(@invalid_attrs)
     end
 
+    test "paginate_articles returns the paginated articles" do
+      owner = insert(:user)
+      article_1 = insert(:article, owner: owner)
+      article_2 = insert(:article, owner: owner)
+
+      result = Articles.paginate_articles(_page = 1)
+
+      assert %Scrivener.Page{} = result
+      assert result.entries == [article_1, article_2]
+      assert result.total_entries == 2
+      assert result.total_pages == 1
+    end
+
     test "update_article/2 with valid data updates the article" do
-      owner = owner()
-      article = article_fixture(%{owner: owner})
-      new_owner = owner()
+      owner = insert(:user)
+      article = insert(:article, owner: owner)
+      new_owner = insert(:user)
       attrs = Map.put(@update_attrs, :owner, new_owner)
       assert {:ok, %Article{} = article} = Articles.update_article(article, attrs)
       assert article.name == "some updated name"
@@ -90,19 +88,19 @@ defmodule Uni.ArticlesTest do
     end
 
     test "update_article/2 with invalid data returns error changeset" do
-      article = article_fixture(%{owner: owner()})
+      article = insert(:article, owner: insert(:user))
       assert {:error, %Ecto.Changeset{}} = Articles.update_article(article, @invalid_attrs)
       assert article == Articles.get_article!(article.id)
     end
 
     test "delete_article/1 deletes the article" do
-      article = article_fixture(%{owner: owner()})
+      article = insert(:article, owner: insert(:user))
       assert {:ok, %Article{}} = Articles.delete_article(article)
       assert_raise Ecto.NoResultsError, fn -> Articles.get_article!(article.id) end
     end
 
     test "change_article/1 returns a article changeset" do
-      article = article_fixture(%{owner: owner()})
+      article = insert(:article, owner: insert(:user))
       assert %Ecto.Changeset{} = Articles.change_article(article)
     end
   end

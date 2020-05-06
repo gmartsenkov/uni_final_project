@@ -22,6 +22,21 @@ defmodule Uni.Articles do
   end
 
   @doc """
+  Returns a paginated list of articles.
+
+  ## Examples
+
+      iex> paginate_articles(page \\ 1, page_size \\ 10)
+      %Scrivener.Page{entries: [...], total_pages: 1, total_entries: 2...}
+
+  """
+  def paginate_articles(page \\ 1, page_size \\ 10) do
+    Article
+    |> preload(:owner)
+    |> Repo.paginate(page: page, page_size: page_size)
+  end
+
+  @doc """
   Gets a single article.
 
   Raises `Ecto.NoResultsError` if the Article does not exist.
@@ -36,7 +51,6 @@ defmodule Uni.Articles do
 
   """
   def get_article!(id), do: Repo.get!(Article, id) |> Repo.preload(:owner)
-
 
   @doc """
   Gets a single article.

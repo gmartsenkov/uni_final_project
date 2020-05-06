@@ -3,7 +3,6 @@ defmodule UniWeb.ArticleLive.NewTest do
 
   import Phoenix.LiveViewTest
 
-  @user_params %{"name" => "Bob", "email" => "bob@jon", "password" => "1234"}
   @valid_params %{
     "name" => "Article 1",
     "publisher" => "Helikon",
@@ -18,18 +17,8 @@ defmodule UniWeb.ArticleLive.NewTest do
     "year" => nil
   }
 
-  def user_fixture(attrs \\ %{}) do
-    {:ok, user} =
-      attrs
-      |> Enum.into(@user_params)
-      |> Map.update("password", "1234", &Bcrypt.hash_pwd_salt(&1))
-      |> Uni.Users.create_user()
-
-    user
-  end
-
   test "saves the new article", %{conn: conn} do
-    user = user_fixture()
+    user = insert(:user)
     conn = init_test_session(conn, %{user_id: user.id})
 
     {:ok, article_live, html} = live(conn, Routes.article_new_path(conn, :articles))

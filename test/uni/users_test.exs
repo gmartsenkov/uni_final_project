@@ -10,27 +10,18 @@ defmodule Uni.UsersTest do
     @update_attrs %{email: "some updated email", name: "some updated name", password: "4321"}
     @invalid_attrs %{email: nil, name: nil}
 
-    def user_fixture(attrs \\ %{}) do
-      {:ok, user} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Users.create_user()
-
-      user
-    end
-
     test "list_users/0 returns all users" do
-      user = user_fixture()
+      user = insert(:user)
       assert Users.list_users() == [user]
     end
 
     test "get_user!/1 returns the user with given id" do
-      user = user_fixture()
+      user = insert(:user)
       assert Users.get_user!(user.id) == user
     end
 
     test "get_by_email/1 returns the user with given an email" do
-      user = user_fixture()
+      user = insert(:user)
       assert Users.get_by_email(user.email) == user
     end
 
@@ -46,7 +37,7 @@ defmodule Uni.UsersTest do
     end
 
     test "update_user/2 with valid data updates the user" do
-      user = user_fixture()
+      user = insert(:user)
       assert {:ok, %User{} = user} = Users.update_user(user, @update_attrs)
       assert user.email == "some updated email"
       assert user.name == "some updated name"
@@ -54,19 +45,19 @@ defmodule Uni.UsersTest do
     end
 
     test "update_user/2 with invalid data returns error changeset" do
-      user = user_fixture()
+      user = insert(:user)
       assert {:error, %Ecto.Changeset{}} = Users.update_user(user, @invalid_attrs)
       assert user == Users.get_user!(user.id)
     end
 
     test "delete_user/1 deletes the user" do
-      user = user_fixture()
+      user = insert(:user)
       assert {:ok, %User{}} = Users.delete_user(user)
       assert_raise Ecto.NoResultsError, fn -> Users.get_user!(user.id) end
     end
 
     test "change_user/1 returns a user changeset" do
-      user = user_fixture()
+      user = insert(:user)
       assert %Ecto.Changeset{} = Users.change_user(user)
     end
   end
