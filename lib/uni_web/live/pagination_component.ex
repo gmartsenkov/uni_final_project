@@ -22,7 +22,7 @@ defmodule UniWeb.PaginationComponent do
             aria-disabled="true">
             Previous
           </a>
-        </li>
+        </li>        
         <%= for page <- @page_range do %>
           <li class="page-item <%= if page == @page, do: "active" %>">
             <a
@@ -50,6 +50,8 @@ defmodule UniWeb.PaginationComponent do
 
   @impl true
   def handle_event("change_page", %{"page" => page}, socket) do
+    send_page_change(String.to_integer(page))
+
     {:noreply,
      socket
      |> assign(:page, String.to_integer(page))
@@ -57,6 +59,8 @@ defmodule UniWeb.PaginationComponent do
   end
 
   def handle_event("next_page", _params, socket) do
+    send_page_change(socket.assigns.page + 1)
+
     {:noreply,
      socket
      |> assign(:page, socket.assigns.page + 1)
@@ -64,6 +68,8 @@ defmodule UniWeb.PaginationComponent do
   end
 
   def handle_event("prev_page", _params, socket) do
+    send_page_change(socket.assigns.page - 1)
+
     {:noreply,
      socket
      |> assign(:page, socket.assigns.page - 1)
@@ -76,6 +82,8 @@ defmodule UniWeb.PaginationComponent do
     |> assign(:next, assigns.page == assigns.total_pages)
     |> assign(:prev, assigns.page != 1)
   end
+
+  defp send_page_change(page), do: send(self(), {:page_change, page})
 
   defp page_range(_page, total_pages) when total_pages <= 3, do: 1..total_pages
   defp page_range(page, _total_pages) when page == 1, do: 1..3

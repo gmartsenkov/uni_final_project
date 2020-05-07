@@ -2,7 +2,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary float-left">Articles</h6>
-            <%= live_redirect class: "btn btn-success btn-circle btn-sm float-right", to: Routes.article_new_path(@socket, :articles) do %>
+            <%= live_redirect id: "new-article", class: "btn btn-success btn-circle btn-sm float-right", to: Routes.article_new_path(@socket, :articles) do %>
                 <i class="fas fa-plus"></i>
             <% end %>
         </div>
@@ -29,7 +29,7 @@
                             <th><%= article.wofscience %></th>
                             <th><%= article.year %></th>
                             <th>
-                                <%= live_redirect to: Routes.article_edit_path(@socket, :articles, article) do  %>
+                                <%= live_redirect id: "article-edit-#{article.id}", to: Routes.article_edit_path(@socket, :articles, article) do  %>
                                     <i class="fas fa-edit"></i>
                                 <% end %>
                             </th>
@@ -40,8 +40,8 @@
             <hr/>
             <%= live_component @socket, UniWeb.PaginationComponent,
             id: "pagination",
-            page: 5,
-            total_pages: 5%>
+            page: @page,
+            total_pages: @total_pages%>
         </div>
     </div>
 </div>
