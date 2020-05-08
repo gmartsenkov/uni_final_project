@@ -33,6 +33,12 @@ defmodule UniWeb.ArticleLive.IndexTest do
     end)
 
     article_live |> element("a", "Next") |> render_click()
+
+    assert_patch(
+      article_live,
+      Routes.article_index_path(conn, :articles, page: 2, per_page: "10")
+    )
+
     assert has_element?(article_live, "li.active", "2")
 
     html = render(article_live)
@@ -43,6 +49,12 @@ defmodule UniWeb.ArticleLive.IndexTest do
     end)
 
     article_live |> element("a", "Next") |> render_click()
+
+    assert_patch(
+      article_live,
+      Routes.article_index_path(conn, :articles, page: 3, per_page: "10")
+    )
+
     assert has_element?(article_live, "li.active", "3")
     assert has_element?(article_live, "li.disabled", "Next")
 
@@ -51,6 +63,66 @@ defmodule UniWeb.ArticleLive.IndexTest do
     Enum.each(21..30, fn i ->
       assert html =~ "Article number: #{i}"
       refute String.contains?("Article number: #{i - 10}", html)
+    end)
+  end
+
+  test "per_page splits the articles correctly", %{conn: conn} do
+    user = insert(:user)
+    conn = init_test_session(conn, %{user_id: user.id})
+
+    Enum.each(1..50, fn i ->
+      insert(:article, owner: user, name: "Article number: #{i}")
+    end)
+
+    {:ok, article_live, html} = live(conn, Routes.article_index_path(conn, :articles))
+
+    Enum.each(1..10, fn i ->
+      assert html =~ "Article number: #{i}"
+      refute String.contains?("Article number: #{i + 10}", html)
+    end)
+
+    html =
+      article_live
+      |> element("form#filters")
+      |> render_change(%{"per_page" => "25"})
+
+    assert_patch(
+      article_live,
+      Routes.article_index_path(conn, :articles, page: 1, per_page: "25")
+    )
+
+    Enum.each(1..25, fn i ->
+      assert html =~ "Article number: #{i}"
+    end)
+
+    article_live |> element("a", "Next") |> render_click()
+
+    assert_patch(
+      article_live,
+      Routes.article_index_path(conn, :articles, page: 2, per_page: "25")
+    )
+
+    html = render(article_live)
+
+    Enum.each(26..50, fn i ->
+      assert html =~ "Article number: #{i}"
+    end)
+  end
+
+  test "uses the page param to show the correct page", %{conn: conn} do
+    user = insert(:user)
+    conn = init_test_session(conn, %{user_id: user.id})
+
+    Enum.each(1..30, fn i ->
+      insert(:article, owner: user, name: "Article number: #{i}")
+    end)
+
+    {:ok, article_live, html} = live(conn, Routes.article_index_path(conn, :articles, page: 2))
+
+    assert has_element?(article_live, "li.active", "2")
+
+    Enum.each(11..20, fn i ->
+      assert html =~ "Article number: #{i}"
     end)
   end
 

@@ -5,6 +5,9 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
 @import "../node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.css";
 
+#navigation {
+  display: inline-flex;
+}
 /* LiveView specific classes for your customizations */
 .invalid-feedback {
   color: #a94442;
