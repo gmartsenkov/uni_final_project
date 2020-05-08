@@ -30,12 +30,15 @@ defmodule Uni.Articles do
       %Scrivener.Page{entries: [...], total_pages: 1, total_entries: 2...}
 
   """
-  def paginate_articles(owner_id, page \\ 1, page_size \\ 10) do
-    Article
+  def paginate_articles(owner_id, query \\ "", page \\ 1, page_size \\ 10) do
+    search(query)
     |> where(owner_id: ^owner_id)
     |> preload(:owner)
     |> Repo.paginate(page: page, page_size: page_size)
   end
+
+  defp search(""), do: Article
+  defp search(query), do: from(a in Article, where: ilike(a.name, ^"%#{query}%"))
 
   @doc """
   Gets a single article.

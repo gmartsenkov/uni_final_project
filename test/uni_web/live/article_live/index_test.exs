@@ -39,7 +39,7 @@ defmodule UniWeb.ArticleLive.IndexTest do
 
     assert_patch(
       article_live,
-      Routes.article_index_path(conn, :articles, page: 2, per_page: "10")
+      Routes.article_index_path(conn, :articles, page: 2, per_page: "10", query: "")
     )
 
     assert has_element?(article_live, "li.active", "2")
@@ -55,7 +55,7 @@ defmodule UniWeb.ArticleLive.IndexTest do
 
     assert_patch(
       article_live,
-      Routes.article_index_path(conn, :articles, page: 3, per_page: "10")
+      Routes.article_index_path(conn, :articles, page: 3, per_page: "10", query: "")
     )
 
     assert has_element?(article_live, "li.active", "3")
@@ -91,7 +91,7 @@ defmodule UniWeb.ArticleLive.IndexTest do
 
     assert_patch(
       article_live,
-      Routes.article_index_path(conn, :articles, page: 1, per_page: "25")
+      Routes.article_index_path(conn, :articles, page: 1, per_page: "25", query: "")
     )
 
     Enum.each(1..25, fn i ->
@@ -102,7 +102,7 @@ defmodule UniWeb.ArticleLive.IndexTest do
 
     assert_patch(
       article_live,
-      Routes.article_index_path(conn, :articles, page: 2, per_page: "25")
+      Routes.article_index_path(conn, :articles, page: 2, per_page: "25", query: "")
     )
 
     html = render(article_live)
@@ -110,6 +110,53 @@ defmodule UniWeb.ArticleLive.IndexTest do
     Enum.each(26..50, fn i ->
       assert html =~ "Article number: #{i}"
     end)
+  end
+
+  test "search filters articles by name", %{conn: conn} do
+    user = insert(:user)
+    conn = init_test_session(conn, %{user_id: user.id})
+
+    Enum.each(1..50, fn i ->
+      insert(:article, owner: user, name: "Article number: #{i}")
+    end)
+
+    {:ok, article_live, html} = live(conn, Routes.article_index_path(conn, :articles))
+
+    Enum.each(1..10, fn i ->
+      assert html =~ "Article number: #{i}"
+      refute String.contains?("Article number: #{i + 10}", html)
+    end)
+
+    html =
+      article_live
+      |> element("form#filters")
+      |> render_change(%{"query" => "1"})
+
+    assert_patch(
+      article_live,
+      Routes.article_index_path(conn, :articles, page: 1, per_page: "10", query: "1")
+    )
+
+    assert html =~ "Total of 14 articles"
+    assert html =~ "Article number: 1"
+    assert html =~ "Article number: 10"
+    refute html =~ "Article number: 21"
+
+    article_live |> element("a", "Next") |> render_click()
+    html = render(article_live)
+    assert html =~ "Article number: 21"
+
+    html =
+      article_live
+      |> element("form#filters")
+      |> render_change(%{"per_page" => "25"})
+
+    assert_patch(
+      article_live,
+      Routes.article_index_path(conn, :articles, page: 1, per_page: "25", query: "1")
+    )
+
+    assert html =~ "Article number: 21"
   end
 
   test "uses the page param to show the correct page", %{conn: conn} do

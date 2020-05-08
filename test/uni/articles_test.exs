@@ -59,18 +59,33 @@ defmodule Uni.ArticlesTest do
       assert {:error, %Ecto.Changeset{}} = Articles.create_article(@invalid_attrs)
     end
 
-    test "paginate_articles returns the paginated articles" do
+    test "paginate_articles/4 returns the paginated articles" do
       owner = insert(:user)
       another_owner = insert(:user)
       article_1 = insert(:article, owner: owner)
       article_2 = insert(:article, owner: owner)
       _article_3 = insert(:article, owner: another_owner)
 
-      result = Articles.paginate_articles(owner.id, _page = 1)
+      result = Articles.paginate_articles(owner.id, "", _page = 1)
 
       assert %Scrivener.Page{} = result
       assert result.entries == [article_1, article_2]
       assert result.total_entries == 2
+      assert result.total_pages == 1
+    end
+
+    test "paginate_articles/4 with query returns the paginated articles" do
+      owner = insert(:user)
+      another_owner = insert(:user)
+      article_1 = insert(:article, owner: owner, name: "Article one two")
+      _article_2 = insert(:article, owner: owner, name: "Article three four")
+      _article_3 = insert(:article, owner: another_owner)
+
+      result = Articles.paginate_articles(owner.id, "one", _page = 1)
+
+      assert %Scrivener.Page{} = result
+      assert result.entries == [article_1]
+      assert result.total_entries == 1
       assert result.total_pages == 1
     end
 

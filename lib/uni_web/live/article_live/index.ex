@@ -10,7 +10,7 @@ defmodule UniWeb.ArticleLive.Index do
     per_page = Map.get(params, "per_page", "10")
     query = Map.get(params, "query", "")
 
-    result = Articles.paginate_articles(socket.assigns.current_user.id, page, per_page)
+    result = Articles.paginate_articles(socket.assigns.current_user.id, query, page, per_page)
 
     {:ok,
      socket
@@ -21,7 +21,8 @@ defmodule UniWeb.ArticleLive.Index do
 
   @impl true
   def handle_info({:page_change, page}, %{assigns: assigns} = socket) do
-    result = Articles.paginate_articles(assigns.current_user.id, page, assigns.per_page)
+    result =
+      Articles.paginate_articles(assigns.current_user.id, assigns.query, page, assigns.per_page)
 
     {:noreply,
      socket
@@ -32,14 +33,14 @@ defmodule UniWeb.ArticleLive.Index do
   @impl true
   def handle_event(
         "filter",
-        %{"per_page" => per_page, "query" => _query},
+        %{"per_page" => per_page, "query" => query},
         %{assigns: assigns} = socket
       ) do
-    result = Articles.paginate_articles(assigns.current_user.id, assigns.page, per_page)
+    result = Articles.paginate_articles(assigns.current_user.id, query, assigns.page, per_page)
 
     {:noreply,
      socket
-     |> assign_filters(per_page)
+     |> assign_filters(per_page, query)
      |> assign_articles(result)
      |> update_params(result)}
   end
@@ -57,9 +58,10 @@ defmodule UniWeb.ArticleLive.Index do
     |> assign(page: result.page_number)
   end
 
-  defp assign_filters(socket, per_page) do
+  defp assign_filters(socket, per_page, query) do
     socket
     |> assign(per_page: per_page)
+    |> assign(query: query)
   end
 
   defp update_params(%{assigns: assigns} = socket, result) do
@@ -68,7 +70,8 @@ defmodule UniWeb.ArticleLive.Index do
       to:
         Routes.article_index_path(socket, :articles,
           page: result.page_number,
-          per_page: assigns.per_page
+          per_page: assigns.per_page,
+          query: assigns.query
         )
     )
   end
