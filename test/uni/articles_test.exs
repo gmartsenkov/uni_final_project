@@ -61,10 +61,12 @@ defmodule Uni.ArticlesTest do
 
     test "paginate_articles returns the paginated articles" do
       owner = insert(:user)
+      another_owner = insert(:user)
       article_1 = insert(:article, owner: owner)
       article_2 = insert(:article, owner: owner)
+      _article_3 = insert(:article, owner: another_owner)
 
-      result = Articles.paginate_articles(_page = 1)
+      result = Articles.paginate_articles(owner.id, _page = 1)
 
       assert %Scrivener.Page{} = result
       assert result.entries == [article_1, article_2]

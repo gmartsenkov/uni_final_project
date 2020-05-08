@@ -10,7 +10,7 @@ defmodule UniWeb.ArticleLive.Index do
     per_page = Map.get(params, "per_page", "10")
     query = Map.get(params, "query", "")
 
-    result = Articles.paginate_articles(page, per_page)
+    result = Articles.paginate_articles(socket.assigns.current_user.id, page, per_page)
 
     {:ok,
      socket
@@ -20,8 +20,8 @@ defmodule UniWeb.ArticleLive.Index do
   end
 
   @impl true
-  def handle_info({:page_change, page}, socket) do
-    result = Articles.paginate_articles(page, socket.assigns.per_page)
+  def handle_info({:page_change, page}, %{assigns: assigns} = socket) do
+    result = Articles.paginate_articles(assigns.current_user.id, page, assigns.per_page)
 
     {:noreply,
      socket
@@ -30,8 +30,12 @@ defmodule UniWeb.ArticleLive.Index do
   end
 
   @impl true
-  def handle_event("filter", %{"per_page" => per_page, "query" => _query}, socket) do
-    result = Articles.paginate_articles(socket.assigns.page, per_page)
+  def handle_event(
+        "filter",
+        %{"per_page" => per_page, "query" => _query},
+        %{assigns: assigns} = socket
+      ) do
+    result = Articles.paginate_articles(assigns.current_user.id, assigns.page, per_page)
 
     {:noreply,
      socket

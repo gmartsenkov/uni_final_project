@@ -5,13 +5,16 @@ defmodule UniWeb.ArticleLive.IndexTest do
 
   test "displays the correct articles", %{conn: conn} do
     user = insert(:user)
+    another_user = insert(:user)
     conn = init_test_session(conn, %{user_id: user.id})
 
     insert(:article, owner: user, name: "The article name")
+    insert(:article, owner: another_user, name: "Another article name")
 
     {:ok, _article_live, html} = live(conn, Routes.article_index_path(conn, :articles))
 
     assert html =~ "The article name"
+    refute html =~ "Another article name"
   end
 
   test "pagination works as expected", %{conn: conn} do

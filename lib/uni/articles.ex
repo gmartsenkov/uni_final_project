@@ -22,16 +22,17 @@ defmodule Uni.Articles do
   end
 
   @doc """
-  Returns a paginated list of articles.
+  Returns a paginated list of articles for an owner.
 
   ## Examples
 
-      iex> paginate_articles(page \\ 1, page_size \\ 10)
+      iex> paginate_articles(owner_id, page \\ 1, page_size \\ 10)
       %Scrivener.Page{entries: [...], total_pages: 1, total_entries: 2...}
 
   """
-  def paginate_articles(page \\ 1, page_size \\ 10) do
+  def paginate_articles(owner_id, page \\ 1, page_size \\ 10) do
     Article
+    |> where(owner_id: ^owner_id)
     |> preload(:owner)
     |> Repo.paginate(page: page, page_size: page_size)
   end
