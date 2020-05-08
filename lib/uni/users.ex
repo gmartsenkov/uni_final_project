@@ -9,6 +9,22 @@ defmodule Uni.Users do
   alias Uni.Users.User
 
   @doc """
+  Returns users matching the query(using an ILIKE query '%query%')
+
+  ## Examples
+
+     iex> autocomplete("Jon")
+     [%User{}, ...]
+
+  """
+  def autocomplete(query) do
+    Repo.all(
+      from u in User,
+        where: ilike(u.name, ^"%#{query}%")
+    )
+  end
+
+  @doc """
   Returns the list of users.
 
   ## Examples

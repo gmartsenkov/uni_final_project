@@ -30,6 +30,8 @@ defmodule UniWeb.Router do
   scope "/", UniWeb do
     pipe_through [:browser, :protected]
 
+    get "/users/autocomplete", UsersController, :autocomplete
+
     live "/", PageLive, :index
 
     live "/articles", ArticleLive.Index, :articles

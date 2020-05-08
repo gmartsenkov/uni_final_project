@@ -10,6 +10,14 @@ defmodule Uni.UsersTest do
     @update_attrs %{email: "some updated email", name: "some updated name", password: "4321"}
     @invalid_attrs %{email: nil, name: nil}
 
+    test "autocomplete/1 returns the users matching the query" do
+      _jon = insert(:user, name: "Jon Snow")
+      rob = insert(:user, name: "Rob Stark")
+      arya = insert(:user, name: "Arya Stark")
+
+      assert Users.autocomplete("stark") == [rob, arya]
+    end
+
     test "list_users/0 returns all users" do
       user = insert(:user)
       assert Users.list_users() == [user]
