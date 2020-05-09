@@ -3,7 +3,9 @@ defmodule UniWeb.UsersController do
 
   alias Uni.Users
 
-  def autocomplete(conn, %{"query" => query}) do
+  def autocomplete(conn, params) do
+    query = Map.get(params, "query", "")
+
     results =
       Enum.map(Users.autocomplete(query), fn user ->
         %{id: user.id, name: user.name}

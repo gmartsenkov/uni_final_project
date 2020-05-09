@@ -38,6 +38,20 @@ defmodule UniWeb.ArticleLive.EditTest do
 
     assert html =~ "Edit Article"
 
+    refute has_element?(article_live, "li#author-1", "Rob Stark")
+
+    article_live
+    |> element("div#author-multiselect")
+    |> render_hook("add_author", %{"id" => 1, "text" => "Rob Stark"})
+
+    assert has_element?(article_live, "li#author-1", "Rob Stark")
+
+    article_live
+    |> element("a#remove-author-1")
+    |> render_click()
+
+    refute has_element?(article_live, "li#author-1", "Rob Stark")
+
     assert article_live
            |> form("#articles-form", article: @invalid_params)
            |> render_change() =~ "can&apos;t be blank"

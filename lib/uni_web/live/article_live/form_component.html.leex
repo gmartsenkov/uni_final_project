@@ -33,10 +33,7 @@ phx_target: @myself
 <div class="form-group">
     <%= live_component @socket,
     UniWeb.AuthorMultiSelectComponent,
-    authors: ["Georgi Martsenkov", "Elena Dyankova"],
-    author_search: @author_search,
-    parent: @myself,
-    id: "author-autoselect"%>
+    id: "author-multiselect-component"%>
 </div>
 
 <div class="form-group">

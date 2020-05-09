@@ -7,7 +7,7 @@ defmodule UniWeb.AuthorMultiSelectComponent do
       socket
       |> assign(assigns)
       |> assign(:error, nil)
-      |> assign_new(:selected, fn -> [] end)
+      |> assign_new(:authors, fn -> [] end)
 
     {:ok, socket}
   end
@@ -15,48 +15,34 @@ defmodule UniWeb.AuthorMultiSelectComponent do
   @impl true
   def render(assigns) do
     ~L"""
-    <div>
-    <label>Author</label>
-    <div class="input-group">
-      <input
-        type="text"
-        autocomplete="off"
-        class="form-control"
-        value="<%= @author_search %>"
-        list="authors"
-        name="author_search">
-     <div class="input-group-append">
-        <button
-          phx-target="<%= @myself %>"
-          phx-click="add-author"
-          class="btn btn-outline-secondary"
-          type="button"
-          id="button-addon2">
-            Add
-        </button>
+    <div
+      id="author-multiselect"
+      phx-target="<%= @myself %>"
+      phx-hook="AuthorAutocomplete"
+
+      phx-update="ignore">
+      <label>Author</label>
+      <div class="input-group">
+          <select class="form-control" id="autocompleteAuthor" style="width: 100%"></select>
       </div>
     </div>
-      <%= if @error do %>
-        <div class="invalid-feedback mt-1 mb-0">
-          <%= @error %>
-        </div>
-      <% end %>
-    <datalist id="authors">
-      <%= for author <- @authors do %>
-        <option value="<%= author %>"><%= author %></option>
-      <% end %>
-    </datalist>
+    <%= if @error do %>
+      <div class="invalid-feedback mt-1 mb-0">
+        <%= @error %>
+      </div>
+    <% end %>
     <ul class="list-group mt-1">
-      <%= for author <- @selected do %>
-        <li class="list-group-item" id="<%= author %>">
+      <%= for author <- @authors do %>
+        <li class="list-group-item" id="author-<%= author["id"] %>">
           <i class="fas fa-user-graduate"></i>
-          <%= author%>
+            <%= author["text"] %>
           <a
             href="#"
+            id="remove-author-<%= author["id"] %>"
             class="float-right"
             phx-target="<%= @myself %>"
-            phx-value-author="<%= author %>"
-            phx-click="remove-author">
+            phx-value-author="<%= author["id"] %>"
+            phx-click="remove_author">
             <i class="far fa-times-circle"></i>
           <a/>
         </li>
@@ -67,24 +53,15 @@ defmodule UniWeb.AuthorMultiSelectComponent do
   end
 
   @impl true
-  def handle_event("add-author", _data, %{assigns: assigns} = socket) do
-    found = Enum.find(assigns.authors, nil, &(&1 == assigns.author_search))
-
-    case found do
-      nil ->
-        {:noreply, assign(socket, :error, "User does not exist")}
-
-      author ->
-        {:noreply,
-         socket
-         |> assign(:selected, assigns.selected ++ [author])
-         |> assign(:author_search, "")}
-    end
+  def handle_event("add_author", author, %{assigns: assigns} = socket) do
+    {:noreply,
+     socket
+     |> assign(:authors, assigns.authors ++ [author])}
   end
 
   @impl true
-  def handle_event("remove-author", %{"author" => author}, %{assigns: assigns} = socket) do
-    found = Enum.find(assigns.selected, nil, &(&1 == author))
+  def handle_event("remove_author", %{"author" => author_id}, %{assigns: assigns} = socket) do
+    found = Enum.find(assigns.authors, nil, &(&1["id"] == String.to_integer(author_id)))
 
     case found do
       nil ->
@@ -93,8 +70,7 @@ defmodule UniWeb.AuthorMultiSelectComponent do
       author ->
         {:noreply,
          socket
-         |> assign(:selected, Enum.reject(assigns.selected, &(&1 == author)))
-         |> assign(:author_search, "")}
+         |> assign(:authors, Enum.reject(assigns.authors, &(&1["id"] == author["id"])))}
     end
   end
 end

@@ -12,6 +12,7 @@ defmodule UniWeb.ArticleLive.FormComponent do
       |> assign(valid_types: valid_types)
       |> assign(author_search: "")
       |> assign(selected: [])
+      |> assign(authors: [])
 
     {:ok, socket}
   end
@@ -40,6 +41,12 @@ defmodule UniWeb.ArticleLive.FormComponent do
       |> assign(:author_search, Map.get(params, "author_search", ""))
 
     {:noreply, assign(socket, :changeset, changeset)}
+  end
+
+  def handle_event("add_author", %{"author" => author}, socket) do
+    {:noreply,
+     socket
+     |> assign(:authors, socket.assigns.authors ++ [author])}
   end
 
   def handle_event("save", %{"article" => params}, socket) do
