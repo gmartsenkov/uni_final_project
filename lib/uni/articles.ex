@@ -33,6 +33,7 @@ defmodule Uni.Articles do
   def paginate_articles(owner_id, query \\ "", page \\ 1, page_size \\ 10) do
     search(query)
     |> where(owner_id: ^owner_id)
+    |> order_by(desc: :updated_at)
     |> preload(:owner)
     |> Repo.paginate(page: page, page_size: page_size)
   end
