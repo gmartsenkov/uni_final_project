@@ -24,5 +24,18 @@ defmodule UniWeb.UsersControllerTest do
                  %{"id" => user.id, "name" => user.name}
                end)
     end
+
+    test "it returns an empty array when less than 3", %{conn: conn} do
+      user = insert(:user, name: "Bob")
+      insert(:user, name: "Jon Snow")
+      insert(:user, name: "Rob Stark")
+      insert(:user, name: "Arya Stark")
+
+      conn = init_test_session(conn, %{user_id: user.id})
+
+      conn = get(conn, Routes.users_path(conn, :autocomplete, query: "st"))
+
+      assert json_response(conn, 200) == []
+    end
   end
 end
