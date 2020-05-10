@@ -51,7 +51,12 @@ defmodule UniWeb.ArticleLive.EditTest do
 
     article_live
     |> element("div#author-multiselect")
-    |> render_hook("add_author", %{"id" => author_2.id, "text" => author_2.name})
+    |> render_hook("add_author", %{"id" => "#{author_2.id}", "text" => author_2.name})
+
+    assert article_live
+           |> element("div#author-multiselect")
+           |> render_hook("add_author", %{"id" => "#{author_2.id}", "text" => author_2.name}) =~
+             "Author is already in the list"
 
     assert has_element?(article_live, "li#author-#{author_2.id}", author_2.name)
 

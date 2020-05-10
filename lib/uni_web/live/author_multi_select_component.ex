@@ -19,7 +19,6 @@ defmodule UniWeb.AuthorMultiSelectComponent do
       id="author-multiselect"
       phx-target="<%= @myself %>"
       phx-hook="AuthorAutocomplete"
-
       phx-update="ignore">
       <label>Author</label>
       <div class="input-group">
@@ -55,14 +54,20 @@ defmodule UniWeb.AuthorMultiSelectComponent do
 
   @impl true
   def handle_event("add_author", author, %{assigns: assigns} = socket) do
-    {:noreply,
-     socket
-     |> assign(:authors, assigns.authors ++ [author])}
+    if find(assigns.authors, author["id"]) do
+      {:noreply,
+       socket
+       |> assign(:error, "Author is already in the list")}
+    else
+      {:noreply,
+       socket
+       |> assign(:authors, assigns.authors ++ [author])}
+    end
   end
 
   @impl true
   def handle_event("remove_author", %{"author" => author_id}, %{assigns: assigns} = socket) do
-    found = Enum.find(assigns.authors, nil, &(&1["id"] == String.to_integer(author_id)))
+    found = find(assigns.authors, String.to_integer(author_id))
 
     case found do
       nil ->
@@ -74,4 +79,7 @@ defmodule UniWeb.AuthorMultiSelectComponent do
          |> assign(:authors, Enum.reject(assigns.authors, &(&1["id"] == author["id"])))}
     end
   end
+
+  defp find(authors, author_id),
+    do: Enum.find(authors, nil, &(&1["id"] == author_id))
 end
