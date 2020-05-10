@@ -6,6 +6,7 @@ export default {
       $select = jQuery(hook.el).find("select#autocompleteAuthor");
 
     $select.select2({
+      minimumInputLength: 3,
       theme: 'bootstrap4',
       ajax: {
         url: "/users/autocomplete",

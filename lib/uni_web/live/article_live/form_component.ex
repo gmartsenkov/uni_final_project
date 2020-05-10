@@ -73,11 +73,11 @@ defmodule UniWeb.ArticleLive.FormComponent do
 
   defp handle_save(:update, params, socket) do
     case Articles.update_article(socket.assigns.article, params) do
-      {:ok, _article} ->
+      {:ok, article} ->
         {:noreply,
          socket
          |> put_flash(:info, "Article updated successfuly")
-         |> push_redirect(to: Routes.article_index_path(socket, :articles))}
+         |> push_redirect(to: Routes.article_edit_path(socket, :articles, article))}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}

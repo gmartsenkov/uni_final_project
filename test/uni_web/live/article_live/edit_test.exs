@@ -76,7 +76,7 @@ defmodule UniWeb.ArticleLive.EditTest do
       article_live
       |> form("#articles-form", article: @update_params)
       |> render_submit()
-      |> follow_redirect(conn, Routes.article_index_path(conn, :articles))
+      |> follow_redirect(conn, Routes.article_edit_path(conn, :articles, article))
 
     assert Uni.Articles.Author |> Uni.Repo.all() |> length == 2
 

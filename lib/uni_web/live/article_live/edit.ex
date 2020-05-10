@@ -21,6 +21,8 @@ defmodule UniWeb.ArticleLive.Edit do
   end
 
   defp maybe_get_article(socket, %Article{} = article) do
-    assign(socket, :article, article)
+    socket
+    |> assign(:page_title, "Edit - #{article.name}")
+    |> assign(:article, article)
   end
 end

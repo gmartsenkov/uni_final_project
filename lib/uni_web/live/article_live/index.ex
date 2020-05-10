@@ -15,6 +15,7 @@ defmodule UniWeb.ArticleLive.Index do
     {:ok,
      socket
      |> assign_articles(result)
+     |> assign(page_title: "Articles")
      |> assign(per_page: per_page)
      |> assign(query: query)}
   end
