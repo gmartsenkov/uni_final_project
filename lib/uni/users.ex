@@ -54,6 +54,20 @@ defmodule Uni.Users do
   def get_user!(id), do: Repo.get!(User, id)
 
   @doc """
+  Gets a list of user by their id.
+
+  ## Examples
+
+      iex> get_users([1,2,3])
+      %User{}
+
+      iex> get_users([])
+      []
+
+  """
+  def get_users(ids), do: Repo.all(from u in User, where: u.id in ^ids)
+
+  @doc """
   Gets a single user by email.
 
   Reeturns nil if the User does not exist.

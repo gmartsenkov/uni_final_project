@@ -34,6 +34,7 @@ defmodule UniWeb.AuthorMultiSelectComponent do
     <ul class="list-group mt-1">
       <%= for author <- @authors do %>
         <li class="list-group-item" id="author-<%= author["id"] %>">
+          <input type="text" style="display: none" name="authors[]" value="<%= author["id"] %>">
           <i class="fas fa-user-graduate"></i>
             <%= author["text"] %>
           <a

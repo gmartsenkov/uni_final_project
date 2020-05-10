@@ -37,17 +37,29 @@ defmodule Uni.ArticlesTest do
       assert Articles.list_articles() == [article]
     end
 
-    test "get_article!/1 returns the article with given id" do
-      article = insert(:article, owner: insert(:user))
-      assert Articles.get_article!(article.id) == article
+    test "get_article/1 returns the article with given id" do
+      owner = insert(:user)
+      author = insert(:user)
+      article = insert(:article, owner: owner, authors: [author])
+      result = Articles.get_article(article.id)
+
+      assert result == article
+      assert result.owner == owner
+      assert result.authors == [author]
     end
 
     test "create_article/1 with valid data creates a article" do
       owner = insert(:user)
+      user_1 = insert(:user)
+      user_2 = insert(:user)
       attrs = Map.put(@valid_attrs, :owner, owner)
+
+      attrs = Map.put(attrs, :authors, [user_1, user_2])
+
       assert {:ok, %Article{} = article} = Articles.create_article(attrs)
       assert article.name == "some name"
       assert article.owner == owner
+      assert article.authors == [user_1, user_2]
       assert article.publisher == "some publisher"
       assert article.scopus == true
       assert article.type == "national"
@@ -91,12 +103,19 @@ defmodule Uni.ArticlesTest do
 
     test "update_article/2 with valid data updates the article" do
       owner = insert(:user)
-      article = insert(:article, owner: owner)
+      user_1 = insert(:user)
+      user_2 = insert(:user)
+      article = insert(:article, owner: owner, authors: [user_1])
+
       new_owner = insert(:user)
+
       attrs = Map.put(@update_attrs, :owner, new_owner)
+      attrs = Map.put(attrs, :authors, [user_1, user_2])
+
       assert {:ok, %Article{} = article} = Articles.update_article(article, attrs)
       assert article.name == "some updated name"
       assert article.owner == new_owner
+      assert article.authors == [user_1, user_2]
       assert article.publisher == "some updated publisher"
       assert article.scopus == false
       assert article.type == "international"
@@ -105,15 +124,15 @@ defmodule Uni.ArticlesTest do
     end
 
     test "update_article/2 with invalid data returns error changeset" do
-      article = insert(:article, owner: insert(:user))
+      article = insert(:article, owner: insert(:user), authors: [])
       assert {:error, %Ecto.Changeset{}} = Articles.update_article(article, @invalid_attrs)
-      assert article == Articles.get_article!(article.id)
+      assert article == Articles.get_article(article.id)
     end
 
     test "delete_article/1 deletes the article" do
       article = insert(:article, owner: insert(:user))
       assert {:ok, %Article{}} = Articles.delete_article(article)
-      assert_raise Ecto.NoResultsError, fn -> Articles.get_article!(article.id) end
+      assert Articles.get_article(article.id) == nil
     end
 
     test "change_article/1 returns a article changeset" do

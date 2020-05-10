@@ -6,7 +6,11 @@ defmodule UniWeb.ArticleLive.FormComponentTest do
   import Phoenix.LiveViewTest
 
   test "it contains the correct fields" do
-    component = render_component(FormComponent, %{article: %Article{}, myself: nil, action: :new})
+    component =
+      render_component(
+        FormComponent,
+        %{article: %Article{authors: []}, myself: nil, action: :new}
+      )
 
     assert component =~ "Name"
     assert component =~ "Year"

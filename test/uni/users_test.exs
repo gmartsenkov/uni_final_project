@@ -28,6 +28,14 @@ defmodule Uni.UsersTest do
       assert Users.get_user!(user.id) == user
     end
 
+    test "get_users/1 returns the users with given ids" do
+      user = insert(:user)
+      user_2 = insert(:user)
+      _user_3 = insert(:user)
+
+      assert Users.get_users([user.id, user_2.id]) == [user, user_2]
+    end
+
     test "get_by_email/1 returns the user with given an email" do
       user = insert(:user)
       assert Users.get_by_email(user.email) == user

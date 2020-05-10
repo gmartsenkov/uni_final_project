@@ -43,22 +43,6 @@ defmodule Uni.Articles do
   @doc """
   Gets a single article.
 
-  Raises `Ecto.NoResultsError` if the Article does not exist.
-
-  ## Examples
-
-      iex> get_article!(123)
-      %Article{}
-
-      iex> get_article!(456)
-      ** (Ecto.NoResultsError)
-
-  """
-  def get_article!(id), do: Repo.get!(Article, id) |> Repo.preload(:owner)
-
-  @doc """
-  Gets a single article.
-
   Returns
 
   ## Examples
@@ -70,7 +54,8 @@ defmodule Uni.Articles do
       nil
 
   """
-  def get_article(id), do: Repo.get(Article, id) |> Repo.preload(:owner)
+  def get_article(id),
+    do: Article |> Repo.get(id) |> Repo.preload(:owner) |> Repo.preload(:authors)
 
   @doc """
   Creates a article.

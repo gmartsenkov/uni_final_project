@@ -19,6 +19,8 @@ defmodule UniWeb.ArticleLive.NewTest do
 
   test "saves the new article", %{conn: conn} do
     user = insert(:user)
+    author_1 = insert(:user, name: "Bob John")
+    author_2 = insert(:user, name: "Mike Babo")
     conn = init_test_session(conn, %{user_id: user.id})
 
     {:ok, article_live, html} = live(conn, Routes.article_new_path(conn, :articles))
@@ -31,13 +33,25 @@ defmodule UniWeb.ArticleLive.NewTest do
     |> element("div#author-multiselect")
     |> render_hook("add_author", %{"id" => 1, "text" => "Rob Stark"})
 
+    article_live
+    |> element("div#author-multiselect")
+    |> render_hook("add_author", %{"id" => author_1.id, "text" => author_1.name})
+
+    article_live
+    |> element("div#author-multiselect")
+    |> render_hook("add_author", %{"id" => author_2.id, "text" => author_2.name})
+
     assert has_element?(article_live, "li#author-1", "Rob Stark")
+    assert has_element?(article_live, "li#author-#{author_1.id}", author_1.name)
+    assert has_element?(article_live, "li#author-#{author_2.id}", author_2.name)
 
     article_live
     |> element("a#remove-author-1")
     |> render_click()
 
     refute has_element?(article_live, "li#author-1", "Rob Stark")
+    assert has_element?(article_live, "li#author-#{author_1.id}", author_1.name)
+    assert has_element?(article_live, "li#author-#{author_2.id}", author_2.name)
 
     assert article_live
            |> form("#articles-form", article: @invalid_params)
@@ -52,5 +66,7 @@ defmodule UniWeb.ArticleLive.NewTest do
     assert html =~ "Article created successfuly"
     assert html =~ "Article 1"
     assert html =~ "1994"
+
+    assert Uni.Articles.Author |> Uni.Repo.all() |> length == 2
   end
 end

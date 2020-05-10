@@ -12,7 +12,6 @@ defmodule UniWeb.ArticleLive.FormComponent do
       |> assign(valid_types: valid_types)
       |> assign(author_search: "")
       |> assign(selected: [])
-      |> assign(authors: [])
 
     {:ok, socket}
   end
@@ -24,6 +23,7 @@ defmodule UniWeb.ArticleLive.FormComponent do
     {:ok,
      socket
      |> assign(assigns)
+     |> assign_authors(assigns)
      |> assign(:submit_button, submit_button(action))
      |> assign(:changeset, changeset)}
   end
@@ -49,14 +49,17 @@ defmodule UniWeb.ArticleLive.FormComponent do
      |> assign(:authors, socket.assigns.authors ++ [author])}
   end
 
-  def handle_event("save", %{"article" => params}, socket) do
-    handle_save(socket.assigns.action, params, socket)
+  def handle_event("save", %{"article" => article} = params, socket) do
+    article =
+      article
+      |> Map.put("authors", get_authors(params["authors"]))
+      |> Map.put("owner", socket.assigns.user)
+
+    handle_save(socket.assigns.action, article, socket)
   end
 
   defp handle_save(:new, params, socket) do
-    attrs = Map.put(params, "owner", socket.assigns.user)
-
-    case Articles.create_article(attrs) do
+    case Articles.create_article(params) do
       {:ok, _article} ->
         {:noreply,
          socket
@@ -69,8 +72,6 @@ defmodule UniWeb.ArticleLive.FormComponent do
   end
 
   defp handle_save(:update, params, socket) do
-    params = Map.put(params, "owner", socket.assigns.article.owner)
-
     case Articles.update_article(socket.assigns.article, params) do
       {:ok, _article} ->
         {:noreply,
@@ -90,6 +91,18 @@ defmodule UniWeb.ArticleLive.FormComponent do
      |> assign(:author_search, "")}
   end
 
+  defp assign_authors(socket, %{article: %{authors: authors}}) do
+    assign(
+      socket,
+      :authors,
+      Enum.map(authors, fn author ->
+        %{"id" => author.id, "text" => author.name}
+      end)
+    )
+  end
+
+  defp get_authors(authors) when is_list(authors), do: Uni.Users.get_users(authors)
+  defp get_authors(_), do: []
   defp submit_button(:new), do: "Create"
   defp submit_button(:update), do: "Update"
 end
