@@ -37,6 +37,10 @@ defmodule UniWeb.Router do
     live "/articles", ArticleLive.Index, :articles
     live "/articles/new", ArticleLive.New, :articles
     live "/articles/:id", ArticleLive.Edit, :articles
+
+    live "/projects", ProjectLive.Index, :projects
+    live "/projects/new", ProjectLive.New, :projects
+    live "/projects/:id", ProjectLive.Edit, :projects
   end
 
   # Other scopes may use custom stacks.

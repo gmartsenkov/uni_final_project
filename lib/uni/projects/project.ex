@@ -29,5 +29,10 @@ defmodule Uni.Projects.Project do
       :participation_role,
       :owner
     ])
+    |> validate_inclusion(:project_type, valid_project_types())
+    |> validate_inclusion(:financing_type, valid_financing_types())
   end
+
+  def valid_project_types, do: ~w(national international)
+  def valid_financing_types, do: ~w(internal external)
 end

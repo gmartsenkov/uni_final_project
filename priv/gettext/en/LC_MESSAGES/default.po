@@ -34,11 +34,13 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:109
+#: lib/uni_web/live/project_live/form_component.ex:86
 msgid "Create"
 msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/edit.ex:25
+#: lib/uni_web/live/project_live/edit.ex:25
 msgid "Edit"
 msgstr ""
 
@@ -55,6 +57,7 @@ msgstr ""
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.html.leex:8
 #: lib/uni_web/live/article_live/index.html.leex:48 lib/uni_web/live/authentication_live/register.html.leex:13
+#: lib/uni_web/live/project_live/form_component.html.leex:8 lib/uni_web/live/project_live/index.html.leex:48
 msgid "Name"
 msgstr ""
 
@@ -78,6 +81,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:110
+#: lib/uni_web/live/project_live/form_component.ex:87
 msgid "Update"
 msgstr ""
 
@@ -132,11 +136,13 @@ msgstr[1] ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:30
+#: lib/uni_web/live/project_live/index.html.leex:30
 msgid "Search"
 msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:45
+#: lib/uni_web/live/project_live/index.html.leex:45
 msgid "Total of"
 msgstr ""
 
@@ -157,11 +163,13 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:15
+#: lib/uni_web/live/project_live/index.html.leex:15
 msgid "Show"
 msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:23
+#: lib/uni_web/live/project_live/index.html.leex:23
 msgid "entries"
 msgstr ""
 
@@ -177,13 +185,15 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:10
-#: lib/uni_web/live/article_live/index.ex:81
+#: lib/uni_web/live/article_live/index.ex:81 lib/uni_web/live/project_live/form_component.ex:92
+#: lib/uni_web/live/project_live/index.ex:81
 msgid "International"
 msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:9
-#: lib/uni_web/live/article_live/index.ex:80
+#: lib/uni_web/live/article_live/index.ex:80 lib/uni_web/live/project_live/form_component.ex:91
+#: lib/uni_web/live/project_live/index.ex:80
 msgid "National"
 msgstr ""
 
@@ -195,4 +205,79 @@ msgstr ""
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:82
 msgid "Article updated successfuly"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/index.html.leex:45
+msgid "project"
+msgid_plural "projects"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/edit.html.leex:4
+msgid "Edit Project"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.ex:98
+#: lib/uni_web/live/project_live/index.ex:84
+msgid "External"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.html.leex:29
+#: lib/uni_web/live/project_live/index.html.leex:51
+msgid "Financing"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.ex:97
+#: lib/uni_web/live/project_live/index.ex:83
+msgid "Internal"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/new.ex:8
+#: lib/uni_web/live/project_live/new.html.leex:4
+msgid "New Project"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.html.leex:35
+#: lib/uni_web/live/project_live/index.html.leex:52
+msgid "Participation Role"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.html.leex:15
+#: lib/uni_web/live/project_live/index.html.leex:49
+msgid "Project ID"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.html.leex:21
+#: lib/uni_web/live/project_live/index.html.leex:50
+msgid "Project Type"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.ex:56
+msgid "Project created successfuly"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/edit.ex:19
+msgid "Project not found"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.ex:69
+msgid "Project updated successfuly"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/index.ex:18
+#: lib/uni_web/live/project_live/index.html.leex:4
+msgid "Projects"
 msgstr ""

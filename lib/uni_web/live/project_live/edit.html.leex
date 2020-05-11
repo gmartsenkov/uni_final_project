@@ -1,0 +1,15 @@
+<div class="col-md-7">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary float-left"><%= gettext("Edit Project") %></h6>
+        </div>
+        <div class="card-body">
+            <%= live_component @socket,
+            UniWeb.ProjectLive.FormComponent,
+            id: "edit-project",
+            action: :update,
+            project: @project,
+            user: @current_user%>
+        </div>
+    </div>
+</div>

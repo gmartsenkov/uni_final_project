@@ -12,8 +12,14 @@
     <!-- Nav Item - Tables -->
     <li class="nav-item <%= if @navigation.action == :articles, do: "active"%>">
         <%= live_redirect class: "nav-link", to: Routes.article_index_path(@socket, :articles) do %>
-            <i class="fas fa-fw fa-table"></i>
+            <i class="fas fa-scroll"></i>
             <span><%= gettext("Articles") %></span>
+        <% end %>
+    </li>
+    <li class="nav-item <%= if @navigation.action == :projects, do: "active"%>">
+        <%= live_redirect class: "nav-link", to: Routes.project_index_path(@socket, :projects) do %>
+            <i class="fas fa-tasks"></i>
+            <span><%= gettext("Projects") %></span>
         <% end %>
     </li>
     <!-- Divider -->

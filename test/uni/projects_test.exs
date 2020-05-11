@@ -7,18 +7,18 @@ defmodule Uni.ProjectsTest do
     alias Uni.Projects.Project
 
     @valid_attrs %{
-      financing_type: "some financing_type",
+      financing_type: "external",
       name: "some name",
       participation_role: "some participation_role",
       project_id: "some project_id",
-      project_type: "some project_type"
+      project_type: "national"
     }
     @update_attrs %{
-      financing_type: "some updated financing_type",
+      financing_type: "internal",
       name: "some updated name",
       participation_role: "some updated participation_role",
       project_id: "some updated project_id",
-      project_type: "some updated project_type"
+      project_type: "international"
     }
     @invalid_attrs %{
       financing_type: nil,
@@ -72,11 +72,11 @@ defmodule Uni.ProjectsTest do
       owner = insert(:user)
       attrs = Map.put(@valid_attrs, :owner, owner)
       assert {:ok, %Project{} = project} = Projects.create_project(attrs)
-      assert project.financing_type == "some financing_type"
+      assert project.financing_type == "external"
       assert project.name == "some name"
       assert project.participation_role == "some participation_role"
       assert project.project_id == "some project_id"
-      assert project.project_type == "some project_type"
+      assert project.project_type == "national"
       assert project.owner == owner
     end
 
@@ -91,11 +91,11 @@ defmodule Uni.ProjectsTest do
 
       attrs = Map.put(@update_attrs, :owner, new_owner)
       assert {:ok, %Project{} = project} = Projects.update_project(project, attrs)
-      assert project.financing_type == "some updated financing_type"
+      assert project.financing_type == "internal"
       assert project.name == "some updated name"
       assert project.participation_role == "some updated participation_role"
       assert project.project_id == "some updated project_id"
-      assert project.project_type == "some updated project_type"
+      assert project.project_type == "international"
       assert project.owner == new_owner
     end
 

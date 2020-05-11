@@ -34,11 +34,13 @@ msgstr "Авторът е вече в списъка"
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:109
+#: lib/uni_web/live/project_live/form_component.ex:86
 msgid "Create"
 msgstr "Създай"
 
 #, elixir-format
 #: lib/uni_web/live/article_live/edit.ex:25
+#: lib/uni_web/live/project_live/edit.ex:25
 msgid "Edit"
 msgstr "Редактирай"
 
@@ -55,6 +57,7 @@ msgstr "Изход"
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.html.leex:8
 #: lib/uni_web/live/article_live/index.html.leex:48 lib/uni_web/live/authentication_live/register.html.leex:13
+#: lib/uni_web/live/project_live/form_component.html.leex:8 lib/uni_web/live/project_live/index.html.leex:48
 msgid "Name"
 msgstr "Име"
 
@@ -78,6 +81,7 @@ msgstr "Тип"
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:110
+#: lib/uni_web/live/project_live/form_component.ex:87
 msgid "Update"
 msgstr "Обнови"
 
@@ -132,11 +136,13 @@ msgstr[1] "статии"
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:30
+#: lib/uni_web/live/project_live/index.html.leex:30
 msgid "Search"
 msgstr "Търсене"
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:45
+#: lib/uni_web/live/project_live/index.html.leex:45
 msgid "Total of"
 msgstr "Общо"
 
@@ -157,11 +163,13 @@ msgstr "Моля впишете се"
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:15
+#: lib/uni_web/live/project_live/index.html.leex:15
 msgid "Show"
 msgstr "Покажи"
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:23
+#: lib/uni_web/live/project_live/index.html.leex:23
 msgid "entries"
 msgstr "резултата"
 
@@ -177,13 +185,15 @@ msgstr "Предишна"
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:10
-#: lib/uni_web/live/article_live/index.ex:81
+#: lib/uni_web/live/article_live/index.ex:81 lib/uni_web/live/project_live/form_component.ex:92
+#: lib/uni_web/live/project_live/index.ex:81
 msgid "International"
 msgstr "Международна"
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:9
-#: lib/uni_web/live/article_live/index.ex:80
+#: lib/uni_web/live/article_live/index.ex:80 lib/uni_web/live/project_live/form_component.ex:91
+#: lib/uni_web/live/project_live/index.ex:80
 msgid "National"
 msgstr "Национална"
 
@@ -196,3 +206,78 @@ msgstr "Статията беше създаден успешно"
 #: lib/uni_web/live/article_live/form_component.ex:82
 msgid "Article updated successfuly"
 msgstr "Статията беше успешно обновена"
+
+#, elixir-format
+#: lib/uni_web/live/project_live/index.html.leex:45
+msgid "project"
+msgid_plural "projects"
+msgstr[0] "проект"
+msgstr[1] "проекти"
+
+#, elixir-format
+#: lib/uni_web/live/project_live/edit.html.leex:4
+msgid "Edit Project"
+msgstr "Редактирай Проект"
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.ex:98
+#: lib/uni_web/live/project_live/index.ex:84
+msgid "External"
+msgstr "Външно"
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.html.leex:29
+#: lib/uni_web/live/project_live/index.html.leex:51
+msgid "Financing"
+msgstr "Финансиране"
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.ex:97
+#: lib/uni_web/live/project_live/index.ex:83
+msgid "Internal"
+msgstr "Международнo"
+
+#, elixir-format
+#: lib/uni_web/live/project_live/new.ex:8
+#: lib/uni_web/live/project_live/new.html.leex:4
+msgid "New Project"
+msgstr "Нов Проект"
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.html.leex:35
+#: lib/uni_web/live/project_live/index.html.leex:52
+msgid "Participation Role"
+msgstr "Участие роля"
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.html.leex:15
+#: lib/uni_web/live/project_live/index.html.leex:49
+msgid "Project ID"
+msgstr "Проект №"
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.html.leex:21
+#: lib/uni_web/live/project_live/index.html.leex:50
+msgid "Project Type"
+msgstr "Вид проект"
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.ex:56
+msgid "Project created successfuly"
+msgstr "Статията беше създаден успешно"
+
+#, elixir-format
+#: lib/uni_web/live/project_live/edit.ex:19
+msgid "Project not found"
+msgstr "Проектът не съществува"
+
+#, elixir-format
+#: lib/uni_web/live/project_live/form_component.ex:69
+msgid "Project updated successfuly"
+msgstr "Статията беше успешно обновена"
+
+#, elixir-format
+#: lib/uni_web/live/project_live/index.ex:18
+#: lib/uni_web/live/project_live/index.html.leex:4
+msgid "Projects"
+msgstr "Проекти"
