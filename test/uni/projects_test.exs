@@ -38,6 +38,36 @@ defmodule Uni.ProjectsTest do
       assert Projects.get_project(project.id) == project
     end
 
+    test "paginate_projects/4 returns the paginated projects" do
+      owner = insert(:user)
+      another_owner = insert(:user)
+      project_1 = insert(:project, owner: owner)
+      project_2 = insert(:project, owner: owner)
+      _project_3 = insert(:project, owner: another_owner)
+
+      result = Projects.paginate_projects(owner.id, "", _page = 1)
+
+      assert %Scrivener.Page{} = result
+      assert result.entries == [project_1, project_2]
+      assert result.total_entries == 2
+      assert result.total_pages == 1
+    end
+
+    test "paginate_projects/4 with query returns the paginated projects" do
+      owner = insert(:user)
+      another_owner = insert(:user)
+      project_1 = insert(:project, owner: owner, name: "Project one two")
+      _project_2 = insert(:project, owner: owner, name: "Project three four")
+      _project_3 = insert(:project, owner: another_owner)
+
+      result = Projects.paginate_projects(owner.id, "one", _page = 1)
+
+      assert %Scrivener.Page{} = result
+      assert result.entries == [project_1]
+      assert result.total_entries == 1
+      assert result.total_pages == 1
+    end
+
     test "create_project/1 with valid data creates a project" do
       owner = insert(:user)
       attrs = Map.put(@valid_attrs, :owner, owner)

@@ -22,6 +22,26 @@ defmodule Uni.Projects do
   end
 
   @doc """
+  Returns a paginated list of projects for an owner.
+
+  ## Examples
+
+      iex> paginate_projects(owner_id, page \\ 1, page_size \\ 10)
+      %Scrivener.Page{entries: [...], total_pages: 1, total_entries: 2...}
+
+  """
+  def paginate_projects(owner_id, query \\ "", page \\ 1, page_size \\ 10) do
+    search(query)
+    |> where(owner_id: ^owner_id)
+    |> order_by(desc: :updated_at)
+    |> preload(:owner)
+    |> Repo.paginate(page: page, page_size: page_size)
+  end
+
+  defp search(""), do: Project
+  defp search(query), do: from(a in Project, where: ilike(a.name, ^"%#{query}%"))
+
+  @doc """
   Gets a single project.
 
   Raises `Ecto.NoResultsError` if the Project does not exist.
