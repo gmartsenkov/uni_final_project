@@ -19,4 +19,14 @@ defmodule Uni.Factory do
       year: 1994
     }
   end
+
+  def project_factory do
+    %Uni.Projects.Project{
+      name: "Project name",
+      project_id: "project01",
+      project_type: "national",
+      financing_type: "internal",
+      participation_role: "boss"
+    }
+  end
 end
