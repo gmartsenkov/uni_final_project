@@ -7,7 +7,7 @@ defmodule UniWeb.AuthenticationControllerTest do
     test "fails where params are missing", %{conn: conn} do
       conn = post(conn, Routes.authentication_path(conn, :login))
 
-      assert get_flash(conn, :error) == "User and pass dont match"
+      assert get_flash(conn, :error) == "Email and password do not match"
       assert redirected_to(conn) == "/login"
     end
 
@@ -19,7 +19,7 @@ defmodule UniWeb.AuthenticationControllerTest do
           user: @user_params
         )
 
-      assert get_flash(conn, :error) == "User and pass dont match"
+      assert get_flash(conn, :error) == "Email and password do not match"
       assert redirected_to(conn) == "/login"
     end
 
@@ -33,7 +33,7 @@ defmodule UniWeb.AuthenticationControllerTest do
           user: @user_params |> Map.put("password", "invalid")
         )
 
-      assert get_flash(conn, :error) == "User and pass dont match"
+      assert get_flash(conn, :error) == "Email and password do not match"
       assert redirected_to(conn) == "/login"
     end
 

@@ -1,0 +1,198 @@
+## "msgid"s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove "msgid"s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use "mix gettext.extract --merge" or "mix gettext.merge"
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2\n"
+
+#, elixir-format
+#: lib/uni_web/live/author_multi_select_component.ex:23
+msgid "Add Author"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/edit.ex:19
+msgid "Article not found"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/index.ex:18
+#: lib/uni_web/live/article_live/index.html.leex:4 lib/uni_web/live/navigation_live.html.leex:16
+msgid "Articles"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/author_multi_select_component.ex:60
+msgid "Author is already in the list"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/form_component.ex:109
+msgid "Create"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/edit.ex:25
+msgid "Edit"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/edit.html.leex:4
+msgid "Edit Article"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/navigation_live.html.leex:29
+msgid "Logout"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/form_component.html.leex:8
+#: lib/uni_web/live/article_live/index.html.leex:48 lib/uni_web/live/authentication_live/register.html.leex:13
+msgid "Name"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/new.ex:8
+#: lib/uni_web/live/article_live/new.html.leex:4
+msgid "New Article"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/form_component.html.leex:28
+#: lib/uni_web/live/article_live/index.html.leex:49
+msgid "Publisher"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/form_component.html.leex:21
+#: lib/uni_web/live/article_live/index.html.leex:50
+msgid "Type"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/form_component.ex:110
+msgid "Update"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/author_multi_select_component.ex:74
+msgid "User does not exist"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/page_live.html.leex:2
+msgid "Welcome to %{name}!"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/form_component.html.leex:15
+#: lib/uni_web/live/article_live/index.html.leex:53
+msgid "Year"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/register.html.leex:18
+#: lib/uni_web/templates/authentication/login.html.leex:10
+msgid "Email address"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/templates/authentication/login.html.leex:18
+msgid "Login"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/templates/authentication/login.html.leex:14
+msgid "Password"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/register.html.leex:27
+msgid "Register"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/register.ex:30
+msgid "User created successfuly"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/index.html.leex:45
+msgid "article"
+msgid_plural "articles"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/index.html.leex:30
+msgid "Search"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/index.html.leex:45
+msgid "Total of"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/controllers/authentication.ex:33
+msgid "Email and password do not match"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/templates/authentication/login.html.leex:5
+msgid "Log In"
+msgstr ""
+
+#, elixir-format
+#: lib/uni/plugs/auth.ex:14
+msgid "Please log in"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/index.html.leex:15
+msgid "Show"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/index.html.leex:23
+msgid "entries"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/pagination_component.ex:43
+msgid "Next"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/pagination_component.ex:23
+msgid "Previous"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/form_component.ex:10
+#: lib/uni_web/live/article_live/index.ex:81
+msgid "International"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/form_component.ex:9
+#: lib/uni_web/live/article_live/index.ex:80
+msgid "National"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/form_component.ex:69
+msgid "Article created successfuly"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/form_component.ex:82
+msgid "Article updated successfuly"
+msgstr ""

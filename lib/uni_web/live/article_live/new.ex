@@ -5,7 +5,7 @@ defmodule UniWeb.ArticleLive.New do
   def mount(_params, session, socket) do
     socket =
       assign_defaults(socket, session)
-      |> assign(page_title: "New Article")
+      |> assign(page_title: gettext("New Article"))
       |> assign(:article, %Uni.Articles.Article{authors: []})
 
     {:ok, socket}

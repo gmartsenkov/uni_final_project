@@ -16,13 +16,13 @@ defmodule UniWeb.ArticleLive.Edit do
 
   defp maybe_get_article(socket, nil = _article) do
     socket
-    |> put_flash(:error, "Article not found")
+    |> put_flash(:error, gettext("Article not found"))
     |> push_redirect(to: Routes.article_index_path(socket, :articles))
   end
 
   defp maybe_get_article(socket, %Article{} = article) do
     socket
-    |> assign(:page_title, "Edit - #{article.name}")
+    |> assign(:page_title, "#{gettext("Edit")} - #{article.name}")
     |> assign(:article, article)
   end
 end

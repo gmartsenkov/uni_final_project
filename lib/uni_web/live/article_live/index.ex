@@ -15,7 +15,7 @@ defmodule UniWeb.ArticleLive.Index do
     {:ok,
      socket
      |> assign_articles(result)
-     |> assign(page_title: "Articles")
+     |> assign(page_title: gettext("Articles"))
      |> assign(per_page: per_page)
      |> assign(query: query)}
   end
@@ -76,4 +76,7 @@ defmodule UniWeb.ArticleLive.Index do
         )
     )
   end
+
+  defp translate_type("national"), do: gettext("National")
+  defp translate_type("international"), do: gettext("International")
 end

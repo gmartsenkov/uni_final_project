@@ -30,7 +30,7 @@ defmodule UniWeb.AuthenticationController do
 
   defp wrong_credentials(conn) do
     conn
-    |> put_flash(:error, "User and pass dont match")
+    |> put_flash(:error, gettext("Email and password do not match"))
     |> redirect(to: "/login")
   end
 end

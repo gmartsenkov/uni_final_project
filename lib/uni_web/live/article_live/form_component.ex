@@ -5,7 +5,10 @@ defmodule UniWeb.ArticleLive.FormComponent do
 
   @impl true
   def mount(socket) do
-    valid_types = [National: "national", International: "international"]
+    valid_types = [
+      {gettext("National"), "national"},
+      {gettext("International"), "international"}
+    ]
 
     socket =
       socket
@@ -63,7 +66,7 @@ defmodule UniWeb.ArticleLive.FormComponent do
       {:ok, _article} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Article created successfuly")
+         |> put_flash(:info, gettext("Article created successfuly"))
          |> push_redirect(to: Routes.article_index_path(socket, :articles))}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -76,7 +79,7 @@ defmodule UniWeb.ArticleLive.FormComponent do
       {:ok, article} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Article updated successfuly")
+         |> put_flash(:info, gettext("Article updated successfuly"))
          |> push_redirect(to: Routes.article_edit_path(socket, :articles, article))}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -103,6 +106,6 @@ defmodule UniWeb.ArticleLive.FormComponent do
 
   defp get_authors(authors) when is_list(authors), do: Uni.Users.get_users(authors)
   defp get_authors(_), do: []
-  defp submit_button(:new), do: "Create"
-  defp submit_button(:update), do: "Update"
+  defp submit_button(:new), do: gettext("Create")
+  defp submit_button(:update), do: gettext("Update")
 end

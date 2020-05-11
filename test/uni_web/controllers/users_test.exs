@@ -5,7 +5,7 @@ defmodule UniWeb.UsersControllerTest do
     test "redirects to login when not logged in", %{conn: conn} do
       conn = get(conn, Routes.users_path(conn, :autocomplete))
 
-      assert get_flash(conn, :error) == "You are not logged in"
+      assert get_flash(conn, :error) == "Please log in"
       assert redirected_to(conn) == "/login"
     end
 

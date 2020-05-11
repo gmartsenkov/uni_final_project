@@ -20,7 +20,7 @@ defmodule UniWeb.PaginationComponent do
             phx-target="<%= @myself %>"
             phx-click="prev_page"
             aria-disabled="true">
-            Previous
+            <%= gettext("Previous") %>
           </a>
         </li>        
         <%= for page <- @page_range do %>
@@ -40,7 +40,7 @@ defmodule UniWeb.PaginationComponent do
             phx-click="next_page"
             class="page-link shadow-none"
             href="#">
-            Next
+            <%= gettext("Next") %>
           </a>
         </li>
       </ul>

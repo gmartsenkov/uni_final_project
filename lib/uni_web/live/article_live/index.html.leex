@@ -1,56 +1,56 @@
 <div class="col-lg-10">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary float-left">Articles</h6>
+            <h6 class="m-0 font-weight-bold text-primary float-left"><%= gettext("Articles") %></h6>
             <%= live_redirect id: "new-article", class: "btn btn-success btn-circle btn-sm float-right", to: Routes.article_new_path(@socket, :articles) do %>
                 <i class="fas fa-plus"></i>
             <% end %>
         </div>
         <div class="card-body pt-3">
             <%= _f = form_for :filters, "#", phx_change: "filter", id: "filters" %>
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <div>
-                            <label style="display: inline-flex">
-                                Show
-                                <select
-                                    name="per_page"
-                                    class="custom-select custom-select-sm form-control form-control-sm ml-1 mr-1">
-                                    <option value="10" <%= if @per_page == "10", do: "selected" %>>10</option>
-                                    <option value="25" <%= if @per_page == "25", do: "selected" %>>25</option>
-                                    <option value="50" <%= if @per_page == "50", do: "selected" %>>50</option>
-                                </select>
-                                entries
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div>
-                            <label class="float-md-right" style="display: inline-flex">
-                                Search:
-                                <input
-                                    value="<%= @query %>"
-                                    phx-debounce="500"
-                                    name="query"
-                                    autocomplete="off"
-                                    type="search"
-                                    class="form-control form-control-sm ml-2"
-                                    placeholder="">
-                            </label>
-                        </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div>
+                        <label style="display: inline-flex">
+                            <%= gettext("Show") %>
+                            <select
+                                name="per_page"
+                                class="custom-select custom-select-sm form-control form-control-sm ml-1 mr-1">
+                                <option value="10" <%= if @per_page == "10", do: "selected" %>>10</option>
+                                <option value="25" <%= if @per_page == "25", do: "selected" %>>25</option>
+                                <option value="50" <%= if @per_page == "50", do: "selected" %>>50</option>
+                            </select>
+                            <%= gettext("entries") %>
+                        </label>
                     </div>
                 </div>
+                <div class="col-sm-12 col-md-6">
+                    <div>
+                        <label class="float-md-right" style="display: inline-flex">
+                            <%= gettext("Search") %>:
+                            <input
+                                value="<%= @query %>"
+                                phx-debounce="500"
+                                name="query"
+                                autocomplete="off"
+                                type="search"
+                                class="form-control form-control-sm ml-2"
+                                placeholder="">
+                        </label>
+                    </div>
+                </div>
+            </div>
             </form>
             <table class="table table-responsive-xl">
-                <caption> Total of <%= @total %> articles </caption>
+                <caption> <%= gettext("Total of") %> <%= @total %> <%= ngettext("article", "articles", @total) %> </caption>
                 <thead>
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Publisher</th>
-                        <th scope="col">Type</th>
+                        <th scope="col"><%= gettext("Name") %></th>
+                        <th scope="col"><%= gettext("Publisher") %></th>
+                        <th scope="col"><%= gettext("Type") %></th>
                         <th scope="col">Scopus</th>
                         <th scope="col">Wofscience</th>
-                        <th scope="col">Year</th>
+                        <th scope="col"><%= gettext("Year") %></th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -59,7 +59,7 @@
                         <tr>
                             <th><%= article.name %></th>
                             <th><%= article.publisher %></th>
-                            <th><%= article.type %></th>
+                            <th><%= translate_type(article.type) %></th>
                             <th><%= article.scopus %></th>
                             <th><%= article.wofscience %></th>
                             <th><%= article.year %></th>

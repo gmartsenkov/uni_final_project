@@ -10,12 +10,12 @@
         phx_change: "validate",
         phx_submit: "save" %>
         <div class="form-group">
-           <label for="exampleInputEmail1">Name</label>
+           <label><%= gettext("Name") %></label>
             <%= text_input f, :name, class: "form-control" %>
             <%= error_tag f, :name %>
         </div>
         <div class="form-group">
-           <label for="exampleInputEmail1">Email address</label>
+            <label><%= gettext("Email address") %></label>
              <%= email_input f, :email, class: "form-control" %>
              <%= error_tag f, :email %>
         </div>
@@ -24,7 +24,7 @@
             <%= password_input f, :password, class: "form-control" %>
             <%= error_tag f, :password %>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary"><%= gettext("Register") %></button>
       </form>
     </div>
   </div>

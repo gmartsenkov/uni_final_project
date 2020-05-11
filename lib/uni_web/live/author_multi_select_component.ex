@@ -20,7 +20,7 @@ defmodule UniWeb.AuthorMultiSelectComponent do
       phx-target="<%= @myself %>"
       phx-hook="AuthorAutocomplete"
       phx-update="ignore">
-      <label>Author</label>
+      <label><%= gettext("Add Author")%></label>
       <div class="input-group">
           <select class="form-control" id="autocompleteAuthor" style="width: 100%"></select>
       </div>
@@ -57,7 +57,7 @@ defmodule UniWeb.AuthorMultiSelectComponent do
     if find(assigns.authors, author["id"]) do
       {:noreply,
        socket
-       |> assign(:error, "Author is already in the list")}
+       |> assign(:error, gettext("Author is already in the list"))}
     else
       {:noreply,
        socket
@@ -71,7 +71,7 @@ defmodule UniWeb.AuthorMultiSelectComponent do
 
     case found do
       nil ->
-        {:noreply, assign(socket, :error, "User does not exist")}
+        {:noreply, assign(socket, :error, gettext("User does not exist"))}
 
       author ->
         {:noreply,

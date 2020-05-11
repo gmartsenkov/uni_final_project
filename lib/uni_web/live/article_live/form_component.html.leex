@@ -5,27 +5,27 @@ phx_submit: "save",
 phx_target: @myself
 %>
 <div class="form-group">
-    <label>Name</label>
+    <label><%= gettext("Name") %></label>
     <%= text_input f, :name, class: input_class(f, :name) %>
     <%= error_tag f, :name %>
 </div>
 
 <div class="form-row">
     <div class="form-group col-md-6">
-        <label>Year</label>
+        <label><%= gettext("Year") %></label>
         <%= number_input f, :year, class: input_class(f, :year) %>
         <%= error_tag f, :year %>
     </div>
 
     <div class="form-group col-md-6">
-        <label>Type</label>
+        <label><%= gettext("Type") %></label>
         <%= select f, :type, @valid_types, class: "custom-select form-control" %>
         <%= error_tag f, :type %>
     </div>
 </div>
 
 <div class="form-group">
-    <label>Publisher</label>
+    <label><%= gettext("Publisher") %></label>
     <%= text_input f, :publisher, class: input_class(f, :publisher) %>
     <%= error_tag f, :publisher %>
 </div>

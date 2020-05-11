@@ -1,6 +1,5 @@
 defmodule Uni.Plugs.Auth do
   use UniWeb, :controller
-  alias Phoenix.LiveView
 
   def init(opts), do: opts
 
@@ -12,7 +11,7 @@ defmodule Uni.Plugs.Auth do
 
   def next(nil, conn) do
     conn
-    |> put_flash(:error, "You are not logged in")
+    |> put_flash(:error, gettext("Please log in"))
     |> redirect(to: "/login")
     |> halt()
   end

@@ -27,7 +27,7 @@ defmodule UniWeb.AuthenticationLive.Register do
       {:ok, _user} ->
         {:noreply,
          socket
-         |> put_flash(:info, "User created successfuly")
+         |> put_flash(:info, gettext("User created successfuly"))
          |> redirect(to: "/login")}
 
       {:error, %Ecto.Changeset{} = changeset} ->

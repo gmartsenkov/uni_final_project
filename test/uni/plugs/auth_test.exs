@@ -10,7 +10,7 @@ defmodule Uni.Plugs.AuthTest do
       |> Auth.call()
 
     assert redirected_to(conn) == "/login"
-    assert get_flash(conn, :error) == "You are not logged in"
+    assert get_flash(conn, :error) == "Please log in"
     assert conn.halted
   end
 

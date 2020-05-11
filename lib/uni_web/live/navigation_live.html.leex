@@ -13,7 +13,7 @@
     <li class="nav-item <%= if @navigation.action == :articles, do: "active"%>">
         <%= live_redirect class: "nav-link", to: Routes.article_index_path(@socket, :articles) do %>
             <i class="fas fa-fw fa-table"></i>
-            <span>Articles</span>
+            <span><%= gettext("Articles") %></span>
         <% end %>
     </li>
     <!-- Divider -->
@@ -26,6 +26,6 @@
     <li class="nav-item">
         <a class="nav-link" href="tables.html">
             <i class="fas fa-sign-out-alt"></i>
-            <span>Logout</span></a>
+            <span><%= gettext("Logout") %></span></a>
     </li>
 </ul>
