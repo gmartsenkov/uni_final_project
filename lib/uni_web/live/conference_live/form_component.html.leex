@@ -11,23 +11,23 @@ phx_target: @myself
 </div>
 
 <div class="form-row">
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-6">
         <label><%= gettext("Page Start") %></label>
         <%= number_input f, :page_start, class: input_class(f, :page_start) %>
         <%= error_tag f, :page_start %>
     </div>
 
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-6">
         <label><%= gettext("Page End") %></label>
         <%= number_input f, :page_end, class: input_class(f, :page_end) %>
         <%= error_tag f, :page_end %>
     </div>
+</div>
 
-    <div class="form-group col-md-6">
-        <label><%= gettext("Type") %></label>
-        <%= select f, :type, valid_types(), class: "custom-select form-control" %>
-        <%= error_tag f, :type %>
-    </div>
+<div class="form-group">
+    <label><%= gettext("Type") %></label>
+    <%= select f, :type, valid_types(), class: "custom-select form-control" %>
+    <%= error_tag f, :type %>
 </div>
 
 <div class="form-group">

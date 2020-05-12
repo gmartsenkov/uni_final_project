@@ -333,12 +333,12 @@ msgstr ""
 #, elixir-format
 #: lib/uni_web/live/conference_live/form_component.html.leex:21
 msgid "Page End"
-msgstr "Начална страница"
+msgstr "Последна страница"
 
 #, elixir-format
 #: lib/uni_web/live/conference_live/form_component.html.leex:15
 msgid "Page Start"
-msgstr "Последна страница"
+msgstr "Начална страница"
 
 #, elixir-format, fuzzy
 #: lib/uni_web/live/conference_live/form_component.html.leex:36
