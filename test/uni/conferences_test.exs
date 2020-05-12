@@ -37,18 +37,22 @@ defmodule Uni.ConferencesTest do
     end
 
     test "get_conference!/1 returns the conference with given id" do
-      conference = insert(:conference)
+      conference = insert(:conference, owner: insert(:user))
       assert Conferences.get_conference(conference.id) == conference
     end
 
     test "create_conference/1 with valid data creates a conference" do
-      assert {:ok, %Conference{} = conference} = Conferences.create_conference(@valid_attrs)
+      owner = insert(:user)
+      attrs = Map.put(@valid_attrs, :owner, owner)
+
+      assert {:ok, %Conference{} = conference} = Conferences.create_conference(attrs)
       assert conference.name == "some name"
       assert conference.page_end == 42
       assert conference.page_start == 42
       assert conference.published == true
       assert conference.reported == true
       assert conference.type == "some type"
+      assert conference.owner == owner
     end
 
     test "create_conference/1 with invalid data returns error changeset" do
@@ -56,10 +60,11 @@ defmodule Uni.ConferencesTest do
     end
 
     test "update_conference/2 with valid data updates the conference" do
-      conference = insert(:conference)
-
-      assert {:ok, %Conference{} = conference} =
-               Conferences.update_conference(conference, @update_attrs)
+      owner = insert(:user)
+      conference = insert(:conference, owner: owner)
+      new_owner = insert(:user)
+      attrs = Map.put(@update_attrs, :owner, new_owner)
+      assert {:ok, %Conference{} = conference} = Conferences.update_conference(conference, attrs)
 
       assert conference.name == "some updated name"
       assert conference.page_end == 43
@@ -67,10 +72,11 @@ defmodule Uni.ConferencesTest do
       assert conference.published == false
       assert conference.reported == false
       assert conference.type == "some updated type"
+      assert conference.owner == new_owner
     end
 
     test "update_conference/2 with invalid data returns error changeset" do
-      conference = insert(:conference)
+      conference = insert(:conference, owner: insert(:user))
 
       assert {:error, %Ecto.Changeset{}} =
                Conferences.update_conference(conference, @invalid_attrs)
@@ -85,7 +91,7 @@ defmodule Uni.ConferencesTest do
     end
 
     test "change_conference/1 returns a conference changeset" do
-      conference = insert(:conference)
+      conference = insert(:conference, owner: insert(:user))
       assert %Ecto.Changeset{} = Conferences.change_conference(conference)
     end
   end

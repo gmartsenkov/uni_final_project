@@ -35,7 +35,7 @@ defmodule Uni.Conferences do
       nil
 
   """
-  def get_conference(id), do: Repo.get(Conference, id)
+  def get_conference(id), do: Conference |> Repo.get(id) |> Repo.preload(:owner)
 
   @doc """
   Creates a conference.

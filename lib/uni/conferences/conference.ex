@@ -1,5 +1,6 @@
 defmodule Uni.Conferences.Conference do
   use Ecto.Schema
+  alias Uni.Users.User
   import Ecto.Changeset
 
   schema "conferences" do
@@ -9,15 +10,19 @@ defmodule Uni.Conferences.Conference do
     field :published, :boolean, default: false
     field :reported, :boolean, default: false
     field :type, :string
-    field :owner_id, :id
+
+    belongs_to(:owner, User, on_replace: :nilify)
 
     timestamps()
   end
 
   @doc false
   def changeset(conference, attrs) do
+    owner = Map.get(attrs, :owner) || Map.get(attrs, "owner")
+
     conference
     |> cast(attrs, [:name, :type, :reported, :published, :page_start, :page_end])
-    |> validate_required([:name, :type, :reported, :published, :page_start, :page_end])
+    |> put_assoc(:owner, owner)
+    |> validate_required([:name, :type, :reported, :published, :page_start, :page_end, :owner])
   end
 end
