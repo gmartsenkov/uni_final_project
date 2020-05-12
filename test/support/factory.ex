@@ -29,4 +29,15 @@ defmodule Uni.Factory do
       participation_role: "boss"
     }
   end
+
+  def conference_factory do
+    %Uni.Conferences.Conference{
+      name: "Conference name",
+      type: "national",
+      published: true,
+      reported: true,
+      page_start: 5,
+      page_end: 15
+    }
+  end
 end
