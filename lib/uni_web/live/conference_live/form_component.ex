@@ -1,7 +1,7 @@
-defmodule UniWeb.ProjectLive.FormComponent do
+defmodule UniWeb.ConferenceLive.FormComponent do
   use UniWeb, :live_component
 
-  alias Uni.Projects
+  alias Uni.Conferences
 
   @impl true
   def mount(socket) do
@@ -14,8 +14,8 @@ defmodule UniWeb.ProjectLive.FormComponent do
   end
 
   @impl true
-  def update(%{project: project, action: action} = assigns, socket) do
-    changeset = Projects.change_project(project)
+  def update(%{conference: conference, action: action} = assigns, socket) do
+    changeset = Conferences.change_conference(conference)
 
     {:ok,
      socket
@@ -25,10 +25,10 @@ defmodule UniWeb.ProjectLive.FormComponent do
   end
 
   @impl true
-  def handle_event("validate", %{"project" => project} = params, socket) do
+  def handle_event("validate", %{"conference" => conference} = params, socket) do
     changeset =
-      socket.assigns.project
-      |> Projects.change_project(Map.put(project, "owner", socket.assigns.user))
+      socket.assigns.conference
+      |> Conferences.change_conference(Map.put(conference, "owner", socket.assigns.user))
       |> Map.put(:action, :validate)
 
     socket =
@@ -39,21 +39,21 @@ defmodule UniWeb.ProjectLive.FormComponent do
     {:noreply, assign(socket, :changeset, changeset)}
   end
 
-  def handle_event("save", %{"project" => project}, socket) do
-    project =
-      project
+  def handle_event("save", %{"conference" => conference}, socket) do
+    conference =
+      conference
       |> Map.put("owner", socket.assigns.user)
 
-    handle_save(socket.assigns.action, project, socket)
+    handle_save(socket.assigns.action, conference, socket)
   end
 
   defp handle_save(:new, params, socket) do
-    case Projects.create_project(params) do
-      {:ok, _project} ->
+    case Conferences.create_conference(params) do
+      {:ok, _conference} ->
         {:noreply,
          socket
-         |> put_flash(:info, gettext("Project created successfuly"))
-         |> push_redirect(to: Routes.project_index_path(socket, :projects))}
+         |> put_flash(:info, gettext("Conference created successfuly"))
+         |> push_redirect(to: Routes.conference_index_path(socket, :conferences))}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}
@@ -61,12 +61,12 @@ defmodule UniWeb.ProjectLive.FormComponent do
   end
 
   defp handle_save(:update, params, socket) do
-    case Projects.update_project(socket.assigns.project, params) do
-      {:ok, project} ->
+    case Conferences.update_conference(socket.assigns.conference, params) do
+      {:ok, conference} ->
         {:noreply,
          socket
-         |> put_flash(:info, gettext("Project updated successfuly"))
-         |> push_redirect(to: Routes.project_edit_path(socket, :projects, project))}
+         |> put_flash(:info, gettext("Conference updated successfuly"))
+         |> push_redirect(to: Routes.conference_edit_path(socket, :conferences, conference))}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}
@@ -83,15 +83,9 @@ defmodule UniWeb.ProjectLive.FormComponent do
   defp submit_button(:new), do: gettext("Create")
   defp submit_button(:update), do: gettext("Update")
 
-  defp valid_project_types,
+  defp valid_types,
     do: [
       {gettext("National"), "national"},
       {gettext("International"), "international"}
-    ]
-
-  defp valid_financing_types,
-    do: [
-      {gettext("Internal"), "internal"},
-      {gettext("External"), "external"}
     ]
 end

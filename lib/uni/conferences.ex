@@ -22,6 +22,26 @@ defmodule Uni.Conferences do
   end
 
   @doc """
+  Returns a paginated list of conferences for an owner.
+
+  ## Examples
+
+      iex> paginate_conferences(owner_id, page \\ 1, page_size \\ 10)
+      %Scrivener.Page{entries: [...], total_pages: 1, total_entries: 2...}
+
+  """
+  def paginate_conferences(owner_id, query \\ "", page \\ 1, page_size \\ 10) do
+    search(query)
+    |> where(owner_id: ^owner_id)
+    |> order_by(desc: :updated_at)
+    |> preload(:owner)
+    |> Repo.paginate(page: page, page_size: page_size)
+  end
+
+  defp search(""), do: Conference
+  defp search(query), do: from(a in Conference, where: ilike(a.name, ^"%#{query}%"))
+
+  @doc """
   Gets a single conference.
 
   Raises `Ecto.NoResultsError` if the Conference does not exist.

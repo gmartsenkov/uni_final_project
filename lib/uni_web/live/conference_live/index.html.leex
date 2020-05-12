@@ -1,0 +1,80 @@
+<div class="col-lg-10">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary float-left"><%= gettext("Conferences") %></h6>
+            <%= live_redirect id: "new-conference", class: "btn btn-success btn-circle btn-sm float-right", to: Routes.conference_new_path(@socket, :conferences) do %>
+                <i class="fas fa-plus"></i>
+            <% end %>
+        </div>
+        <div class="card-body pt-3">
+            <%= _f = form_for :filters, "#", phx_change: "filter", id: "filters" %>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div>
+                        <label style="display: inline-flex">
+                            <%= gettext("Show") %>
+                            <select
+                                name="per_page"
+                                class="custom-select custom-select-sm form-control form-control-sm ml-1 mr-1">
+                                <option value="10" <%= if @per_page == "10", do: "selected" %>>10</option>
+                                <option value="25" <%= if @per_page == "25", do: "selected" %>>25</option>
+                                <option value="50" <%= if @per_page == "50", do: "selected" %>>50</option>
+                            </select>
+                            <%= gettext("entries") %>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div>
+                        <label class="float-md-right" style="display: inline-flex">
+                            <%= gettext("Search") %>:
+                            <input
+                                value="<%= @query %>"
+                                phx-debounce="500"
+                                name="query"
+                                autocomplete="off"
+                                type="search"
+                                class="form-control form-control-sm ml-2"
+                                placeholder="">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            </form>
+            <table class="table table-responsive-xl">
+                <caption> <%= gettext("Total of") %> <%= @total %> <%= ngettext("conference", "conferences", @total) %> </caption>
+                <thead>
+                    <tr>
+                        <th scope="col"><%= gettext("Name") %></th>
+                        <th scope="col"><%= gettext("Type") %></th>
+                        <th scope="col"><%= gettext("P.P") %></th>
+                        <th scope="col"><%= gettext("Reported") %></th>
+                        <th scope="col"><%= gettext("Published") %></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%= for conference <- @conferences do %>
+                        <tr>
+                            <th><%= conference.name %></th>
+                            <th><%= translate_conference_type(conference.type) %></th>
+                            <th><%= "#{conference.page_start} - #{conference.page_end}" %></th>
+                            <th><%= conference.reported %></th>
+                            <th><%= conference.published %></th>
+                            <th>
+                                <%= live_redirect id: "conference-edit-#{conference.id}", to: Routes.conference_edit_path(@socket, :conferences, conference) do  %>
+                                    <i class="fas fa-edit"></i>
+                                <% end %>
+                            </th>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <hr/>
+            <%= live_component @socket, UniWeb.PaginationComponent,
+            id: "pagination",
+            page: @page,
+            total_pages: @total_pages%>
+        </div>
+    </div>
+</div>

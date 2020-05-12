@@ -41,6 +41,36 @@ defmodule Uni.ConferencesTest do
       assert Conferences.get_conference(conference.id) == conference
     end
 
+    test "paginate_conferences/4 returns the paginated conferences" do
+      owner = insert(:user)
+      another_owner = insert(:user)
+      conference_1 = insert(:conference, owner: owner)
+      conference_2 = insert(:conference, owner: owner)
+      _conference_3 = insert(:conference, owner: another_owner)
+
+      result = Conferences.paginate_conferences(owner.id, "", _page = 1)
+
+      assert %Scrivener.Page{} = result
+      assert result.entries == [conference_1, conference_2]
+      assert result.total_entries == 2
+      assert result.total_pages == 1
+    end
+
+    test "paginate_conferences/4 with query returns the paginated conferences" do
+      owner = insert(:user)
+      another_owner = insert(:user)
+      conference_1 = insert(:conference, owner: owner, name: "Conference one two")
+      _conference_2 = insert(:conference, owner: owner, name: "Conference three four")
+      _conference_3 = insert(:conference, owner: another_owner)
+
+      result = Conferences.paginate_conferences(owner.id, "one", _page = 1)
+
+      assert %Scrivener.Page{} = result
+      assert result.entries == [conference_1]
+      assert result.total_entries == 1
+      assert result.total_pages == 1
+    end
+
     test "create_conference/1 with valid data creates a conference" do
       owner = insert(:user)
       attrs = Map.put(@valid_attrs, :owner, owner)

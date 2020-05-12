@@ -1,0 +1,46 @@
+<%= f = form_for @changeset, "#",
+id: "conferences-form",
+phx_change: "validate",
+phx_submit: "save",
+phx_target: @myself
+%>
+<div class="form-group">
+    <label><%= gettext("Name") %></label>
+    <%= text_input f, :name, class: input_class(f, :name) %>
+    <%= error_tag f, :name %>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-3">
+        <label><%= gettext("Page Start") %></label>
+        <%= number_input f, :page_start, class: input_class(f, :page_start) %>
+        <%= error_tag f, :page_start %>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label><%= gettext("Page End") %></label>
+        <%= number_input f, :page_end, class: input_class(f, :page_end) %>
+        <%= error_tag f, :page_end %>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label><%= gettext("Type") %></label>
+        <%= select f, :type, valid_types(), class: "custom-select form-control" %>
+        <%= error_tag f, :type %>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="form-check form-check-inline">
+        <%= checkbox f, :published, class: "form-check-input" %>
+        <label class="form-check-label"><%= gettext("Published") %></label>
+    </div>
+
+    <div class="form-check form-check-inline">
+        <%= checkbox f, :reported, class: "form-check-input" %>
+        <label class="form-check-label"><%= gettext("Reported") %></label>
+    </div>
+</div>
+
+<button type="submit" class="btn btn-primary"><%= @submit_button %></button>
+</form>
