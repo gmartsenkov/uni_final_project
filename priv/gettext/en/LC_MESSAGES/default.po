@@ -50,7 +50,7 @@ msgid "Edit Article"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/navigation_live.html.leex:41
+#: lib/uni_web/live/navigation_live.html.leex:42
 msgid "Logout"
 msgstr ""
 
@@ -59,6 +59,7 @@ msgstr ""
 #: lib/uni_web/live/article_live/index.html.leex:48 lib/uni_web/live/authentication_live/register.html.leex:13
 #: lib/uni_web/live/conference_live/form_component.html.leex:8 lib/uni_web/live/conference_live/index.html.leex:48
 #: lib/uni_web/live/project_live/form_component.html.leex:8 lib/uni_web/live/project_live/index.html.leex:48
+#: lib/uni_web/live/user_live/profile.html.leex:41
 msgid "Name"
 msgstr ""
 
@@ -76,7 +77,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.html.leex:21
-#: lib/uni_web/live/article_live/index.html.leex:50 lib/uni_web/live/conference_live/form_component.html.leex:27
+#: lib/uni_web/live/article_live/index.html.leex:50 lib/uni_web/live/conference_live/form_component.html.leex:28
 #: lib/uni_web/live/conference_live/index.html.leex:49
 msgid "Type"
 msgstr ""
@@ -84,6 +85,8 @@ msgstr ""
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:110
 #: lib/uni_web/live/conference_live/form_component.ex:84 lib/uni_web/live/project_live/form_component.ex:84
+#: lib/uni_web/live/user_live/profile.html.leex:47 lib/uni_web/live/user_live/profile.html.leex:74
+#: lib/uni_web/live/user_live/profile.html.leex:91
 msgid "Update"
 msgstr ""
 
@@ -115,7 +118,8 @@ msgid "Login"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/templates/authentication/login.html.leex:14
+#: lib/uni_web/live/user_live/profile.html.leex:63
+#: lib/uni_web/live/user_live/profile.html.leex:82 lib/uni_web/templates/authentication/login.html.leex:14
 msgid "Password"
 msgstr ""
 
@@ -293,7 +297,7 @@ msgid_plural "conferences"
 msgstr[0] ""
 msgstr[1] ""
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/conference_live/form_component.ex:55
 msgid "Conference created successfuly"
 msgstr ""
@@ -303,7 +307,7 @@ msgstr ""
 msgid "Conference not found"
 msgstr ""
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/conference_live/form_component.ex:68
 msgid "Conference updated successfuly"
 msgstr ""
@@ -340,7 +344,7 @@ msgstr ""
 msgid "Page Start"
 msgstr ""
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/conference_live/form_component.html.leex:36
 #: lib/uni_web/live/conference_live/index.html.leex:52
 msgid "Published"
@@ -350,4 +354,51 @@ msgstr ""
 #: lib/uni_web/live/conference_live/form_component.html.leex:41
 #: lib/uni_web/live/conference_live/index.html.leex:51
 msgid "Reported"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.html.leex:36
+#: lib/uni_web/live/user_live/profile.html.leex:55
+msgid "Email"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.ex:56
+msgid "Email updated successfully"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.html.leex:59
+msgid "New Email"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.html.leex:86
+msgid "New Password"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.ex:45
+msgid "Password is incorrect"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.ex:12
+#: lib/uni_web/live/user_live/profile.html.leex:15
+msgid "Profile"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.ex:30
+msgid "Profile updated successfully"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.html.leex:22
+msgid "Change Email"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.html.leex:29
+msgid "Change Password"
 msgstr ""

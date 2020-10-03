@@ -12,10 +12,10 @@ msgstr ""
 "Plural-Forms: nplurals=2\n"
 
 msgid "can't be blank"
-msgstr "Не може да бъде празно"
+msgstr "Не може да бъде празен"
 
 msgid "has already been taken"
-msgstr ""
+msgstr "е вече взет"
 
 msgid "is invalid"
 msgstr ""

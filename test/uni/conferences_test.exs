@@ -42,8 +42,8 @@ defmodule Uni.ConferencesTest do
     end
 
     test "paginate_conferences/4 returns the paginated conferences" do
-      owner = insert(:user)
-      another_owner = insert(:user)
+      owner = insert(:user, email: "bob@john.com")
+      another_owner = insert(:user, email: "mike@john.com")
       conference_1 = insert(:conference, owner: owner)
       conference_2 = insert(:conference, owner: owner)
       _conference_3 = insert(:conference, owner: another_owner)
@@ -58,7 +58,7 @@ defmodule Uni.ConferencesTest do
 
     test "paginate_conferences/4 with query returns the paginated conferences" do
       owner = insert(:user)
-      another_owner = insert(:user)
+      another_owner = insert(:user, email: "bob@john.com")
       conference_1 = insert(:conference, owner: owner, name: "Conference one two")
       _conference_2 = insert(:conference, owner: owner, name: "Conference three four")
       _conference_3 = insert(:conference, owner: another_owner)
@@ -92,7 +92,7 @@ defmodule Uni.ConferencesTest do
     test "update_conference/2 with valid data updates the conference" do
       owner = insert(:user)
       conference = insert(:conference, owner: owner)
-      new_owner = insert(:user)
+      new_owner = insert(:user, email: "bob@john.com")
       attrs = Map.put(@update_attrs, :owner, new_owner)
       assert {:ok, %Conference{} = conference} = Conferences.update_conference(conference, attrs)
 

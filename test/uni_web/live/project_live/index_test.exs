@@ -5,7 +5,7 @@ defmodule UniWeb.ProjectLive.IndexTest do
 
   test "displays the correct projects", %{conn: conn} do
     user = insert(:user)
-    another_user = insert(:user)
+    another_user = insert(:user, email: "bob@john.com")
     conn = init_test_session(conn, %{user_id: user.id})
 
     insert(:project, owner: user, name: "The project name")

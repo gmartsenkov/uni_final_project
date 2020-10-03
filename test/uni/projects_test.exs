@@ -39,8 +39,8 @@ defmodule Uni.ProjectsTest do
     end
 
     test "paginate_projects/4 returns the paginated projects" do
-      owner = insert(:user)
-      another_owner = insert(:user)
+      owner = insert(:user, email: "bob@john.com")
+      another_owner = insert(:user, email: "mike@john.com")
       project_1 = insert(:project, owner: owner)
       project_2 = insert(:project, owner: owner)
       _project_3 = insert(:project, owner: another_owner)
@@ -54,8 +54,8 @@ defmodule Uni.ProjectsTest do
     end
 
     test "paginate_projects/4 with query returns the paginated projects" do
-      owner = insert(:user)
-      another_owner = insert(:user)
+      owner = insert(:user, email: "bob@john.com")
+      another_owner = insert(:user, email: "mike@john.com")
       project_1 = insert(:project, owner: owner, name: "Project one two")
       _project_2 = insert(:project, owner: owner, name: "Project three four")
       _project_3 = insert(:project, owner: another_owner)
@@ -87,7 +87,7 @@ defmodule Uni.ProjectsTest do
     test "update_project/2 with valid data updates the project" do
       owner = insert(:user)
       project = insert(:project, owner: owner)
-      new_owner = insert(:user)
+      new_owner = insert(:user, email: "bob@john.com")
 
       attrs = Map.put(@update_attrs, :owner, new_owner)
       assert {:ok, %Project{} = project} = Projects.update_project(project, attrs)

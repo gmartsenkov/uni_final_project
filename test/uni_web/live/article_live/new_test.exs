@@ -19,8 +19,8 @@ defmodule UniWeb.ArticleLive.NewTest do
 
   test "saves the new article", %{conn: conn} do
     user = insert(:user)
-    author_1 = insert(:user, name: "Bob John")
-    author_2 = insert(:user, name: "Mike Babo")
+    author_1 = insert(:user, name: "Bob John", email: "bob@john.com")
+    author_2 = insert(:user, name: "Mike Babo", email: "mike@babo.com")
     conn = init_test_session(conn, %{user_id: user.id})
 
     {:ok, article_live, html} = live(conn, Routes.article_new_path(conn, :articles))

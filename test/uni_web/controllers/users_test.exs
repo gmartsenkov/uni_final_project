@@ -10,10 +10,10 @@ defmodule UniWeb.UsersControllerTest do
     end
 
     test "it returns correct users", %{conn: conn} do
-      user = insert(:user, name: "Bob")
-      _jon = insert(:user, name: "Jon Snow")
-      rob = insert(:user, name: "Rob Stark")
-      arya = insert(:user, name: "Arya Stark")
+      user = insert(:user, name: "Bob", email: "bob@bob.com")
+      _jon = insert(:user, name: "Jon Snow", email: "jon@snow.com")
+      rob = insert(:user, name: "Rob Stark", email: "rob@stark.com")
+      arya = insert(:user, name: "Arya Stark", email: "arya@stark.com")
 
       conn = init_test_session(conn, %{user_id: user.id})
 
@@ -26,10 +26,10 @@ defmodule UniWeb.UsersControllerTest do
     end
 
     test "it returns an empty array when less than 3", %{conn: conn} do
-      user = insert(:user, name: "Bob")
-      insert(:user, name: "Jon Snow")
-      insert(:user, name: "Rob Stark")
-      insert(:user, name: "Arya Stark")
+      user = insert(:user, name: "Bob", email: "bob@bob.com")
+      insert(:user, name: "Jon Snow", email: "jon@snow.com")
+      insert(:user, name: "Rob Stark", email: "rob@stark.com")
+      insert(:user, name: "Arya Stark", email: "arya@stark.com")
 
       conn = init_test_session(conn, %{user_id: user.id})
 

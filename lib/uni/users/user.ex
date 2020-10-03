@@ -15,5 +15,6 @@ defmodule Uni.Users.User do
     user
     |> cast(attrs, [:name, :email, :password])
     |> validate_required([:name, :email, :password])
+    |> unique_constraint(:email)
   end
 end

@@ -50,7 +50,7 @@ msgid "Edit Article"
 msgstr "Редактирай Статия"
 
 #, elixir-format
-#: lib/uni_web/live/navigation_live.html.leex:41
+#: lib/uni_web/live/navigation_live.html.leex:42
 msgid "Logout"
 msgstr "Изход"
 
@@ -59,6 +59,7 @@ msgstr "Изход"
 #: lib/uni_web/live/article_live/index.html.leex:48 lib/uni_web/live/authentication_live/register.html.leex:13
 #: lib/uni_web/live/conference_live/form_component.html.leex:8 lib/uni_web/live/conference_live/index.html.leex:48
 #: lib/uni_web/live/project_live/form_component.html.leex:8 lib/uni_web/live/project_live/index.html.leex:48
+#: lib/uni_web/live/user_live/profile.html.leex:41
 msgid "Name"
 msgstr "Име"
 
@@ -76,7 +77,7 @@ msgstr "Издателство"
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.html.leex:21
-#: lib/uni_web/live/article_live/index.html.leex:50 lib/uni_web/live/conference_live/form_component.html.leex:27
+#: lib/uni_web/live/article_live/index.html.leex:50 lib/uni_web/live/conference_live/form_component.html.leex:28
 #: lib/uni_web/live/conference_live/index.html.leex:49
 msgid "Type"
 msgstr "Тип"
@@ -84,6 +85,8 @@ msgstr "Тип"
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:110
 #: lib/uni_web/live/conference_live/form_component.ex:84 lib/uni_web/live/project_live/form_component.ex:84
+#: lib/uni_web/live/user_live/profile.html.leex:47 lib/uni_web/live/user_live/profile.html.leex:74
+#: lib/uni_web/live/user_live/profile.html.leex:91
 msgid "Update"
 msgstr "Обнови"
 
@@ -115,7 +118,8 @@ msgid "Login"
 msgstr "Вход"
 
 #, elixir-format
-#: lib/uni_web/templates/authentication/login.html.leex:14
+#: lib/uni_web/live/user_live/profile.html.leex:63
+#: lib/uni_web/live/user_live/profile.html.leex:82 lib/uni_web/templates/authentication/login.html.leex:14
 msgid "Password"
 msgstr "Парола"
 
@@ -290,10 +294,10 @@ msgstr "Проекти"
 #: lib/uni_web/live/conference_live/index.html.leex:45
 msgid "conference"
 msgid_plural "conferences"
-msgstr[0] "Конференция"
-msgstr[1] "Конференции"
+msgstr[0] "конференция"
+msgstr[1] "конференции"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/conference_live/form_component.ex:55
 msgid "Conference created successfuly"
 msgstr "Статията беше създаден успешно"
@@ -303,7 +307,7 @@ msgstr "Статията беше създаден успешно"
 msgid "Conference not found"
 msgstr "Конференцията не беше намерена"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/conference_live/form_component.ex:68
 msgid "Conference updated successfuly"
 msgstr "Конференцията беше успешно обновена"
@@ -340,7 +344,7 @@ msgstr "Последна страница"
 msgid "Page Start"
 msgstr "Начална страница"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/conference_live/form_component.html.leex:36
 #: lib/uni_web/live/conference_live/index.html.leex:52
 msgid "Published"
@@ -351,3 +355,50 @@ msgstr "Публикуван"
 #: lib/uni_web/live/conference_live/index.html.leex:51
 msgid "Reported"
 msgstr "Докладван"
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.html.leex:36
+#: lib/uni_web/live/user_live/profile.html.leex:55
+msgid "Email"
+msgstr "Имейл"
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.ex:56
+msgid "Email updated successfully"
+msgstr "Имейлът беше успешно обновен"
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.html.leex:59
+msgid "New Email"
+msgstr "Нов Имейл"
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.html.leex:86
+msgid "New Password"
+msgstr "Парола"
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.ex:45
+msgid "Password is incorrect"
+msgstr "Грешна парола"
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.ex:12
+#: lib/uni_web/live/user_live/profile.html.leex:15
+msgid "Profile"
+msgstr "Профил"
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.ex:30
+msgid "Profile updated successfully"
+msgstr "Профилът беше успешно обновен"
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.html.leex:22
+msgid "Change Email"
+msgstr "Обнови Имейл"
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.html.leex:29
+msgid "Change Password"
+msgstr "Обнови Парола"

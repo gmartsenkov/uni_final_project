@@ -5,7 +5,7 @@ defmodule UniWeb.ConferenceLive.IndexTest do
 
   test "displays the correct conferences", %{conn: conn} do
     user = insert(:user)
-    another_user = insert(:user)
+    another_user = insert(:user, email: "bob@john.com")
     conn = init_test_session(conn, %{user_id: user.id})
 
     insert(:conference, owner: user, name: "The conference name")

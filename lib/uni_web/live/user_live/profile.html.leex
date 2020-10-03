@@ -1,0 +1,97 @@
+<div class="col-lg-7">
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary float-left">
+                <%= @current_user.name %>
+            </h6>
+        </div>
+        <div class="card-body">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link <%= active?(@tab, "profile") %>"
+                       href="#"
+                       phx-click="change_tab"
+                       phx-value-tab="profile"
+                    ><%= gettext("Profile") %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= active?(@tab, "change_email") %>"
+                       href="#"
+                       phx-click="change_tab"
+                       phx-value-tab="change_email"
+                    ><%= gettext("Change Email") %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= active?(@tab, "change_password") %>"
+                       href="#"
+                       phx-click="change_tab"
+                       phx-value-tab="change_password"
+                    > <%= gettext("Change Password") %> </a>
+                </li>
+            </ul>
+
+            <%= if @tab == "profile" do %>
+                <%= f = form_for @profile_changeset, "#", id: "profile", class: "m-3", phx_submit: "save_profile" %>
+                <div class="form-group">
+                    <label><%= gettext("Email") %></label>
+                    <%= email_input f, :email, class: "form-control", disabled: true, value: @current_user.email %>
+                </div>
+
+                <div class="form-group">
+                    <label><%= gettext("Name") %></label>
+                    <%= text_input f, :name, class: "form-control", class: input_class(f, :name) %>
+                    <%= error_tag f, :name %>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <%= gettext("Update") %>
+                </button>
+                </form>
+            <% end %>
+
+            <%= if @tab == "change_email" do %>
+                <%= f = form_for :user, "#", id: "email", class: "m-3", phx_submit: "change_email" %>
+                <div class="form-group">
+                    <label><%= gettext("Email") %></label>
+                    <%= text_input f, :email, class: "form-control", disabled: true, value: @current_user.email %>
+                </div>
+                <div class="form-group">
+                    <label><%= gettext("New Email") %></label>
+                    <%= text_input f, :new_email, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                    <label><%= gettext("Password") %></label>
+                    <%= password_input f, :password, class: "form-control" %>
+                </div>
+
+                <%= if @email_form_error do %>
+                    <div class="alert alert-warning" role="alert">
+                        <%= @email_form_error %>
+                    </div>
+                <% end %>
+
+                <button type="submit" class="btn btn-primary">
+                    <%= gettext("Update") %>
+                </button>
+                </form>
+            <% end %>
+
+            <%= if @tab == "change_password" do %>
+                <%= f = form_for :change_password, "#", class: "m-3" %>
+                <div class="form-group">
+                    <label><%= gettext("Password") %></label>
+                    <%= text_input f, :password, class: "form-control"%>
+                </div>
+                <div class="form-group">
+                    <label><%= gettext("New Password") %></label>
+                    <%= password_input f, :new_password, class: "form-control" %>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">
+                      <%= gettext("Update") %>
+                  </button>
+                </form>
+            <% end %>
+        </div>
+    </div>
+</div>

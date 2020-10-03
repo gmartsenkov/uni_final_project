@@ -11,9 +11,9 @@ defmodule Uni.UsersTest do
     @invalid_attrs %{email: nil, name: nil}
 
     test "autocomplete/1 returns the users matching the query" do
-      _jon = insert(:user, name: "Jon Snow")
-      rob = insert(:user, name: "Rob Stark")
-      arya = insert(:user, name: "Arya Stark")
+      _jon = insert(:user, name: "Jon Snow", email: "jon@snow.com")
+      rob = insert(:user, name: "Rob Stark", email: "rob@stark.com")
+      arya = insert(:user, name: "Arya Stark", email: "arya@stark.com")
 
       assert Users.autocomplete("stark") == [rob, arya]
     end
@@ -29,9 +29,9 @@ defmodule Uni.UsersTest do
     end
 
     test "get_users/1 returns the users with given ids" do
-      user = insert(:user)
-      user_2 = insert(:user)
-      _user_3 = insert(:user)
+      user = insert(:user, email: "bob@bob.com")
+      user_2 = insert(:user, email: "jon@snow.com")
+      _user_3 = insert(:user, email: "mike@bob.com")
 
       assert Users.get_users([user.id, user_2.id]) == [user, user_2]
     end

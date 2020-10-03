@@ -38,8 +38,8 @@ defmodule Uni.ArticlesTest do
     end
 
     test "get_article/1 returns the article with given id" do
-      owner = insert(:user)
-      author = insert(:user)
+      owner = insert(:user, email: "mark@john.com")
+      author = insert(:user, email: "bob@john.com")
       article = insert(:article, owner: owner, authors: [author])
       result = Articles.get_article(article.id)
 
@@ -49,9 +49,9 @@ defmodule Uni.ArticlesTest do
     end
 
     test "create_article/1 with valid data creates a article" do
-      owner = insert(:user)
-      user_1 = insert(:user)
-      user_2 = insert(:user)
+      owner = insert(:user, email: "bob@john.com")
+      user_1 = insert(:user, email: "mike@john.com")
+      user_2 = insert(:user, email: "mark@john.com")
       attrs = Map.put(@valid_attrs, :owner, owner)
 
       attrs = Map.put(attrs, :authors, [user_1, user_2])
@@ -73,7 +73,7 @@ defmodule Uni.ArticlesTest do
 
     test "paginate_articles/4 returns the paginated articles" do
       owner = insert(:user)
-      another_owner = insert(:user)
+      another_owner = insert(:user, email: "bob@john.com")
       article_1 = insert(:article, owner: owner)
       article_2 = insert(:article, owner: owner)
       _article_3 = insert(:article, owner: another_owner)
@@ -87,8 +87,8 @@ defmodule Uni.ArticlesTest do
     end
 
     test "paginate_articles/4 with query returns the paginated articles" do
-      owner = insert(:user)
-      another_owner = insert(:user)
+      owner = insert(:user, email: "bob@john.com")
+      another_owner = insert(:user, email: "boby@john.com")
       article_1 = insert(:article, owner: owner, name: "Article one two")
       _article_2 = insert(:article, owner: owner, name: "Article three four")
       _article_3 = insert(:article, owner: another_owner)
@@ -102,12 +102,12 @@ defmodule Uni.ArticlesTest do
     end
 
     test "update_article/2 with valid data updates the article" do
-      owner = insert(:user)
-      user_1 = insert(:user)
-      user_2 = insert(:user)
+      owner = insert(:user, email: "bob@john.com")
+      user_1 = insert(:user, email: "mike@john.com")
+      user_2 = insert(:user, email: "mark@john.com")
       article = insert(:article, owner: owner, authors: [user_1])
 
-      new_owner = insert(:user)
+      new_owner = insert(:user, email: "arnold@john.com")
 
       attrs = Map.put(@update_attrs, :owner, new_owner)
       attrs = Map.put(attrs, :authors, [user_1, user_2])

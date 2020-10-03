@@ -32,8 +32,8 @@ defmodule UniWeb.ArticleLive.EditTest do
   test "updates the article", %{conn: conn} do
     user = insert(:user)
     conn = init_test_session(conn, %{user_id: user.id})
-    author_1 = insert(:user, name: "Rob Stark")
-    author_2 = insert(:user, name: "Arya Stark")
+    author_1 = insert(:user, name: "Rob Stark", email: "rob@stark.com")
+    author_2 = insert(:user, name: "Arya Stark", email: "arya.stark.com")
     article = insert(:article, owner: user, authors: [author_1])
 
     {:ok, article_live, html} = live(conn, Routes.article_edit_path(conn, :articles, article))
