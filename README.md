@@ -12,6 +12,9 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 ## How to create user via repl
 Run `iex -S mix` and then `Uni.Users.create_user(%{name: "Admin", email: "admin@admin.com", password: Bcrypt.hash_pwd_salt("1234")})`
 
+## How to get lecterurers by faculty
+`GET http://tt.swu.bg/Schedule/GetLecturersByFacultyId?facultyId=1`
+
 ## Learn more
 
   * Official website: https://www.phoenixframework.org/
