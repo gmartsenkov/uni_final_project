@@ -20,7 +20,7 @@ defmodule Uni.MixProject do
   def application do
     [
       mod: {Uni.Application, []},
-      extra_applications: [:logger, :runtime_tools, :scrivener_ecto, :httpoison]
+      extra_applications: [:logger, :runtime_tools, :scrivener_ecto, :httpoison, :os_mon]
     ]
   end
 
