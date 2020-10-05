@@ -20,7 +20,7 @@ defmodule Uni.MixProject do
   def application do
     [
       mod: {Uni.Application, []},
-      extra_applications: [:logger, :runtime_tools, :scrivener_ecto]
+      extra_applications: [:logger, :runtime_tools, :scrivener_ecto, :httpoison]
     ]
   end
 
@@ -49,6 +49,8 @@ defmodule Uni.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:bcrypt_elixir, "2.2.0"},
       {:scrivener_ecto, "~> 2.0"},
+      {:httpoison, "~> 1.6"},
+      {:tqdm, "~> 0.0.2"},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:ex_machina, "~> 2.4", only: :test}
     ]
