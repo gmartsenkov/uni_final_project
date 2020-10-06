@@ -20,6 +20,13 @@ defmodule Uni.Factory do
     }
   end
 
+  def monograph_factory do
+    %Uni.Monographs.Monograph{
+      publisher: "some publisher",
+      year: 1994
+    }
+  end
+
   def project_factory do
     %Uni.Projects.Project{
       name: "Project name",

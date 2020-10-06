@@ -47,6 +47,10 @@ defmodule UniWeb.Router do
     live "/conferences", ConferenceLive.Index, :conferences
     live "/conferences/new", ConferenceLive.New, :conferences
     live "/conferences/:id", ConferenceLive.Edit, :conferences
+
+    live "/monographs", MonographLive.Index, :monographs
+    live "/monographs/new", MonographLive.New, :monographs
+    live "/monographs/:id", MonographLive.Edit, :monographs
   end
 
   # Other scopes may use custom stacks.

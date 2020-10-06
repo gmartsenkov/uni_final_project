@@ -18,24 +18,45 @@ defmodule Uni.Monographs do
 
   """
   def list_monographs do
-    Repo.all(Monograph)
+    Repo.all(Monograph) |> Repo.preload(:owner)
   end
+
+  @doc """
+  Returns a paginated list of monographs for an owner.
+
+  ## Examples
+
+      iex> paginate_monographs(owner_id, page \\ 1, page_size \\ 10)
+      %Scrivener.Page{entries: [...], total_pages: 1, total_entries: 2...}
+
+  """
+  def paginate_monographs(owner_id, query \\ "", page \\ 1, page_size \\ 10) do
+    search(query)
+    |> where(owner_id: ^owner_id)
+    |> order_by(desc: :updated_at)
+    |> preload(:owner)
+    |> Repo.paginate(page: page, page_size: page_size)
+  end
+
+  defp search(""), do: Monograph
+  defp search(query), do: from(a in Monograph, where: ilike(a.name, ^"%#{query}%"))
 
   @doc """
   Gets a single monograph.
 
-  Raises `Ecto.NoResultsError` if the Monograph does not exist.
+  Returns
 
   ## Examples
 
-      iex> get_monograph!(123)
+      iex> get_monograph(123)
       %Monograph{}
 
-      iex> get_monograph!(456)
-      ** (Ecto.NoResultsError)
+      iex> get_monograph(456)
+      nil
 
   """
-  def get_monograph!(id), do: Repo.get!(Monograph, id)
+  def get_monograph(id),
+    do: Monograph |> Repo.get(id) |> Repo.preload(:owner) |> Repo.preload(:authors)
 
   @doc """
   Creates a monograph.

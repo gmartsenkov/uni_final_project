@@ -16,6 +16,12 @@
             <span><%= gettext("Articles") %></span>
         <% end %>
     </li>
+    <li class="nav-item <%= if @navigation.action == :monographs, do: "active"%>">
+        <%= live_redirect class: "nav-link", to: Routes.monograph_index_path(@socket, :monographs) do %>
+            <i class="fas fa-scroll"></i>
+            <span><%= gettext("Monographs") %></span>
+        <% end %>
+    </li>
     <li class="nav-item <%= if @navigation.action == :projects, do: "active"%>">
         <%= live_redirect class: "nav-link", to: Routes.project_index_path(@socket, :projects) do %>
             <i class="fas fa-tasks"></i>

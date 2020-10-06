@@ -1,0 +1,15 @@
+<div class="col-md-7">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary float-left"><%= gettext("Edit Monograph") %></h6>
+        </div>
+        <div class="card-body">
+            <%= live_component @socket,
+            UniWeb.MonographLive.FormComponent,
+            id: "edit-monograph",
+            action: :update,
+            monograph: @monograph,
+            user: @current_user%>
+        </div>
+    </div>
+</div>
