@@ -1,6 +1,8 @@
 defmodule Uni.Monographs.Author do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Uni.Monographs.Monograph
+  alias Uni.Users.User
 
   schema "monograph_authors" do
     belongs_to(:user, User)

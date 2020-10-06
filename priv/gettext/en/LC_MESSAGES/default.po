@@ -34,13 +34,15 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:109
-#: lib/uni_web/live/conference_live/form_component.ex:83 lib/uni_web/live/project_live/form_component.ex:83
+#: lib/uni_web/live/conference_live/form_component.ex:83 lib/uni_web/live/monograph_live/form_component.ex:103
+#: lib/uni_web/live/project_live/form_component.ex:83
 msgid "Create"
 msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/edit.ex:25
-#: lib/uni_web/live/conference_live/edit.ex:25 lib/uni_web/live/project_live/edit.ex:25
+#: lib/uni_web/live/conference_live/edit.ex:25 lib/uni_web/live/monograph_live/edit.ex:25
+#: lib/uni_web/live/project_live/edit.ex:25
 msgid "Edit"
 msgstr ""
 
@@ -50,7 +52,7 @@ msgid "Edit Article"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/navigation_live.html.leex:42
+#: lib/uni_web/live/navigation_live.html.leex:48
 msgid "Logout"
 msgstr ""
 
@@ -58,6 +60,7 @@ msgstr ""
 #: lib/uni_web/live/article_live/form_component.html.leex:8
 #: lib/uni_web/live/article_live/index.html.leex:48 lib/uni_web/live/authentication_live/register.html.leex:13
 #: lib/uni_web/live/conference_live/form_component.html.leex:8 lib/uni_web/live/conference_live/index.html.leex:48
+#: lib/uni_web/live/monograph_live/form_component.html.leex:8 lib/uni_web/live/monograph_live/index.html.leex:48
 #: lib/uni_web/live/project_live/form_component.html.leex:8 lib/uni_web/live/project_live/index.html.leex:48
 #: lib/uni_web/live/user_live/profile.html.leex:41
 msgid "Name"
@@ -71,7 +74,8 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.html.leex:28
-#: lib/uni_web/live/article_live/index.html.leex:49
+#: lib/uni_web/live/article_live/index.html.leex:49 lib/uni_web/live/monograph_live/form_component.html.leex:22
+#: lib/uni_web/live/monograph_live/index.html.leex:49
 msgid "Publisher"
 msgstr ""
 
@@ -84,9 +88,9 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:110
-#: lib/uni_web/live/conference_live/form_component.ex:84 lib/uni_web/live/project_live/form_component.ex:84
-#: lib/uni_web/live/user_live/profile.html.leex:47 lib/uni_web/live/user_live/profile.html.leex:74
-#: lib/uni_web/live/user_live/profile.html.leex:91
+#: lib/uni_web/live/conference_live/form_component.ex:84 lib/uni_web/live/monograph_live/form_component.ex:104
+#: lib/uni_web/live/project_live/form_component.ex:84 lib/uni_web/live/user_live/profile.html.leex:47
+#: lib/uni_web/live/user_live/profile.html.leex:74 lib/uni_web/live/user_live/profile.html.leex:91
 msgid "Update"
 msgstr ""
 
@@ -102,7 +106,8 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.html.leex:15
-#: lib/uni_web/live/article_live/index.html.leex:53
+#: lib/uni_web/live/article_live/index.html.leex:53 lib/uni_web/live/monograph_live/form_component.html.leex:15
+#: lib/uni_web/live/monograph_live/index.html.leex:50
 msgid "Year"
 msgstr ""
 
@@ -142,13 +147,15 @@ msgstr[1] ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:30
-#: lib/uni_web/live/conference_live/index.html.leex:30 lib/uni_web/live/project_live/index.html.leex:30
+#: lib/uni_web/live/conference_live/index.html.leex:30 lib/uni_web/live/monograph_live/index.html.leex:30
+#: lib/uni_web/live/project_live/index.html.leex:30
 msgid "Search"
 msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:45
-#: lib/uni_web/live/conference_live/index.html.leex:45 lib/uni_web/live/project_live/index.html.leex:45
+#: lib/uni_web/live/conference_live/index.html.leex:45 lib/uni_web/live/monograph_live/index.html.leex:45
+#: lib/uni_web/live/project_live/index.html.leex:45
 msgid "Total of"
 msgstr ""
 
@@ -169,13 +176,15 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:15
-#: lib/uni_web/live/conference_live/index.html.leex:15 lib/uni_web/live/project_live/index.html.leex:15
+#: lib/uni_web/live/conference_live/index.html.leex:15 lib/uni_web/live/monograph_live/index.html.leex:15
+#: lib/uni_web/live/project_live/index.html.leex:15
 msgid "Show"
 msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:23
-#: lib/uni_web/live/conference_live/index.html.leex:23 lib/uni_web/live/project_live/index.html.leex:23
+#: lib/uni_web/live/conference_live/index.html.leex:23 lib/uni_web/live/monograph_live/index.html.leex:23
+#: lib/uni_web/live/project_live/index.html.leex:23
 msgid "entries"
 msgstr ""
 
@@ -285,7 +294,7 @@ msgid "Project updated successfuly"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/navigation_live.html.leex:22
+#: lib/uni_web/live/navigation_live.html.leex:28
 #: lib/uni_web/live/project_live/index.ex:18 lib/uni_web/live/project_live/index.html.leex:4
 msgid "Projects"
 msgstr ""
@@ -314,7 +323,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/conference_live/index.ex:19
-#: lib/uni_web/live/conference_live/index.html.leex:4 lib/uni_web/live/navigation_live.html.leex:28
+#: lib/uni_web/live/conference_live/index.html.leex:4 lib/uni_web/live/navigation_live.html.leex:34
 msgid "Conferences"
 msgstr ""
 
@@ -401,4 +410,43 @@ msgstr ""
 #, elixir-format
 #: lib/uni_web/live/user_live/profile.html.leex:29
 msgid "Change Password"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/monograph_live/index.html.leex:45
+msgid "monograph"
+msgid_plural "monographs"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/uni_web/live/monograph_live/edit.html.leex:4
+msgid "Edit Monograph"
+msgstr ""
+
+#, elixir-format, fuzzy
+#: lib/uni_web/live/monograph_live/form_component.ex:63
+msgid "Monograph created successfuly"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/monograph_live/edit.ex:19
+msgid "Monograph not found"
+msgstr ""
+
+#, elixir-format, fuzzy
+#: lib/uni_web/live/monograph_live/form_component.ex:76
+msgid "Monograph updated successfuly"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/monograph_live/index.ex:18
+#: lib/uni_web/live/monograph_live/index.html.leex:4 lib/uni_web/live/navigation_live.html.leex:22
+msgid "Monographs"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/monograph_live/new.ex:8
+#: lib/uni_web/live/monograph_live/new.html.leex:4
+msgid "New Monograph"
 msgstr ""

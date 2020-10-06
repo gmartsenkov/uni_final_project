@@ -76,7 +76,4 @@ defmodule UniWeb.MonographLive.Index do
         )
     )
   end
-
-  defp translate_type("national"), do: gettext("National")
-  defp translate_type("international"), do: gettext("International")
 end

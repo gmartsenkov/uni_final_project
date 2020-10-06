@@ -16,12 +16,11 @@ phx_target: @myself
         <%= number_input f, :year, class: input_class(f, :year) %>
         <%= error_tag f, :year %>
     </div>
-</div>
-
-<div class="form-group">
-    <label><%= gettext("Publisher") %></label>
-    <%= text_input f, :publisher, class: input_class(f, :publisher) %>
-    <%= error_tag f, :publisher %>
+    <div class="form-group col-md-6">
+        <label><%= gettext("Publisher") %></label>
+        <%= text_input f, :publisher, class: input_class(f, :publisher) %>
+        <%= error_tag f, :publisher %>
+    </div>
 </div>
 
 <div class="form-group">
