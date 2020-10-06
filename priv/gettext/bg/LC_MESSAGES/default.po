@@ -375,7 +375,7 @@ msgstr "Нов Имейл"
 #, elixir-format
 #: lib/uni_web/live/user_live/profile.html.leex:86
 msgid "New Password"
-msgstr "Парола"
+msgstr "Нова Парола"
 
 #, elixir-format
 #: lib/uni_web/live/user_live/profile.ex:45
