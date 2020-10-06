@@ -416,8 +416,8 @@ msgstr "Обнови Парола"
 #: lib/uni_web/live/monograph_live/index.html.leex:45
 msgid "monograph"
 msgid_plural "monographs"
-msgstr[0] "Монограф"
-msgstr[1] "Монограги"
+msgstr[0] "монограф"
+msgstr[1] "монограги"
 
 #, elixir-format
 #: lib/uni_web/live/monograph_live/edit.html.leex:4
