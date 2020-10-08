@@ -33,6 +33,7 @@ defmodule UniWeb.Router do
     get "/users/autocomplete", UsersController, :autocomplete
 
     live "/profile", UserLive.Profile, :my_profile
+    live "/users", UserLive.Index, :users
 
     live "/", PageLive, :index
 
