@@ -2,7 +2,10 @@ defmodule Mix.Tasks.FetchLecturers do
   use Mix.Task
   import Meeseeks.CSS
 
-  @email_regex Regex.compile!("<strong>(.*)<img src=\"\/Content\/images\/at\.png\" \/>(.*?)<\/strong>", "s")
+  @email_regex Regex.compile!(
+                 "<strong>(.*)<img src=\"\/Content\/images\/at\.png\" \/>(.*?)<\/strong>",
+                 "s"
+               )
 
   @shortdoc "Fetch the lecturers and instert them into the database"
 
@@ -18,10 +21,18 @@ defmodule Mix.Tasks.FetchLecturers do
     IO.puts("--------------------------")
 
     data
+    |> departments_structure()
+    |> save_departments_info()
+
+    data
     |> Task.async_stream(&get_users/1, max_concurrency: Enum.count(data), timeout: :infinity)
     |> Tqdm.tqdm(total: Enum.count(data))
     |> Enum.to_list()
-    |> IO.inspect()
+    |> Enum.map(&(Tuple.to_list(&1) |> List.last))
+    |> List.flatten()
+    |> Task.async_stream(&insert_user/1, timeout: :infinity)
+    |> Tqdm.tqdm(total: Enum.count(data))
+    |> Enum.to_list()
 
     # lecturers = lecturer_links
     # |> Task.async_stream(&get_user/1, max_concurrency: @max_concurrency)
@@ -38,10 +49,9 @@ defmodule Mix.Tasks.FetchLecturers do
 
     # IO.puts("--------------------------")
     # IO.puts("DONE")
-
   end
 
-  def get_data do
+  defp get_data do
     body = HTTPoison.get!("https://ais.swu.bg/profiles").body
 
     Meeseeks.all(body, css("li a"))
@@ -50,14 +60,48 @@ defmodule Mix.Tasks.FetchLecturers do
     |> Enum.map(&map_faculty/1)
   end
 
-  def map_faculty([[faculty_link], rest]) do
+  defp save_departments_info(data) do
+    Enum.each(data, fn faculty ->
+      case Uni.Faculties.faculty_by_name(faculty[:name]) do
+        nil ->
+          new = Uni.Repo.insert!(%Uni.Faculties.Faculty{name: faculty[:name]})
+          save_departments_for_faculty(new, faculty[:departments])
+
+        found ->
+          save_departments_for_faculty(found, faculty[:departments])
+      end
+    end)
+  end
+
+  defp departments_structure(data) do
+    Enum.map(data, fn faculty ->
+      %{name: faculty[:faculty], departments: Enum.map(faculty[:data], &Map.get(&1, :department))}
+    end)
+  end
+
+  defp save_departments_for_faculty(%Uni.Faculties.Faculty{} = faculty, departments) do
+    Enum.each(departments, fn department_name ->
+      case Uni.Faculties.department_by_name(department_name) do
+        nil ->
+          Uni.Repo.insert!(%Uni.Faculties.Department{
+            name: department_name,
+            faculty_id: faculty.id
+          })
+
+        _ ->
+          true
+      end
+    end)
+  end
+
+  defp map_faculty([[faculty_link], rest]) do
     %{
       faculty: Meeseeks.text(faculty_link),
       data: map_departments(rest)
     }
   end
 
-  def map_departments(data) do
+  defp map_departments(data) do
     data
     |> Enum.chunk_by(&is_department?/1)
     |> Enum.chunk_every(2)
@@ -68,25 +112,35 @@ defmodule Mix.Tasks.FetchLecturers do
     end)
   end
 
-  def is_faculty?(link) do
+  defp is_faculty?(link) do
     href = Meeseeks.attr(link, "href")
 
     String.contains?(href, "faculty") && !String.contains?(href, "department")
   end
 
-  def is_department?(link) do
+  defp is_department?(link) do
     href = Meeseeks.attr(link, "href")
 
     String.contains?(href, "department")
   end
 
-  defp insert_user({:ok, lecturer}) do
-    Uni.Users.create_user(
-      Map.put(lecturer, :password, Bcrypt.hash_pwd_salt("1234"))
-    )
+  defp insert_user(lecturer) do
+    faculty = Uni.Faculties.faculty_by_name(lecturer[:faculty])
+    department = Uni.Faculties.department_by_name(lecturer[:department])
+
+    case Uni.Users.by_email(lecturer[:email]) do
+      nil ->
+        Uni.Repo.insert!(%Uni.Users.User{
+          email: lecturer[:email],
+          name: lecturer[:name],
+          password: Bcrypt.hash_pwd_salt("1234"),
+          department_id: department.id,
+          faculty_id: faculty.id
+        })
+    end
   end
 
-  def get_users(faculty) do
+  defp get_users(faculty) do
     Map.get(faculty, :data)
     |> Enum.map(fn department ->
       department
@@ -97,17 +151,19 @@ defmodule Mix.Tasks.FetchLecturers do
     |> List.flatten()
   end
 
-  def get_user(faculty, department, user_link) do
+  defp get_user(faculty, department, user_link) do
     link = Meeseeks.attr(user_link, "href")
     name = Meeseeks.text(user_link)
 
-    body = HTTPoison.get!("https://ais.swu.bg/#{link}", [], follow_redirect: true) |> Map.get(:body)
+    body =
+      HTTPoison.get!("https://ais.swu.bg/#{link}", [], follow_redirect: true) |> Map.get(:body)
 
     [_match, first, domain] = Regex.run(@email_regex, body)
 
-    email = [first, domain]
-    |> Enum.map(&String.trim/1)
-    |> Enum.join("@")
+    email =
+      [first, domain]
+      |> Enum.map(&String.trim/1)
+      |> Enum.join("@")
 
     %{name: name, email: email, faculty: faculty[:faculty], department: department[:department]}
   end

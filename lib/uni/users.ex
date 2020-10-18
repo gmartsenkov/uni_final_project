@@ -8,6 +8,12 @@ defmodule Uni.Users do
 
   alias Uni.Users.User
 
+  def by_email(email) do
+    User
+    |> where(email: ^email)
+    |> Repo.one()
+  end
+
   @doc """
   Returns users matching the query(using an ILIKE query '%query%')
 
