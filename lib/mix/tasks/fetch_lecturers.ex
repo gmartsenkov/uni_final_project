@@ -27,7 +27,7 @@ defmodule Mix.Tasks.FetchLecturers do
     |> Task.async_stream(&get_users/1, max_concurrency: Enum.count(data), timeout: :infinity)
     |> Tqdm.tqdm(total: Enum.count(data))
     |> Enum.to_list()
-    |> Enum.map(&(Tuple.to_list(&1) |> List.last))
+    |> Enum.map(&(Tuple.to_list(&1) |> List.last()))
     |> List.flatten()
     |> Task.async_stream(&insert_user/1, timeout: :infinity)
     |> Tqdm.tqdm(total: Enum.count(data))
@@ -138,6 +138,9 @@ defmodule Mix.Tasks.FetchLecturers do
           department_id: department.id,
           faculty_id: faculty.id
         })
+
+      _ ->
+        nil
     end
   end
 
