@@ -24,6 +24,7 @@ defmodule Uni.Users do
 
   """
   def autocomplete(query) do
+    query = String.downcase("#{query}")
     Repo.all(
       from u in User,
         where: ilike(u.name, ^"%#{query}%")
