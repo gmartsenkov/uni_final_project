@@ -1,6 +1,5 @@
 defmodule Mix.Tasks.FetchLecturers do
   use Mix.Task
-  import Meeseeks.CSS
 
   @email_regex Regex.compile!(
                  "<strong>(.*)<img src=\"\/Content\/images\/at\.png\" \/>(.*?)<\/strong>",
@@ -51,10 +50,12 @@ defmodule Mix.Tasks.FetchLecturers do
     # IO.puts("DONE")
   end
 
-  defp get_data do
+  def get_data do
     body = HTTPoison.get!("https://ais.swu.bg/profiles").body
 
-    Meeseeks.all(body, css("li a"))
+    body
+    |> Floki.parse_document!()
+    |> Floki.find("li a")
     |> Enum.chunk_by(&is_faculty?/1)
     |> Enum.chunk_every(2)
     |> Enum.map(&map_faculty/1)
@@ -96,7 +97,7 @@ defmodule Mix.Tasks.FetchLecturers do
 
   defp map_faculty([[faculty_link], rest]) do
     %{
-      faculty: Meeseeks.text(faculty_link),
+      faculty: Floki.text(faculty_link),
       data: map_departments(rest)
     }
   end
@@ -108,18 +109,18 @@ defmodule Mix.Tasks.FetchLecturers do
     |> Enum.map(fn [departments, people] ->
       department = List.last(departments)
 
-      %{department: Meeseeks.text(department), people: people}
+      %{department: Floki.text(department), people: people}
     end)
   end
 
   defp is_faculty?(link) do
-    href = Meeseeks.attr(link, "href")
+    href = Floki.attribute(link, "href") |> List.first()
 
     String.contains?(href, "faculty") && !String.contains?(href, "department")
   end
 
   defp is_department?(link) do
-    href = Meeseeks.attr(link, "href")
+    href = Floki.attribute(link, "href") |> List.first()
 
     String.contains?(href, "department")
   end
@@ -152,8 +153,8 @@ defmodule Mix.Tasks.FetchLecturers do
   end
 
   defp get_user(faculty, department, user_link) do
-    link = Meeseeks.attr(user_link, "href")
-    name = Meeseeks.text(user_link)
+    link = Floki.attribute(user_link, "href") |> List.first()
+    name = Floki.text(user_link)
 
     body =
       HTTPoison.get!("https://ais.swu.bg/#{link}", [], follow_redirect: true) |> Map.get(:body)

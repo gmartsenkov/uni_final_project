@@ -38,7 +38,6 @@ defmodule Uni.MixProject do
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_live_view, "~> 0.14.7"},
-      {:floki, ">= 0.0.0", only: :test},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_dashboard, "~> 0.2.9"},
@@ -51,7 +50,7 @@ defmodule Uni.MixProject do
       {:scrivener_ecto, "~> 2.0"},
       {:httpoison, "~> 1.6"},
       {:tqdm, "~> 0.0.2"},
-      {:meeseeks, "~> 0.15.1"},
+      {:floki, "~> 0.29.0"},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:ex_machina, "~> 2.4", only: :test}
     ]
