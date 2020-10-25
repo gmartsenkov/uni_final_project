@@ -51,7 +51,7 @@ defmodule Uni.MixProject do
       {:scrivener_ecto, "~> 2.0"},
       {:httpoison, "~> 1.6"},
       {:tqdm, "~> 0.0.2"},
-      {:meeseeks, "~> 0.15.1"},
+      {:meeseeks, "~> 0.15.1", only: :dev},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:ex_machina, "~> 2.4", only: :test}
     ]
