@@ -10,11 +10,8 @@ defmodule Uni.Users.User do
     field :name, :string
     field :password, :string
 
-    field :department_id, :integer
-    field :faculty_id, :integer
-
-    has_one(:faculty, Faculty)
-    has_one(:department, Department)
+    belongs_to(:faculty, Faculty)
+    belongs_to(:department, Department)
 
     timestamps()
   end
