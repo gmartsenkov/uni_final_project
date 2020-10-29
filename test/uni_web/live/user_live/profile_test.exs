@@ -44,4 +44,24 @@ defmodule UniWeb.UserLive.ProfileTest do
     assert html =~ "Profile updated successfully"
     assert html =~ "Arnold"
   end
+
+  describe "updating the password" do
+    test "returns the correct error when current password is wrong", %{conn: conn} do
+      user = insert(:user)
+      conn = init_test_session(conn, %{user_id: user.id})
+      {:ok, profile_live, html} = live(conn, Routes.user_profile_path(conn, :my_profile))
+
+      assert has_element?(profile_live, "a.active", "Profile")
+      assert html =~ "Email"
+      assert html =~ "Name"
+
+      profile_live
+      |> element("a", "Change Password")
+      |> render_click()
+
+      profile_live
+      |> form("#change_password")
+      |> render_submit(%{"password" => "1234", "new_password" => "4321"})
+    end
+  end
 end

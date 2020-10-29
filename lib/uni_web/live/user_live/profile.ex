@@ -36,8 +36,22 @@ defmodule UniWeb.UserLive.Profile do
   end
 
   @impl true
-  def handle_event("update_password", params, socket) do
-    {:noreply, socket}
+  def handle_event(
+        "update_password",
+        %{"password" => password, "new_password" => new_password},
+        socket
+      ) do
+    current_user = socket.assigns.current_user
+
+    if Bcrypt.verify_pass(password, current_user.password) do
+      {:noreply,
+       socket
+       |> assign(:email_from_error, nil)}
+    else
+      {:noreply,
+       socket
+       |> assign(:email_form_error, gettext("Current password is not correct"))}
+    end
   end
 
   defp active?(tab, expected) when tab == expected, do: "active"

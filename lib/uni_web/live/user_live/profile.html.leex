@@ -37,7 +37,7 @@
             <% end %>
 
             <%= if @tab == "change_password" do %>
-            <%= f = form_for :change_password, "#", class: "m-3", phx_submit: "update_password" %>
+            <%= f = form_for :change_password, "#", id: "change_password", class: "m-3", phx_submit: "update_password" %>
             <div class="form-group">
                 <label><%= gettext("Password") %></label>
                 <%= text_input f, :password, class: "form-control"%>
