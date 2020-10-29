@@ -31,6 +31,7 @@ defmodule UniWeb.Router do
     pipe_through [:browser, :protected]
 
     get "/users/autocomplete", UsersController, :autocomplete
+    get "/logout", AuthenticationController, :logout
 
     live "/profile", UserLive.Profile, :my_profile
     live "/users", UserLive.Index, :users

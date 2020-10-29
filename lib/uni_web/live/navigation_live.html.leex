@@ -12,46 +12,46 @@
     <!-- Nav Item - Tables -->
     <li class="nav-item <%= if @navigation.action == :articles, do: "active"%>">
         <%= live_redirect class: "nav-link", to: Routes.article_index_path(@socket, :articles) do %>
-            <i class="fas fa-scroll"></i>
-            <span><%= gettext("Articles") %></span>
+        <i class="fas fa-scroll"></i>
+        <span><%= gettext("Articles") %></span>
         <% end %>
     </li>
     <li class="nav-item <%= if @navigation.action == :monographs, do: "active"%>">
         <%= live_redirect class: "nav-link", to: Routes.monograph_index_path(@socket, :monographs) do %>
-            <i class="fas fa-sticky-note"></i>
-            <span><%= gettext("Monographs") %></span>
+        <i class="fas fa-sticky-note"></i>
+        <span><%= gettext("Monographs") %></span>
         <% end %>
     </li>
     <li class="nav-item <%= if @navigation.action == :projects, do: "active"%>">
         <%= live_redirect class: "nav-link", to: Routes.project_index_path(@socket, :projects) do %>
-            <i class="fas fa-tasks"></i>
-            <span><%= gettext("Projects") %></span>
+        <i class="fas fa-tasks"></i>
+        <span><%= gettext("Projects") %></span>
         <% end %>
     </li>
     <li class="nav-item <%= if @navigation.action == :conferences, do: "active"%>">
         <%= live_redirect class: "nav-link", to: Routes.conference_index_path(@socket, :conferences) do %>
-            <i class="fas fa-archway"></i>
-            <span><%= gettext("Conferences") %></span>
+        <i class="fas fa-archway"></i>
+        <span><%= gettext("Conferences") %></span>
         <% end %>
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
     <li class="nav-item <%= if @navigation.action == :users, do: "active"%>">
         <%= live_redirect class: "nav-link", to: Routes.user_index_path(@socket, :users) do %>
-            <i class="fas fa-users"></i>
-            <span><%= gettext("Users") %></span>
+        <i class="fas fa-users"></i>
+        <span><%= gettext("Users") %></span>
         <% end %>
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
     <li class="nav-item  <%= if @navigation.action == :my_profile, do: "active" %>">
         <%= live_redirect class: "nav-link", to: Routes.user_profile_path(@socket, :my_profile) do %>
-               <i class="far fa-user"></i>
+        <i class="far fa-user"></i>
         <span><%= @navigation.user_name %></span>
         <% end %>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="/logout">
             <i class="fas fa-sign-out-alt"></i>
             <span><%= gettext("Logout") %></span></a>
     </li>

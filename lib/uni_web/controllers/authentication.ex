@@ -18,6 +18,12 @@ defmodule UniWeb.AuthenticationController do
 
   def login(conn, _params), do: wrong_credentials(conn)
 
+  def logout(conn, _params) do
+    conn
+    |> delete_session(:user_id)
+    |> redirect(to: "/")
+  end
+
   def login_page(conn, _params) do
     render(conn, "login.html", changeset: Users.change_user(%User{}))
   end
