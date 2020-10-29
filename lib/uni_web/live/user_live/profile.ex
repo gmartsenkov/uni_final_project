@@ -1,7 +1,6 @@
 defmodule UniWeb.UserLive.Profile do
   use UniWeb, :live_view
   alias Uni.Users
-  alias UniWeb.Helpers.Errors
 
   @impl true
   def mount(_params, session, socket) do
@@ -38,19 +37,30 @@ defmodule UniWeb.UserLive.Profile do
   @impl true
   def handle_event(
         "update_password",
-        %{"password" => password, "new_password" => new_password},
+        %{"change_password" => %{"password" => password, "new_password" => new_password}},
         socket
       ) do
     current_user = socket.assigns.current_user
 
     if Bcrypt.verify_pass(password, current_user.password) do
-      {:noreply,
-       socket
-       |> assign(:email_from_error, nil)}
+      hashed_password = Bcrypt.hash_pwd_salt(new_password)
+
+      case Users.update_user(current_user, %{"password" => hashed_password}) do
+        {:ok, user} ->
+          {:noreply,
+           socket
+           |> assign(:current_user, user)
+           |> assign(:email_form_error, nil)
+           |> push_redirect(to: Routes.user_profile_path(socket, :my_profile))
+           |> put_flash(:info, gettext("Password updated successfully"))}
+
+        {:error, %Ecto.Changeset{} = changeset} ->
+          {:noreply, assign(socket, :profile_changeset, changeset)}
+      end
     else
       {:noreply,
        socket
-       |> assign(:email_form_error, gettext("Current password is not correct"))}
+       |> assign(:email_form_error, gettext("The password is wrong"))}
     end
   end
 
