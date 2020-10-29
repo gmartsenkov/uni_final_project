@@ -2,9 +2,12 @@ defmodule Uni.Faculties.Department do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Uni.Faculties.Faculty
+
   schema "departments" do
     field :name, :string
-    field :faculty_id, :id
+
+    belongs_to(:faculty, Faculty)
 
     timestamps()
   end

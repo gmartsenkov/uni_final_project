@@ -25,6 +25,7 @@ defmodule Uni.Users do
   """
   def autocomplete(query) do
     query = String.downcase("#{query}")
+
     Repo.all(
       from u in User,
         where: ilike(u.name, ^"%#{query}%")
@@ -58,7 +59,12 @@ defmodule Uni.Users do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_user!(id) do
+    User
+    |> preload(:faculty)
+    |> preload(:department)
+    |> Repo.get!(id)
+  end
 
   @doc """
   Gets a list of user by their id.

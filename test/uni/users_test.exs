@@ -24,7 +24,7 @@ defmodule Uni.UsersTest do
     end
 
     test "get_user!/1 returns the user with given id" do
-      user = insert(:user)
+      user = insert(:user, faculty: nil, department: nil)
       assert Users.get_user!(user.id) == user
     end
 
@@ -61,9 +61,20 @@ defmodule Uni.UsersTest do
     end
 
     test "update_user/2 with invalid data returns error changeset" do
-      user = insert(:user)
+      faculty = insert(:faculty)
+      department = insert(:department, faculty: faculty)
+
+      user = insert(:user, faculty: faculty, department: department)
       assert {:error, %Ecto.Changeset{}} = Users.update_user(user, @invalid_attrs)
-      assert user == Users.get_user!(user.id)
+
+      result = Users.get_user!(user.id)
+      assert user.id == result.id
+      assert user.name == result.name
+      assert user.email == result.email
+      assert user.password == result.password
+      assert user.faculty == result.faculty
+      assert %Uni.Faculties.Department{} = result.department
+      assert result.department.id == department.id
     end
 
     test "delete_user/1 deletes the user" do

@@ -47,4 +47,16 @@ defmodule Uni.Factory do
       page_end: 15
     }
   end
+
+  def faculty_factory do
+    %Uni.Faculties.Faculty{
+      name: "Informatics"
+    }
+  end
+
+  def department_factory do
+    %Uni.Faculties.Department{
+      name: "Math"
+    }
+  end
 end
