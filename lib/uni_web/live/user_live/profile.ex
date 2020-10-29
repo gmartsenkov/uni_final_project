@@ -20,6 +20,7 @@ defmodule UniWeb.UserLive.Profile do
     {:noreply, assign(socket, :tab, tab)}
   end
 
+  @impl true
   def handle_event("save_profile", %{"user" => %{"name" => name}}, socket) do
     case Users.update_user(socket.assigns.current_user, %{"name" => name}) do
       {:ok, user} ->
@@ -34,30 +35,9 @@ defmodule UniWeb.UserLive.Profile do
     end
   end
 
-  def handle_event(
-        "change_email",
-        %{"user" => %{"new_email" => new_email, "password" => password}},
-        socket
-      ) do
-    if Bcrypt.verify_pass(password, socket.assigns.current_user.password) do
-      update_email(new_email, socket)
-    else
-      {:noreply, assign(socket, :email_form_error, gettext("Password is incorrect"))}
-    end
-  end
-
-  defp update_email(new_email, socket) do
-    case Users.update_user(socket.assigns.current_user, %{"email" => new_email}) do
-      {:ok, user} ->
-        {:noreply,
-         socket
-         |> assign(:current_user, user)
-         |> assign(:email_form_error, nil)
-         |> put_flash(:info, gettext("Email updated successfully"))}
-
-      {:error, %Ecto.Changeset{} = changeset} ->
-        {:noreply, assign(socket, :email_form_error, Errors.full_messages(changeset))}
-    end
+  @impl true
+  def handle_event("update_password", params, socket) do
+    {:noreply, socket}
   end
 
   defp active?(tab, expected) when tab == expected, do: "active"
