@@ -6,7 +6,7 @@ defmodule UniWeb.MonographLive.EditTest do
   @update_params %{
     "name" => "Monograph update",
     "publisher" => "new publisher",
-    "year" => 2005,
+    "year" => 2005
   }
   @invalid_params %{
     "name" => nil,
@@ -33,7 +33,8 @@ defmodule UniWeb.MonographLive.EditTest do
     author_2 = insert(:user, name: "Arya Stark", email: "arya.stark.com")
     monograph = insert(:monograph, owner: user, authors: [author_1])
 
-    {:ok, monograph_live, html} = live(conn, Routes.monograph_edit_path(conn, :monographs, monograph))
+    {:ok, monograph_live, html} =
+      live(conn, Routes.monograph_edit_path(conn, :monographs, monograph))
 
     assert html =~ "Edit Monograph"
 

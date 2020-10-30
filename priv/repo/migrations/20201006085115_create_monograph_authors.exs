@@ -8,6 +8,5 @@ defmodule Uni.Repo.Migrations.CreateMonographAuthors do
 
       timestamps()
     end
-
   end
 end

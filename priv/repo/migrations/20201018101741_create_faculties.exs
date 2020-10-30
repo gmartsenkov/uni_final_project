@@ -7,6 +7,5 @@ defmodule Uni.Repo.Migrations.CreateFaculties do
 
       timestamps()
     end
-
   end
 end

@@ -120,11 +120,11 @@ defmodule UniWeb.ConferenceLive.IndexTest do
       insert(:conference, owner: user, name: "Conference number: #{i}")
     end)
 
-    {:ok, conference_live, html} = live(conn, Routes.conference_index_path(conn, :conferences))
+    {:ok, conference_live, _html} = live(conn, Routes.conference_index_path(conn, :conferences))
 
     Enum.each(1..10, fn i ->
-      assert html =~ "Conference number: #{i}"
-      refute String.contains?("Conference number: #{i + 10}", html)
+      assert has_element?(conference_live, "th", "Conference number: #{i}")
+      refute has_element?(conference_live, "th", "Conference number: #{i + 10}")
     end)
 
     html =

@@ -4,7 +4,7 @@ defmodule UniWeb.ConferenceLive.FormComponent do
   alias Uni.Conferences
 
   @impl true
-    def mount(socket) do
+  def mount(socket) do
     socket =
       socket
       |> assign(author_search: "")

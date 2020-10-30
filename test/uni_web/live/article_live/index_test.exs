@@ -25,14 +25,14 @@ defmodule UniWeb.ArticleLive.IndexTest do
       insert(:article, owner: user, name: "Article number: #{i}")
     end)
 
-    {:ok, article_live, html} = live(conn, Routes.article_index_path(conn, :articles))
+    {:ok, article_live, _html} = live(conn, Routes.article_index_path(conn, :articles))
 
     assert has_element?(article_live, "li.disabled", "Previous")
     assert has_element?(article_live, "li.active", "1")
 
     Enum.each(1..10, fn i ->
-      assert html =~ "Article number: #{i}"
-      refute String.contains?("Article number: #{i + 10}", html)
+      assert has_element?(article_live, "th", "Article number: #{i}")
+      refute has_element?(article_live, "th", "Article number: #{i + 10}")
     end)
 
     article_live |> element("a", "Next") |> render_click()
@@ -44,11 +44,9 @@ defmodule UniWeb.ArticleLive.IndexTest do
 
     assert has_element?(article_live, "li.active", "2")
 
-    html = render(article_live)
-
     Enum.each(11..20, fn i ->
-      assert html =~ "Article number: #{i}"
-      refute String.contains?("Article number: #{i + 10}", html)
+      assert has_element?(article_live, "th", "Article number: #{i}")
+      refute has_element?(article_live, "th", "Article number: #{i + 10}")
     end)
 
     article_live |> element("a", "Next") |> render_click()
@@ -61,11 +59,9 @@ defmodule UniWeb.ArticleLive.IndexTest do
     assert has_element?(article_live, "li.active", "3")
     assert has_element?(article_live, "li.disabled", "Next")
 
-    html = render(article_live)
-
     Enum.each(21..30, fn i ->
-      assert html =~ "Article number: #{i}"
-      refute String.contains?("Article number: #{i - 10}", html)
+      assert has_element?(article_live, "th", "Article number: #{i}")
+      refute has_element?(article_live, "th", "Article number: #{i + 10}")
     end)
   end
 
@@ -77,17 +73,16 @@ defmodule UniWeb.ArticleLive.IndexTest do
       insert(:article, owner: user, name: "Article number: #{i}")
     end)
 
-    {:ok, article_live, html} = live(conn, Routes.article_index_path(conn, :articles))
+    {:ok, article_live, _html} = live(conn, Routes.article_index_path(conn, :articles))
 
     Enum.each(1..10, fn i ->
-      assert html =~ "Article number: #{i}"
-      refute String.contains?("Article number: #{i + 10}", html)
+      assert has_element?(article_live, "th", "Article number: #{i}")
+      refute has_element?(article_live, "th", "Article number: #{i + 10}")
     end)
 
-    html =
-      article_live
-      |> element("form#filters")
-      |> render_change(%{"per_page" => "25"})
+    article_live
+    |> element("form#filters")
+    |> render_change(%{"per_page" => "25"})
 
     assert_patch(
       article_live,
@@ -95,7 +90,7 @@ defmodule UniWeb.ArticleLive.IndexTest do
     )
 
     Enum.each(1..25, fn i ->
-      assert html =~ "Article number: #{i}"
+      assert has_element?(article_live, "th", "Article number: #{i}")
     end)
 
     article_live |> element("a", "Next") |> render_click()
@@ -167,12 +162,12 @@ defmodule UniWeb.ArticleLive.IndexTest do
       insert(:article, owner: user, name: "Article number: #{i}")
     end)
 
-    {:ok, article_live, html} = live(conn, Routes.article_index_path(conn, :articles, page: 2))
+    {:ok, article_live, _html} = live(conn, Routes.article_index_path(conn, :articles, page: 2))
 
     assert has_element?(article_live, "li.active", "2")
 
     Enum.each(11..20, fn i ->
-      assert html =~ "Article number: #{i}"
+      assert has_element?(article_live, "th", "Article number: #{i}")
     end)
   end
 

@@ -6,7 +6,7 @@ defmodule UniWeb.MonographLive.NewTest do
   @valid_params %{
     "name" => "Monograph 1",
     "publisher" => "Helikon",
-    "year" => 1994,
+    "year" => 1994
   }
   @invalid_params %{
     "name" => nil,

@@ -25,14 +25,14 @@ defmodule UniWeb.MonographLive.IndexTest do
       insert(:monograph, owner: user, name: "Monograph number: #{i}")
     end)
 
-    {:ok, monograph_live, html} = live(conn, Routes.monograph_index_path(conn, :monographs))
+    {:ok, monograph_live, _html} = live(conn, Routes.monograph_index_path(conn, :monographs))
 
     assert has_element?(monograph_live, "li.disabled", "Previous")
     assert has_element?(monograph_live, "li.active", "1")
 
     Enum.each(1..10, fn i ->
-      assert html =~ "Monograph number: #{i}"
-      refute String.contains?("Monograph number: #{i + 10}", html)
+      assert has_element?(monograph_live, "th", "Monograph number: #{i}")
+      refute has_element?(monograph_live, "th", "Monograph number: #{i + 10}")
     end)
 
     monograph_live |> element("a", "Next") |> render_click()
@@ -44,11 +44,9 @@ defmodule UniWeb.MonographLive.IndexTest do
 
     assert has_element?(monograph_live, "li.active", "2")
 
-    html = render(monograph_live)
-
     Enum.each(11..20, fn i ->
-      assert html =~ "Monograph number: #{i}"
-      refute String.contains?("Monograph number: #{i + 10}", html)
+      assert has_element?(monograph_live, "th", "Monograph number: #{i}")
+      refute has_element?(monograph_live, "th", "Monograph number: #{i + 10}")
     end)
 
     monograph_live |> element("a", "Next") |> render_click()
@@ -61,11 +59,9 @@ defmodule UniWeb.MonographLive.IndexTest do
     assert has_element?(monograph_live, "li.active", "3")
     assert has_element?(monograph_live, "li.disabled", "Next")
 
-    html = render(monograph_live)
-
     Enum.each(21..30, fn i ->
-      assert html =~ "Monograph number: #{i}"
-      refute String.contains?("Monograph number: #{i - 10}", html)
+      assert has_element?(monograph_live, "th", "Monograph number: #{i}")
+      refute has_element?(monograph_live, "th", "Monograph number: #{i + 10}")
     end)
   end
 
@@ -77,11 +73,11 @@ defmodule UniWeb.MonographLive.IndexTest do
       insert(:monograph, owner: user, name: "Monograph number: #{i}")
     end)
 
-    {:ok, monograph_live, html} = live(conn, Routes.monograph_index_path(conn, :monographs))
+    {:ok, monograph_live, _html} = live(conn, Routes.monograph_index_path(conn, :monographs))
 
     Enum.each(1..10, fn i ->
-      assert html =~ "Monograph number: #{i}"
-      refute String.contains?("Monograph number: #{i + 10}", html)
+      assert has_element?(monograph_live, "th", "Monograph number: #{i}")
+      refute has_element?(monograph_live, "th", "Monograph number: #{i + 10}")
     end)
 
     html =
@@ -105,10 +101,8 @@ defmodule UniWeb.MonographLive.IndexTest do
       Routes.monograph_index_path(conn, :monographs, page: 2, per_page: "25", query: "")
     )
 
-    html = render(monograph_live)
-
     Enum.each(26..50, fn i ->
-      assert html =~ "Monograph number: #{i}"
+      assert has_element?(monograph_live, "th", "Monograph number: #{i}")
     end)
   end
 
@@ -167,7 +161,8 @@ defmodule UniWeb.MonographLive.IndexTest do
       insert(:monograph, owner: user, name: "Monograph number: #{i}")
     end)
 
-    {:ok, monograph_live, html} = live(conn, Routes.monograph_index_path(conn, :monographs, page: 2))
+    {:ok, monograph_live, html} =
+      live(conn, Routes.monograph_index_path(conn, :monographs, page: 2))
 
     assert has_element?(monograph_live, "li.active", "2")
 

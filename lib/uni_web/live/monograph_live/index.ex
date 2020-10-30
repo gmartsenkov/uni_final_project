@@ -23,7 +23,12 @@ defmodule UniWeb.MonographLive.Index do
   @impl true
   def handle_info({:page_change, page}, %{assigns: assigns} = socket) do
     result =
-      Monographs.paginate_monographs(assigns.current_user.id, assigns.query, page, assigns.per_page)
+      Monographs.paginate_monographs(
+        assigns.current_user.id,
+        assigns.query,
+        page,
+        assigns.per_page
+      )
 
     {:noreply,
      socket
@@ -37,7 +42,8 @@ defmodule UniWeb.MonographLive.Index do
         %{"per_page" => per_page, "query" => query},
         %{assigns: assigns} = socket
       ) do
-    result = Monographs.paginate_monographs(assigns.current_user.id, query, assigns.page, per_page)
+    result =
+      Monographs.paginate_monographs(assigns.current_user.id, query, assigns.page, per_page)
 
     {:noreply,
      socket

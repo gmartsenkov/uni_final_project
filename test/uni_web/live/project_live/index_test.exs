@@ -25,14 +25,14 @@ defmodule UniWeb.ProjectLive.IndexTest do
       insert(:project, owner: user, name: "Project number: #{i}")
     end)
 
-    {:ok, project_live, html} = live(conn, Routes.project_index_path(conn, :projects))
+    {:ok, project_live, _html} = live(conn, Routes.project_index_path(conn, :projects))
 
     assert has_element?(project_live, "li.disabled", "Previous")
     assert has_element?(project_live, "li.active", "1")
 
     Enum.each(1..10, fn i ->
-      assert html =~ "Project number: #{i}"
-      refute String.contains?("Project number: #{i + 10}", html)
+      assert has_element?(project_live, "th", "Project number: #{i}")
+      refute has_element?(project_live, "th", "Project number: #{i + 10}")
     end)
 
     project_live |> element("a", "Next") |> render_click()
@@ -44,11 +44,9 @@ defmodule UniWeb.ProjectLive.IndexTest do
 
     assert has_element?(project_live, "li.active", "2")
 
-    html = render(project_live)
-
     Enum.each(11..20, fn i ->
-      assert html =~ "Project number: #{i}"
-      refute String.contains?("Project number: #{i + 10}", html)
+      assert has_element?(project_live, "th", "Project number: #{i}")
+      refute has_element?(project_live, "th", "Project number: #{i + 10}")
     end)
 
     project_live |> element("a", "Next") |> render_click()
@@ -61,11 +59,9 @@ defmodule UniWeb.ProjectLive.IndexTest do
     assert has_element?(project_live, "li.active", "3")
     assert has_element?(project_live, "li.disabled", "Next")
 
-    html = render(project_live)
-
     Enum.each(21..30, fn i ->
-      assert html =~ "Project number: #{i}"
-      refute String.contains?("Project number: #{i - 10}", html)
+      assert has_element?(project_live, "th", "Project number: #{i}")
+      refute has_element?(project_live, "th", "Project number: #{i + 10}")
     end)
   end
 
@@ -77,17 +73,16 @@ defmodule UniWeb.ProjectLive.IndexTest do
       insert(:project, owner: user, name: "Project number: #{i}")
     end)
 
-    {:ok, project_live, html} = live(conn, Routes.project_index_path(conn, :projects))
+    {:ok, project_live, _html} = live(conn, Routes.project_index_path(conn, :projects))
 
     Enum.each(1..10, fn i ->
-      assert html =~ "Project number: #{i}"
-      refute String.contains?("Project number: #{i + 10}", html)
+      assert has_element?(project_live, "th", "Project number: #{i}")
+      refute has_element?(project_live, "th", "Project number: #{i + 10}")
     end)
 
-    html =
-      project_live
-      |> element("form#filters")
-      |> render_change(%{"per_page" => "25"})
+    project_live
+    |> element("form#filters")
+    |> render_change(%{"per_page" => "25"})
 
     assert_patch(
       project_live,
@@ -95,7 +90,7 @@ defmodule UniWeb.ProjectLive.IndexTest do
     )
 
     Enum.each(1..25, fn i ->
-      assert html =~ "Project number: #{i}"
+      assert has_element?(project_live, "th", "Project number: #{i}")
     end)
 
     project_live |> element("a", "Next") |> render_click()
