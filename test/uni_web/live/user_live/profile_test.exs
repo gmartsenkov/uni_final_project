@@ -5,8 +5,20 @@ defmodule UniWeb.UserLive.ProfileTest do
 
   import Phoenix.LiveViewTest
 
-  test "changing tabs works correctly", %{conn: conn} do
-    user = insert(:user)
+  setup do
+    faculty = insert(:faculty)
+    department = insert(:department, faculty: faculty)
+    another_faculty = insert(:faculty, name: "Tech")
+    another_department = insert(:department, name: "Web", faculty: another_faculty)
+
+    [
+      another_department: another_department,
+      another_faculty: another_faculty,
+      user: insert(:user, faculty: faculty, department: department)
+    ]
+  end
+
+  test "changing tabs works correctly", %{conn: conn, user: user} do
     conn = init_test_session(conn, %{user_id: user.id})
     {:ok, profile_live, html} = live(conn, Routes.user_profile_path(conn, :my_profile))
 
@@ -24,8 +36,12 @@ defmodule UniWeb.UserLive.ProfileTest do
     assert html =~ "New Password"
   end
 
-  test "updating the profile", %{conn: conn} do
-    user = insert(:user)
+  test "updating the profile", %{
+    conn: conn,
+    user: user,
+    another_faculty: faculty,
+    another_department: department
+  } do
     conn = init_test_session(conn, %{user_id: user.id})
     {:ok, profile_live, html} = live(conn, Routes.user_profile_path(conn, :my_profile))
 
@@ -37,19 +53,31 @@ defmodule UniWeb.UserLive.ProfileTest do
            |> element("form#profile")
            |> render_submit(%{"user" => %{"name" => ""}}) =~ "can&apos;t be blank"
 
-    {:ok, _live, html} =
+    {:ok, live, html} =
       profile_live
       |> element("form#profile")
-      |> render_submit(%{"user" => %{"name" => "Arnold"}})
+      |> render_submit(%{
+        "user" => %{
+          "name" => "Arnold",
+          "department_id" => department.id,
+          "faculty_id" => faculty.id
+        }
+      })
       |> follow_redirect(conn, Routes.user_profile_path(conn, :my_profile))
 
     assert html =~ "Profile updated successfully"
     assert html =~ "Arnold"
+    assert has_element?(live, "option", "Tech")
+    assert has_element?(live, "option", "Web")
+
+    user = Uni.Users.get_user!(user.id)
+
+    assert user.faculty.id == faculty.id
+    assert user.department.id == department.id
   end
 
   describe "updating the password" do
-    test "returns the correct error when current password is wrong", %{conn: conn} do
-      user = insert(:user)
+    test "returns the correct error when current password is wrong", %{conn: conn, user: user} do
       conn = init_test_session(conn, %{user_id: user.id})
       {:ok, profile_live, _html} = live(conn, Routes.user_profile_path(conn, :my_profile))
 
@@ -66,8 +94,7 @@ defmodule UniWeb.UserLive.ProfileTest do
       assert has_element?(profile_live, "p", "The password is wrong")
     end
 
-    test "updates the user password", %{conn: conn} do
-      user = insert(:user)
+    test "updates the user password", %{conn: conn, user: user} do
       conn = init_test_session(conn, %{user_id: user.id})
 
       assert Bcrypt.verify_pass("1234", user.password)

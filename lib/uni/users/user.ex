@@ -19,8 +19,8 @@ defmodule Uni.Users.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :email, :password])
-    |> validate_required([:name, :email, :password])
+    |> cast(attrs, [:name, :email, :password, :faculty_id, :department_id])
+    |> validate_required([:name, :email, :password, :faculty_id, :department_id])
     |> unique_constraint(:email)
   end
 end

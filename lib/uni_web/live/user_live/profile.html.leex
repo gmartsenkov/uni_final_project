@@ -18,7 +18,7 @@
             </ul>
 
             <%= if @tab == "profile" do %>
-            <%= f = form_for @profile_changeset, "#", id: "profile", class: "m-3", phx_submit: "save_profile" %>
+            <%= f = form_for @profile_changeset, "#", id: "profile", class: "m-3", phx_submit: "save_profile", phx_change: "profile_on_change" %>
             <div class="form-group">
                 <label><%= gettext("Email") %></label>
                 <%= email_input f, :email, class: "form-control", disabled: true, value: @current_user.email %>
@@ -29,7 +29,16 @@
                 <%= text_input f, :name, class: "form-control", class: input_class(f, :name) %>
                 <%= error_tag f, :name %>
             </div>
-
+            <div class="form-group">
+                <label><%= gettext("Faculty") %></label>
+                <%= select f, :faculty_id, @faculties, class: "custom-select form-control" %>
+                <%= error_tag f, :faculty_id %>
+            </div>
+            <div class="form-group">
+                <label><%= gettext("Department") %></label>
+                <%= select f, :department_id, departments(@faculty_id), class: "custom-select form-control" %>
+                <%= error_tag f, :department_id %>
+            </div>
             <button type="submit" class="btn btn-primary">
                 <%= gettext("Update") %>
             </button>

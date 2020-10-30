@@ -33,26 +33,27 @@ defmodule Uni.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "2.2.0"},
+      {:ecto_sql, "~> 3.4"},
+      {:ex_machina, "~> 2.4", only: :test},
+      {:ex_spec, "~> 2.0", only: :test},
+      {:floki, "~> 0.29.0"},
+      {:gettext, "~> 0.11"},
+      {:httpoison, "~> 1.6"},
+      {:jason, "~> 1.0"},
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:phoenix, "~> 1.5.1"},
       {:phoenix_ecto, "~> 4.1"},
-      {:ecto_sql, "~> 3.4"},
-      {:postgrex, ">= 0.0.0"},
-      {:phoenix_live_view, "~> 0.14.7"},
       {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_dashboard, "~> 0.2.9"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_live_view, "~> 0.14.7"},
+      {:plug_cowboy, "~> 2.0"},
+      {:postgrex, ">= 0.0.0"},
+      {:scrivener_ecto, "~> 2.0"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
-      {:bcrypt_elixir, "2.2.0"},
-      {:scrivener_ecto, "~> 2.0"},
-      {:httpoison, "~> 1.6"},
-      {:tqdm, "~> 0.0.2"},
-      {:floki, "~> 0.29.0"},
-      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
-      {:ex_machina, "~> 2.4", only: :test}
+      {:tqdm, "~> 0.0.2"}
     ]
   end
 

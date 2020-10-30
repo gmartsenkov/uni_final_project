@@ -1,6 +1,7 @@
 defmodule UniWeb.UserLive.Profile do
   use UniWeb, :live_view
   alias Uni.Users
+  alias Uni.Faculties
 
   @impl true
   def mount(_params, session, socket) do
@@ -11,6 +12,8 @@ defmodule UniWeb.UserLive.Profile do
      |> assign(:page_title, "#{gettext("Profile")} - #{socket.assigns.current_user.name}")
      |> assign(:profile_changeset, Users.change_user(socket.assigns.current_user))
      |> assign(:email_form_error, nil)
+     |> assign(:faculties, faculties())
+     |> assign(:faculty_id, socket.assigns.current_user.faculty_id)
      |> assign(:tab, "profile")}
   end
 
@@ -20,8 +23,15 @@ defmodule UniWeb.UserLive.Profile do
   end
 
   @impl true
-  def handle_event("save_profile", %{"user" => %{"name" => name}}, socket) do
-    case Users.update_user(socket.assigns.current_user, %{"name" => name}) do
+  def handle_event("profile_on_change", %{"user" => %{"faculty_id" => faculty_id}}, socket) do
+    {:noreply,
+     socket
+     |> assign(:faculty_id, faculty_id)}
+  end
+
+  @impl true
+  def handle_event("save_profile", %{"user" => params}, socket) do
+    case Users.update_user(socket.assigns.current_user, params) do
       {:ok, user} ->
         {:noreply,
          socket
@@ -62,6 +72,16 @@ defmodule UniWeb.UserLive.Profile do
        socket
        |> assign(:email_form_error, gettext("The password is wrong"))}
     end
+  end
+
+  defp faculties() do
+    Faculties.faculties()
+    |> Enum.map(fn f -> {f.name, f.id} end)
+  end
+
+  defp departments(faculty_id) do
+    Faculties.departments(%{id: faculty_id})
+    |> Enum.map(fn f -> {f.name, f.id} end)
   end
 
   defp active?(tab, expected) when tab == expected, do: "active"

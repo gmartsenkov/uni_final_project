@@ -9,6 +9,12 @@ defmodule Uni.Faculties do
   alias Uni.Faculties.Faculty
   alias Uni.Faculties.Department
 
+  def faculties(), do: Repo.all(Faculty)
+
+  def departments(faculty) do
+    Department |> where(faculty_id: ^faculty.id) |> Repo.all()
+  end
+
   def faculty_by_name(name) do
     Faculty
     |> where(name: ^name)

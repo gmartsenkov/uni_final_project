@@ -115,11 +115,11 @@ defmodule UniWeb.ProjectLive.IndexTest do
       insert(:project, owner: user, name: "Project number: #{i}")
     end)
 
-    {:ok, project_live, html} = live(conn, Routes.project_index_path(conn, :projects))
+    {:ok, project_live, _html} = live(conn, Routes.project_index_path(conn, :projects))
 
     Enum.each(1..10, fn i ->
-      assert html =~ "Project number: #{i}"
-      refute String.contains?("Project number: #{i + 10}", html)
+      assert has_element?(project_live, "th", "Project number: #{i}")
+      refute has_element?(project_live, "th", "Project number: #{i + 10}")
     end)
 
     html =
@@ -162,12 +162,12 @@ defmodule UniWeb.ProjectLive.IndexTest do
       insert(:project, owner: user, name: "Project number: #{i}")
     end)
 
-    {:ok, project_live, html} = live(conn, Routes.project_index_path(conn, :projects, page: 2))
+    {:ok, project_live, _html} = live(conn, Routes.project_index_path(conn, :projects, page: 2))
 
     assert has_element?(project_live, "li.active", "2")
 
     Enum.each(11..20, fn i ->
-      assert html =~ "Project number: #{i}"
+      assert has_element?(project_live, "th", "Project number: #{i}")
     end)
   end
 

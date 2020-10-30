@@ -25,14 +25,14 @@ defmodule UniWeb.ConferenceLive.IndexTest do
       insert(:conference, owner: user, name: "Conference number: #{i}")
     end)
 
-    {:ok, conference_live, html} = live(conn, Routes.conference_index_path(conn, :conferences))
+    {:ok, conference_live, _html} = live(conn, Routes.conference_index_path(conn, :conferences))
 
     assert has_element?(conference_live, "li.disabled", "Previous")
     assert has_element?(conference_live, "li.active", "1")
 
     Enum.each(1..10, fn i ->
-      assert html =~ "Conference number: #{i}"
-      refute String.contains?("Conference number: #{i + 10}", html)
+      assert has_element?(conference_live, "th", "Conference number: #{i}")
+      refute has_element?(conference_live, "th", "Conference number: #{i + 10}")
     end)
 
     conference_live |> element("a", "Next") |> render_click()
@@ -44,11 +44,9 @@ defmodule UniWeb.ConferenceLive.IndexTest do
 
     assert has_element?(conference_live, "li.active", "2")
 
-    html = render(conference_live)
-
     Enum.each(11..20, fn i ->
-      assert html =~ "Conference number: #{i}"
-      refute String.contains?("Conference number: #{i + 10}", html)
+      assert has_element?(conference_live, "th", "Conference number: #{i}")
+      refute has_element?(conference_live, "th", "Conference number: #{i + 10}")
     end)
 
     conference_live |> element("a", "Next") |> render_click()
@@ -77,17 +75,16 @@ defmodule UniWeb.ConferenceLive.IndexTest do
       insert(:conference, owner: user, name: "Conference number: #{i}")
     end)
 
-    {:ok, conference_live, html} = live(conn, Routes.conference_index_path(conn, :conferences))
+    {:ok, conference_live, _html} = live(conn, Routes.conference_index_path(conn, :conferences))
 
     Enum.each(1..10, fn i ->
-      assert html =~ "Conference number: #{i}"
-      refute String.contains?("Conference number: #{i + 10}", html)
+      assert has_element?(conference_live, "th", "Conference number: #{i}")
+      refute has_element?(conference_live, "th", "Conference number: #{i + 10}")
     end)
 
-    html =
-      conference_live
-      |> element("form#filters")
-      |> render_change(%{"per_page" => "25"})
+    conference_live
+    |> element("form#filters")
+    |> render_change(%{"per_page" => "25"})
 
     assert_patch(
       conference_live,
@@ -95,7 +92,7 @@ defmodule UniWeb.ConferenceLive.IndexTest do
     )
 
     Enum.each(1..25, fn i ->
-      assert html =~ "Conference number: #{i}"
+      assert has_element?(conference_live, "th", "Conference number: #{i}")
     end)
 
     conference_live |> element("a", "Next") |> render_click()
@@ -105,10 +102,8 @@ defmodule UniWeb.ConferenceLive.IndexTest do
       Routes.conference_index_path(conn, :conferences, page: 2, per_page: "25", query: "")
     )
 
-    html = render(conference_live)
-
     Enum.each(26..50, fn i ->
-      assert html =~ "Conference number: #{i}"
+      assert has_element?(conference_live, "th", "Conference number: #{i}")
     end)
   end
 

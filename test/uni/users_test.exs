@@ -42,7 +42,12 @@ defmodule Uni.UsersTest do
     end
 
     test "create_user/1 with valid data creates a user" do
-      assert {:ok, %User{} = user} = Users.create_user(@valid_attrs)
+      faculty = insert(:faculty)
+      department = insert(:department, faculty: faculty)
+
+      params = Map.merge(@valid_attrs, %{faculty_id: faculty.id, department_id: department.id})
+
+      assert {:ok, %User{} = user} = Users.create_user(params)
       assert user.email == "some email"
       assert user.name == "some name"
       assert user.password == "1234"
@@ -53,8 +58,12 @@ defmodule Uni.UsersTest do
     end
 
     test "update_user/2 with valid data updates the user" do
+      faculty = insert(:faculty)
+      department = insert(:department, faculty: faculty)
       user = insert(:user)
-      assert {:ok, %User{} = user} = Users.update_user(user, @update_attrs)
+      params = Map.merge(@update_attrs, %{faculty_id: faculty.id, department_id: department.id})
+
+      assert {:ok, %User{} = user} = Users.update_user(user, params)
       assert user.email == "some updated email"
       assert user.name == "some updated name"
       assert user.password == "4321"

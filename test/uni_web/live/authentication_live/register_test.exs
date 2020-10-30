@@ -6,12 +6,14 @@ defmodule UniWeb.AuthenticationLive.RegisterTest do
   @valid_params %{name: "Bob", email: "bob@snow.com", password: "1234"}
   @invalid_params %{name: nil, email: nil, password: nil}
 
+  @tag :skip
   test "it is the sign up page", %{conn: conn} do
     {:ok, _register_live, html} = live(conn, Routes.authentication_register_path(conn, :register))
 
     assert html =~ "Sign Up"
   end
 
+  @tag :skip
   test "it creates a user", %{conn: conn} do
     {:ok, register_live, _html} = live(conn, Routes.authentication_register_path(conn, :register))
 
