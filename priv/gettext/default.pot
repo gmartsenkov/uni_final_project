@@ -51,7 +51,7 @@ msgid "Edit Article"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/navigation_live.html.leex:48
+#: lib/uni_web/live/navigation_live.html.leex:56
 msgid "Logout"
 msgstr ""
 
@@ -61,7 +61,7 @@ msgstr ""
 #: lib/uni_web/live/conference_live/form_component.html.leex:8 lib/uni_web/live/conference_live/index.html.leex:48
 #: lib/uni_web/live/monograph_live/form_component.html.leex:8 lib/uni_web/live/monograph_live/index.html.leex:48
 #: lib/uni_web/live/project_live/form_component.html.leex:8 lib/uni_web/live/project_live/index.html.leex:48
-#: lib/uni_web/live/user_live/profile.html.leex:41
+#: lib/uni_web/live/user_live/profile.html.leex:28
 msgid "Name"
 msgstr ""
 
@@ -73,7 +73,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.html.leex:28
-#: lib/uni_web/live/article_live/index.html.leex:49 lib/uni_web/live/monograph_live/form_component.html.leex:22
+#: lib/uni_web/live/article_live/index.html.leex:49 lib/uni_web/live/monograph_live/form_component.html.leex:20
 #: lib/uni_web/live/monograph_live/index.html.leex:49
 msgid "Publisher"
 msgstr ""
@@ -88,8 +88,8 @@ msgstr ""
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:110
 #: lib/uni_web/live/conference_live/form_component.ex:84 lib/uni_web/live/monograph_live/form_component.ex:104
-#: lib/uni_web/live/project_live/form_component.ex:84 lib/uni_web/live/user_live/profile.html.leex:47
-#: lib/uni_web/live/user_live/profile.html.leex:74 lib/uni_web/live/user_live/profile.html.leex:91
+#: lib/uni_web/live/project_live/form_component.ex:84 lib/uni_web/live/user_live/profile.html.leex:43
+#: lib/uni_web/live/user_live/profile.html.leex:64
 msgid "Update"
 msgstr ""
 
@@ -122,8 +122,8 @@ msgid "Login"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/user_live/profile.html.leex:63
-#: lib/uni_web/live/user_live/profile.html.leex:82 lib/uni_web/templates/authentication/login.html.leex:14
+#: lib/uni_web/live/user_live/profile.html.leex:55
+#: lib/uni_web/templates/authentication/login.html.leex:14
 msgid "Password"
 msgstr ""
 
@@ -159,7 +159,7 @@ msgid "Total of"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/controllers/authentication.ex:33
+#: lib/uni_web/controllers/authentication.ex:39
 msgid "Email and password do not match"
 msgstr ""
 
@@ -365,49 +365,28 @@ msgid "Reported"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/user_live/profile.html.leex:36
-#: lib/uni_web/live/user_live/profile.html.leex:55
+#: lib/uni_web/live/user_live/profile.html.leex:23
 msgid "Email"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/user_live/profile.ex:56
-msgid "Email updated successfully"
-msgstr ""
-
-#, elixir-format
 #: lib/uni_web/live/user_live/profile.html.leex:59
-msgid "New Email"
-msgstr ""
-
-#, elixir-format
-#: lib/uni_web/live/user_live/profile.html.leex:86
 msgid "New Password"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/user_live/profile.ex:45
-msgid "Password is incorrect"
-msgstr ""
-
-#, elixir-format
 #: lib/uni_web/live/user_live/profile.ex:12
-#: lib/uni_web/live/user_live/profile.html.leex:15
+#: lib/uni_web/live/user_live/profile.html.leex:12
 msgid "Profile"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/user_live/profile.ex:30
+#: lib/uni_web/live/user_live/profile.ex:40
 msgid "Profile updated successfully"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/user_live/profile.html.leex:22
-msgid "Change Email"
-msgstr ""
-
-#, elixir-format
-#: lib/uni_web/live/user_live/profile.html.leex:29
+#: lib/uni_web/live/user_live/profile.html.leex:16
 msgid "Change Password"
 msgstr ""
 
@@ -448,4 +427,30 @@ msgstr ""
 #: lib/uni_web/live/monograph_live/new.ex:8
 #: lib/uni_web/live/monograph_live/new.html.leex:4
 msgid "New Monograph"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.html.leex:38
+msgid "Department"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.html.leex:33
+msgid "Faculty"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.ex:65
+msgid "Password updated successfully"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/profile.ex:73
+msgid "The password is wrong"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/navigation_live.html.leex:42
+#: lib/uni_web/live/user_live/index.ex:10
+msgid "Users"
 msgstr ""
