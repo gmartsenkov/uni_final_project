@@ -14,7 +14,7 @@ defmodule Uni.Users do
     |> Repo.one()
   end
 
-  def pagignate(query \\ "", page \\ 1, page_size \\ 10) do
+  def paginate(query \\ "", page \\ 1, page_size \\ 10) do
     search(query)
     |> preload(:faculty)
     |> preload(:department)
@@ -38,7 +38,7 @@ defmodule Uni.Users do
 
   def search(query) do
     from u in User,
-      where: ilike(u.name, ^"%#{query}%")
+      where: ilike(fragment("? COLLATE \"bg_BG\"", u.name), ^"%#{query}%")
   end
 
   @doc """

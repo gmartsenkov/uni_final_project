@@ -28,7 +28,7 @@ defmodule Uni.UsersTest do
     end
 
     test "query" do
-      result = Users.pagignate("stark")
+      result = Users.paginate("stark")
 
       assert %Scrivener.Page{} = result
       assert result.page_number == 1
@@ -49,7 +49,7 @@ defmodule Uni.UsersTest do
     end
 
     test "query works with another" do
-      result = Users.pagignate("SnoW")
+      result = Users.paginate("SnoW")
 
       assert %Scrivener.Page{} = result
       assert result.page_number == 1
@@ -64,7 +64,7 @@ defmodule Uni.UsersTest do
     end
 
     test "paginate" do
-      result = Users.pagignate("", 1, 2)
+      result = Users.paginate("", 1, 2)
 
       assert %Scrivener.Page{} = result
       assert result.page_number == 1
@@ -78,7 +78,7 @@ defmodule Uni.UsersTest do
       assert one.name == "John Snow"
       assert two.name == "Arya Stark"
 
-      result = Users.pagignate("", 2, 2)
+      result = Users.paginate("", 2, 2)
 
       assert %Scrivener.Page{} = result
       assert result.page_number == 2
