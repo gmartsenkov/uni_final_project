@@ -3,6 +3,96 @@ defmodule Uni.UsersTest do
 
   alias Uni.Users
 
+  describe "paginate" do
+    setup do
+      faculty = insert(:faculty)
+      department = insert(:department, name: "Tech", faculty: faculty)
+
+      insert(:user, email: "jon@snow", name: "John Snow", faculty: faculty, department: department)
+
+      insert(:user,
+        email: "arya@stark",
+        name: "Arya Stark",
+        faculty: faculty,
+        department: department
+      )
+
+      insert(:user,
+        email: "rob@stark",
+        name: "Rob Stark",
+        faculty: faculty,
+        department: department
+      )
+
+      :ok
+    end
+
+    test "query" do
+      result = Users.pagignate("stark")
+
+      assert %Scrivener.Page{} = result
+      assert result.page_number == 1
+      assert result.page_size == 10
+      assert result.total_entries == 2
+      assert result.total_pages == 1
+
+      assert Enum.count(result.entries) == 2
+
+      [one, two] = result.entries
+
+      assert one.name == "Arya Stark"
+      assert one.faculty.name == "Informatics"
+      assert one.department.name == "Tech"
+      assert two.name == "Rob Stark"
+      assert two.faculty.name == "Informatics"
+      assert two.department.name == "Tech"
+    end
+
+    test "query works with another" do
+      result = Users.pagignate("SnoW")
+
+      assert %Scrivener.Page{} = result
+      assert result.page_number == 1
+      assert result.page_size == 10
+      assert result.total_entries == 1
+      assert result.total_pages == 1
+
+      assert Enum.count(result.entries) == 1
+
+      [one] = result.entries
+      assert one.name == "John Snow"
+    end
+
+    test "paginate" do
+      result = Users.pagignate("", 1, 2)
+
+      assert %Scrivener.Page{} = result
+      assert result.page_number == 1
+      assert result.page_size == 2
+      assert result.total_entries == 3
+      assert result.total_pages == 2
+
+      assert Enum.count(result.entries) == 2
+      [one, two] = result.entries
+
+      assert one.name == "John Snow"
+      assert two.name == "Arya Stark"
+
+      result = Users.pagignate("", 2, 2)
+
+      assert %Scrivener.Page{} = result
+      assert result.page_number == 2
+      assert result.page_size == 2
+      assert result.total_entries == 3
+      assert result.total_pages == 2
+
+      assert Enum.count(result.entries) == 1
+      [one] = result.entries
+
+      assert one.name == "Rob Stark"
+    end
+  end
+
   describe "users" do
     alias Uni.Users.User
 

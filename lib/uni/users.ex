@@ -14,6 +14,13 @@ defmodule Uni.Users do
     |> Repo.one()
   end
 
+  def pagignate(query \\ "", page \\ 1, page_size \\ 10) do
+    search(query)
+    |> preload(:faculty)
+    |> preload(:department)
+    |> Repo.paginate(page: page, page_size: page_size)
+  end
+
   @doc """
   Returns users matching the query(using an ILIKE query '%query%')
 
@@ -24,12 +31,14 @@ defmodule Uni.Users do
 
   """
   def autocomplete(query) do
-    query = String.downcase("#{query}")
+    Repo.all(search(query))
+  end
 
-    Repo.all(
-      from u in User,
-        where: ilike(u.name, ^"%#{query}%")
-    )
+  def search(""), do: User
+
+  def search(query) do
+    from u in User,
+      where: ilike(u.name, ^"%#{query}%")
   end
 
   @doc """
