@@ -38,7 +38,7 @@ defmodule Uni.Users do
 
   def search(query) do
     from u in User,
-      where: ilike(fragment("? COLLATE \"bg_BG\"", u.name), ^"%#{query}%")
+      where: ilike(u.name, ^"%#{query}%")
   end
 
   @doc """
