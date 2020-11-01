@@ -3,7 +3,7 @@ defmodule Uni.Repo.Migrations.CreateUsers do
 
   def change do
     create table(:users) do
-      add :name, :string, null: false
+      add :name, :"text COLLATE \"en_US\"", null: false
       add :email, :string, unique: true
       add :password, :text, null: false
 
