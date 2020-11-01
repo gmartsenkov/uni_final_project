@@ -28,6 +28,8 @@ defmodule UniWeb.UserLive.IndexTest do
       refute has_element?(live, "th", "User #{i + 10}")
     end)
 
+    assert has_element?(live, "th", "Informatics")
+    assert has_element?(live, "th", "Math")
     assert has_element?(live, "caption", "Total of 31 users")
   end
 
