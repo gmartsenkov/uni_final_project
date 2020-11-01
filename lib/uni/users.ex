@@ -92,7 +92,7 @@ defmodule Uni.Users do
   @doc """
   Gets a single user by email.
 
-  Reeturns nil if the User does not exist.
+  Returns nil if the User does not exist.
 
   ## Examples
 
