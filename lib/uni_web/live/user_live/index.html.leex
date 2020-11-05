@@ -49,7 +49,9 @@
             <th><%= user.faculty.name %></th>
             <th><%= user.department.name %></th>
             <th>
+              <%= live_redirect id: "user-edit-#{user.id}", to: Routes.user_edit_path(@socket, :users, user) do  %>
               <i class="fas fa-edit"></i>
+              <% end %>
             </th>
           </tr>
           <% end %>
