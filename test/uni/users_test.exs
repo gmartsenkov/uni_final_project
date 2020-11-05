@@ -115,15 +115,7 @@ defmodule Uni.UsersTest do
 
     test "get_user!/1 returns the user with given id" do
       user = insert(:user, faculty: nil, department: nil)
-      assert Users.get_user!(user.id) == user
-    end
-
-    test "get_users/1 returns the users with given ids" do
-      user = insert(:user, email: "bob@bob.com")
-      user_2 = insert(:user, email: "jon@snow.com")
-      _user_3 = insert(:user, email: "mike@bob.com")
-
-      assert Users.get_users([user.id, user_2.id]) == [user, user_2]
+      assert Users.get_user(user.id) == user
     end
 
     test "get_by_email/1 returns the user with given an email" do
@@ -166,7 +158,7 @@ defmodule Uni.UsersTest do
       user = insert(:user, faculty: faculty, department: department)
       assert {:error, %Ecto.Changeset{}} = Users.update_user(user, @invalid_attrs)
 
-      result = Users.get_user!(user.id)
+      result = Users.get_user(user.id)
       assert user.id == result.id
       assert user.name == result.name
       assert user.email == result.email
@@ -179,7 +171,7 @@ defmodule Uni.UsersTest do
     test "delete_user/1 deletes the user" do
       user = insert(:user)
       assert {:ok, %User{}} = Users.delete_user(user)
-      assert_raise Ecto.NoResultsError, fn -> Users.get_user!(user.id) end
+      assert Users.get_user(user.id) == nil
     end
 
     test "change_user/1 returns a user changeset" do

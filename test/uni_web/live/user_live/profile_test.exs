@@ -70,7 +70,7 @@ defmodule UniWeb.UserLive.ProfileTest do
     assert has_element?(live, "option", "Tech")
     assert has_element?(live, "option", "Web")
 
-    user = Uni.Users.get_user!(user.id)
+    user = Uni.Users.get_user(user.id)
 
     assert user.faculty.id == faculty.id
     assert user.department.id == department.id

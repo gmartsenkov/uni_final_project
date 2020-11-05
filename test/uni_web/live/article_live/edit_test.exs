@@ -80,7 +80,7 @@ defmodule UniWeb.ArticleLive.EditTest do
 
     assert Uni.Articles.Author |> Uni.Repo.all() |> length == 2
 
-    assert html =~ "Article updated successfuly"
+    assert html =~ "Article updated successfully"
     assert html =~ "Article updated"
     assert html =~ "2005"
   end

@@ -66,7 +66,7 @@ defmodule UniWeb.ArticleLive.FormComponent do
       {:ok, _article} ->
         {:noreply,
          socket
-         |> put_flash(:info, gettext("Article created successfuly"))
+         |> put_flash(:info, gettext("Article created successfully"))
          |> push_redirect(to: Routes.article_index_path(socket, :articles))}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -79,7 +79,7 @@ defmodule UniWeb.ArticleLive.FormComponent do
       {:ok, article} ->
         {:noreply,
          socket
-         |> put_flash(:info, gettext("Article updated successfuly"))
+         |> put_flash(:info, gettext("Article updated successfully"))
          |> push_redirect(to: Routes.article_edit_path(socket, :articles, article))}
 
       {:error, %Ecto.Changeset{} = changeset} ->

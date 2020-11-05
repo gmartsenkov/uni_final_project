@@ -35,6 +35,7 @@ defmodule UniWeb.Router do
 
     live "/profile", UserLive.Profile, :my_profile
     live "/users", UserLive.Index, :users
+    live "/users/:id", UserLive.Edit, :users
 
     live "/", ArticleLive.Index, :articles
 

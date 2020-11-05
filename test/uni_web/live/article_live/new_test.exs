@@ -63,7 +63,7 @@ defmodule UniWeb.ArticleLive.NewTest do
       |> render_submit()
       |> follow_redirect(conn, Routes.article_index_path(conn, :articles))
 
-    assert html =~ "Article created successfuly"
+    assert html =~ "Article created successfully"
     assert html =~ "Article 1"
     assert html =~ "1994"
 

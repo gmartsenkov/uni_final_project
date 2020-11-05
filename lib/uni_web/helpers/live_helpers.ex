@@ -11,7 +11,7 @@ defmodule UniWeb.Helpers.LiveHelpers do
     assign_new(
       socket,
       :current_user,
-      fn -> Uni.Users.get_user!(user_id) end
+      fn -> Uni.Users.get_user(user_id) end
     )
     |> assign(:logged_in, true)
   end
