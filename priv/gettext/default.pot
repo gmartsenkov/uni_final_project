@@ -57,10 +57,11 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.html.leex:8
-#: lib/uni_web/live/article_live/index.html.leex:48 lib/uni_web/live/authentication_live/register.html.leex:13
+#: lib/uni_web/live/article_live/index.html.leex:48 lib/uni_web/live/authentication_live/register.html.leex:12
 #: lib/uni_web/live/conference_live/form_component.html.leex:8 lib/uni_web/live/conference_live/index.html.leex:48
 #: lib/uni_web/live/monograph_live/form_component.html.leex:8 lib/uni_web/live/monograph_live/index.html.leex:48
 #: lib/uni_web/live/project_live/form_component.html.leex:8 lib/uni_web/live/project_live/index.html.leex:48
+#: lib/uni_web/live/user_live/form_component.html.leex:9 lib/uni_web/live/user_live/index.html.leex:37
 #: lib/uni_web/live/user_live/profile.html.leex:28
 msgid "Name"
 msgstr ""
@@ -88,19 +89,14 @@ msgstr ""
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:110
 #: lib/uni_web/live/conference_live/form_component.ex:84 lib/uni_web/live/monograph_live/form_component.ex:104
-#: lib/uni_web/live/project_live/form_component.ex:84 lib/uni_web/live/user_live/profile.html.leex:43
-#: lib/uni_web/live/user_live/profile.html.leex:64
+#: lib/uni_web/live/project_live/form_component.ex:84 lib/uni_web/live/user_live/form_component.html.leex:24
+#: lib/uni_web/live/user_live/profile.html.leex:43 lib/uni_web/live/user_live/profile.html.leex:64
 msgid "Update"
 msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/author_multi_select_component.ex:74
 msgid "User does not exist"
-msgstr ""
-
-#, elixir-format
-#: lib/uni_web/live/page_live.html.leex:2
-msgid "Welcome to %{name}!"
 msgstr ""
 
 #, elixir-format
@@ -111,7 +107,7 @@ msgid "Year"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/authentication_live/register.html.leex:18
+#: lib/uni_web/live/authentication_live/register.html.leex:17
 #: lib/uni_web/templates/authentication/login.html.leex:10
 msgid "Email address"
 msgstr ""
@@ -128,7 +124,7 @@ msgid "Password"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/authentication_live/register.html.leex:27
+#: lib/uni_web/live/authentication_live/register.html.leex:26
 msgid "Register"
 msgstr ""
 
@@ -147,14 +143,14 @@ msgstr[1] ""
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:30
 #: lib/uni_web/live/conference_live/index.html.leex:30 lib/uni_web/live/monograph_live/index.html.leex:30
-#: lib/uni_web/live/project_live/index.html.leex:30
+#: lib/uni_web/live/project_live/index.html.leex:30 lib/uni_web/live/user_live/index.html.leex:25
 msgid "Search"
 msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:45
 #: lib/uni_web/live/conference_live/index.html.leex:45 lib/uni_web/live/monograph_live/index.html.leex:45
-#: lib/uni_web/live/project_live/index.html.leex:45
+#: lib/uni_web/live/project_live/index.html.leex:45 lib/uni_web/live/user_live/index.html.leex:34
 msgid "Total of"
 msgstr ""
 
@@ -176,14 +172,14 @@ msgstr ""
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:15
 #: lib/uni_web/live/conference_live/index.html.leex:15 lib/uni_web/live/monograph_live/index.html.leex:15
-#: lib/uni_web/live/project_live/index.html.leex:15
+#: lib/uni_web/live/project_live/index.html.leex:15 lib/uni_web/live/user_live/index.html.leex:12
 msgid "Show"
 msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:23
 #: lib/uni_web/live/conference_live/index.html.leex:23 lib/uni_web/live/monograph_live/index.html.leex:23
-#: lib/uni_web/live/project_live/index.html.leex:23
+#: lib/uni_web/live/project_live/index.html.leex:23 lib/uni_web/live/user_live/index.html.leex:18
 msgid "entries"
 msgstr ""
 
@@ -211,16 +207,6 @@ msgstr ""
 #: lib/uni_web/live/conference_live/index.ex:87 lib/uni_web/live/project_live/form_component.ex:88
 #: lib/uni_web/live/project_live/index.ex:80
 msgid "National"
-msgstr ""
-
-#, elixir-format
-#: lib/uni_web/live/article_live/form_component.ex:69
-msgid "Article created successfuly"
-msgstr ""
-
-#, elixir-format
-#: lib/uni_web/live/article_live/form_component.ex:82
-msgid "Article updated successfuly"
 msgstr ""
 
 #, elixir-format
@@ -365,7 +351,8 @@ msgid "Reported"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/user_live/profile.html.leex:23
+#: lib/uni_web/live/user_live/form_component.html.leex:4
+#: lib/uni_web/live/user_live/index.html.leex:38 lib/uni_web/live/user_live/profile.html.leex:23
 msgid "Email"
 msgstr ""
 
@@ -430,12 +417,14 @@ msgid "New Monograph"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/user_live/profile.html.leex:38
+#: lib/uni_web/live/user_live/form_component.html.leex:19
+#: lib/uni_web/live/user_live/index.html.leex:40 lib/uni_web/live/user_live/profile.html.leex:38
 msgid "Department"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/user_live/profile.html.leex:33
+#: lib/uni_web/live/user_live/form_component.html.leex:14
+#: lib/uni_web/live/user_live/index.html.leex:39 lib/uni_web/live/user_live/profile.html.leex:33
 msgid "Faculty"
 msgstr ""
 
@@ -451,6 +440,38 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/navigation_live.html.leex:42
-#: lib/uni_web/live/user_live/index.ex:10
+#: lib/uni_web/live/user_live/index.ex:16 lib/uni_web/live/user_live/index.html.leex:4
 msgid "Users"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/index.html.leex:34
+msgid "user"
+msgid_plural "users"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/form_component.ex:69
+msgid "Article created successfully"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/form_component.ex:82
+msgid "Article updated successfully"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/edit.html.leex:4
+msgid "Edit User"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/edit.ex:17
+msgid "User not found"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/user_live/form_component.ex:38
+msgid "User updated successfully"
 msgstr ""
