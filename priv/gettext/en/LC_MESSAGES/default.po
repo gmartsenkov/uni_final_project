@@ -452,17 +452,17 @@ msgid_plural "users"
 msgstr[0] ""
 msgstr[1] ""
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:69
 msgid "Article created successfully"
 msgstr ""
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:82
 msgid "Article updated successfully"
 msgstr ""
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/user_live/edit.html.leex:4
 msgid "Edit User"
 msgstr ""
@@ -472,7 +472,7 @@ msgstr ""
 msgid "User not found"
 msgstr ""
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/user_live/form_component.ex:38
 msgid "User updated successfully"
 msgstr ""

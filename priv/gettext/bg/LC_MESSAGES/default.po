@@ -452,27 +452,27 @@ msgid_plural "users"
 msgstr[0] "потребител"
 msgstr[1] "потребители"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:69
 msgid "Article created successfully"
 msgstr "Статията беше създаден успешно"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:82
 msgid "Article updated successfully"
 msgstr "Статията беше успешно обновена"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/user_live/edit.html.leex:4
 msgid "Edit User"
-msgstr "Редактирай"
+msgstr "Редактирай потребител"
 
 #, elixir-format
 #: lib/uni_web/live/user_live/edit.ex:17
 msgid "User not found"
 msgstr "Потребителят не съществува"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/user_live/form_component.ex:38
 msgid "User updated successfully"
 msgstr "Профилът беше успешно обновен"

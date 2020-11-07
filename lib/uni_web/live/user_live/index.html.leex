@@ -2,6 +2,9 @@
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary float-left"><%= gettext("Users") %></h6>
+      <%= live_redirect id: "new-users", class: "btn btn-success btn-circle btn-sm float-right", to: Routes.user_new_path(@socket, :users) do %>
+      <i class="fas fa-plus"></i>
+      <% end %>
     </div>
     <div class="card-body pt-3">
       <%= _f = form_for :filters, "#", phx_change: "filter", id: "filters" %>
