@@ -16,7 +16,7 @@ defmodule UniWeb.UserLive.IndexTest do
       )
     end)
 
-    [user: insert(:user)]
+    [user: insert(:user, name: "Jon Snow", faculty: faculty, department: department)]
   end
 
   test "renders the users", %{conn: conn, user: user} do
@@ -77,5 +77,19 @@ defmodule UniWeb.UserLive.IndexTest do
     Enum.each(11..20, fn i ->
       assert has_element?(live, "th", "User #{i}")
     end)
+  end
+
+  test "edit icon redirects to the edit page", %{conn: conn, user: user} do
+    conn = init_test_session(conn, %{user_id: user.id})
+
+    {:ok, user_live, _html} = live(conn, Routes.user_index_path(conn, :users, per_page: "50"))
+
+    {:ok, _view, html} =
+      user_live
+      |> element("a#user-edit-#{user.id}")
+      |> render_click()
+      |> follow_redirect(conn, Routes.user_edit_path(conn, :users, user))
+
+    html =~ "Jon Snow"
   end
 end
