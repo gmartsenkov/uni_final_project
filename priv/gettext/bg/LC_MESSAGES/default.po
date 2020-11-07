@@ -383,7 +383,7 @@ msgstr "Обнови Парола"
 msgid "monograph"
 msgid_plural "monographs"
 msgstr[0] "монограф"
-msgstr[1] "монограги"
+msgstr[1] "монографи"
 
 #, elixir-format
 #: lib/uni_web/live/monograph_live/edit.html.leex:4
