@@ -238,7 +238,7 @@ msgstr "Финансиране"
 #: lib/uni_web/live/project_live/form_component.ex:94
 #: lib/uni_web/live/project_live/index.ex:83
 msgid "Internal"
-msgstr "Международнo"
+msgstr "Вътрешно"
 
 #, elixir-format
 #: lib/uni_web/live/project_live/new.ex:8
