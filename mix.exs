@@ -34,6 +34,7 @@ defmodule Uni.MixProject do
   defp deps do
     [
       {:bcrypt_elixir, "2.2.0"},
+      {:csv, "~> 2.4"},
       {:ecto_sql, "~> 3.4"},
       {:ex_machina, "~> 2.4", only: :test},
       {:ex_spec, "~> 2.0", only: :test},
