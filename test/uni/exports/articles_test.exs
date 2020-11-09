@@ -7,7 +7,7 @@ defmodule Uni.Exports.ArticlesTest do
 
   describe "when no articles" do
     test "it returns the correct csv string" do
-      assert Export.call([]) == "Автори,Име,Издателство,Година,Тип,Scopus,Wofscience\r\n"
+      assert Export.call([]) == "Създател,Автори,Име,Издателство,Година,Тип,Scopus,Wofscience\r\n"
     end
   end
 
@@ -21,6 +21,7 @@ defmodule Uni.Exports.ArticlesTest do
           wofscience: false,
           year: 1001,
           type: "national",
+          owner: %User{name: "Arya"},
           authors: [%User{name: "Jon"}, %User{name: "Rob"}]
         },
         %Article{
@@ -30,14 +31,15 @@ defmodule Uni.Exports.ArticlesTest do
           wofscience: true,
           year: 1002,
           type: "international",
+          owner: %User{name: "Sansa"},
           authors: [%User{name: "Sam"}, %User{name: "Andy"}]
         }
       ]
 
       assert Export.call(authors) == ~s"""
-      Автори,Име,Издателство,Година,Тип,Scopus,Wofscience\r\n\
-      "Jon, Rob\",Web,Pub,1001,Национален,Да,Не\r
-      "Sam, Andy\",Mobile,Pub2,1002,Международен,Не,Да\r
+      Създател,Автори,Име,Издателство,Година,Тип,Scopus,Wofscience\r\n\
+      Arya,"Jon, Rob\",Web,Pub,1001,Национален,Да,Не\r
+      Sansa,"Sam, Andy\",Mobile,Pub2,1002,Международен,Не,Да\r
       """
     end
   end

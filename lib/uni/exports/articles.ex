@@ -1,5 +1,5 @@
 defmodule Uni.Exports.Articles do
-  @columns ["Автори", "Име", "Издателство", "Година", "Тип", "Scopus", "Wofscience"]
+  @columns ["Създател", "Автори", "Име", "Издателство", "Година", "Тип", "Scopus", "Wofscience"]
 
   def call(articles) do
     articles
@@ -11,6 +11,7 @@ defmodule Uni.Exports.Articles do
 
   defp row(article) do
     [
+      article.owner.name,
       authors(article),
       article.name,
       article.publisher,
