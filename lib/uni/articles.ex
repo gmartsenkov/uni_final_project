@@ -8,6 +8,36 @@ defmodule Uni.Articles do
 
   alias Uni.Articles.Article
 
+  def filter(query, "faculty", "all"), do: query
+
+  def filter(query, "faculty", faculty_id) do
+    query
+    |> join(:inner, [a], authors in assoc(a, :authors))
+    |> where([articles, users, authors], users.faculty_id == ^faculty_id)
+  end
+
+  def filter(query, "department", "all"), do: query
+
+  def filter(query, "department", department_id) do
+    query
+    |> join(:inner, [a], authors in assoc(a, :authors))
+    |> where([articles, users, authors], users.department_id == ^department_id)
+  end
+
+  def filter(query, "scopus", "all"), do: query
+  def filter(query, "scopus", "true"), do: query |> where(scopus: true)
+  def filter(query, "scopus", "false"), do: query |> where(scopus: false)
+
+  def filter(query, "wofscience", "all"), do: query
+  def filter(query, "wofscience", "true"), do: query |> where(wofscience: true)
+  def filter(query, "wofscience", "false"), do: query |> where(wofscience: false)
+
+  def filter(query, "type", "all"), do: query
+  def filter(query, "type", type), do: query |> where(type: ^type)
+
+  def filter(query, "start_date", date), do: query |> where([a], a.year >= ^date)
+  def filter(query, "end_date", date), do: query |> where([a], a.year <= ^date)
+
   @doc """
   Returns the list of articles.
 
