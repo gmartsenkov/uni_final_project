@@ -8,6 +8,27 @@ defmodule Uni.Projects do
 
   alias Uni.Projects.Project
 
+  def filter(query, "faculty", "all"), do: query
+
+  def filter(query, "faculty", faculty_id) do
+    query
+    |> join(:inner, [a], owner in assoc(a, :owner))
+    |> where([projects, users], users.faculty_id == ^faculty_id)
+  end
+
+  def filter(query, "department", "all"), do: query
+
+  def filter(query, "department", department_id) do
+    query
+    |> join(:inner, [a], owner in assoc(a, :owner))
+    |> where([projects, users], users.department_id == ^department_id)
+  end
+
+  def filter(query, "project_type", "all"), do: query
+  def filter(query, "project_type", type), do: query |> where(project_type: ^type)
+
+  def filter(query, "financing_type", "all"), do: query
+  def filter(query, "financing_type", type), do: query |> where(financing_type: ^type)
   @doc """
   Returns the list of projects.
 

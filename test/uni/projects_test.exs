@@ -2,10 +2,9 @@ defmodule Uni.ProjectsTest do
   use Uni.DataCase
 
   alias Uni.Projects
+  alias Uni.Projects.Project
 
   describe "projects" do
-    alias Uni.Projects.Project
-
     @valid_attrs %{
       financing_type: "external",
       name: "some name",
@@ -114,6 +113,190 @@ defmodule Uni.ProjectsTest do
     test "change_project/1 returns a project changeset" do
       project = insert(:project, owner: insert(:user))
       assert %Ecto.Changeset{} = Projects.change_project(project)
+    end
+  end
+
+  describe "filter faculty" do
+    setup do
+      faculty = insert(:faculty)
+      another_faculty = insert(:faculty)
+      department = insert(:department, faculty: faculty)
+      another_department = insert(:department, faculty: another_faculty)
+
+      owner = insert(:user, email: "jon", name: "Jon", department: department, faculty: faculty)
+
+      another_owner =
+        insert(:user,
+          email: "rob",
+          name: "Rob",
+          department: another_department,
+          faculty: another_faculty
+        )
+
+      project = insert(:project, owner: owner)
+      project_2 = insert(:project, owner: another_owner)
+
+      [
+        project: project,
+        project_2: project_2,
+        faculty: faculty,
+        another_faculty: another_faculty
+      ]
+    end
+
+    test "returns correct project", %{project: project, faculty: faculty} do
+      results =
+        Project
+        |> Projects.filter("faculty", faculty.id)
+        |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == project.id
+    end
+
+    test "that it works with another", %{project_2: project, another_faculty: faculty} do
+      results =
+        Project
+        |> Projects.filter("faculty", faculty.id)
+        |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == project.id
+    end
+  end
+
+  describe "filter department" do
+    setup do
+      faculty = insert(:faculty)
+      another_faculty = insert(:faculty)
+      department = insert(:department, faculty: faculty)
+      another_department = insert(:department, faculty: another_faculty)
+
+      owner = insert(:user, email: "jon", name: "Jon", department: department, faculty: faculty)
+
+      another_owner =
+        insert(:user,
+          email: "rob",
+          name: "Rob",
+          department: another_department,
+          faculty: another_faculty
+        )
+
+      project = insert(:project, owner: owner)
+      project_2 = insert(:project, owner: another_owner)
+
+      [
+        project: project,
+        project_2: project_2,
+        department: department,
+        another_department: another_department
+      ]
+    end
+
+    test "returns correct project", %{project: project, department: department} do
+      results =
+        Project
+        |> Projects.filter("department", department.id)
+        |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == project.id
+    end
+
+    test "that it works with another", %{project_2: project, another_department: department} do
+      results =
+        Project
+        |> Projects.filter("department", department.id)
+        |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == project.id
+    end
+  end
+
+  describe "filter project_type" do
+    setup do
+      [
+        project_1: insert(:project, project_type: "national"),
+        project_2: insert(:project, project_type: "international"),
+        project_3: insert(:project, project_type: "international"),
+      ]
+    end
+
+    test "true", %{project_1: project} do
+      results = Project |> Projects.filter("project_type", "national") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == project.id
+    end
+
+    test "false", %{project_2: project_2, project_3: project_3} do
+      results = Project |> Projects.filter("project_type", "international") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 2
+
+      [first, second] = results
+
+      assert first.id == project_2.id
+      assert second.id == project_3.id
+    end
+
+    test "all" do
+      results = Project |> Projects.filter("project_type", "all") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 3
+    end
+  end
+
+  describe "filter financing_type" do
+    setup do
+      [
+        project_1: insert(:project, financing_type: "internal"),
+        project_2: insert(:project, financing_type: "external"),
+        project_3: insert(:project, financing_type: "external"),
+      ]
+    end
+
+    test "true", %{project_1: project} do
+      results = Project |> Projects.filter("financing_type", "internal") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == project.id
+    end
+
+    test "false", %{project_2: project_2, project_3: project_3} do
+      results = Project |> Projects.filter("financing_type", "external") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 2
+
+      [first, second] = results
+
+      assert first.id == project_2.id
+      assert second.id == project_3.id
+    end
+
+    test "all" do
+      results = Project |> Projects.filter("financing_type", "all") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 3
     end
   end
 end
