@@ -25,6 +25,7 @@ defmodule Uni.Monographs do
   end
   def filter(query, "start_date", date), do: query |> where([a], a.year >= ^date)
   def filter(query, "end_date", date), do: query |> where([a], a.year <= ^date)
+
   @doc """
   Returns the list of monographs.
 

@@ -8,6 +8,32 @@ defmodule Uni.Conferences do
 
   alias Uni.Conferences.Conference
 
+  def filter(query, "faculty", "all"), do: query
+
+  def filter(query, "faculty", faculty_id) do
+    query
+    |> join(:inner, [a], owner in assoc(a, :owner))
+    |> where([conferences, users], users.faculty_id == ^faculty_id)
+  end
+
+  def filter(query, "department", "all"), do: query
+
+  def filter(query, "department", department_id) do
+    query
+    |> join(:inner, [a], owner in assoc(a, :owner))
+    |> where([conferences, users], users.department_id == ^department_id)
+  end
+
+  def filter(query, "reported", "all"), do: query
+  def filter(query, "reported", "true"), do: query |> where(reported: true)
+  def filter(query, "reported", "false"), do: query |> where(reported: false)
+
+  def filter(query, "published", "all"), do: query
+  def filter(query, "published", "true"), do: query |> where(published: true)
+  def filter(query, "published", "false"), do: query |> where(published: false)
+
+  def filter(query, "type", "all"), do: query
+  def filter(query, "type", type), do: query |> where(type: ^type)
   @doc """
   Returns the list of conferences.
 

@@ -2,17 +2,16 @@ defmodule Uni.ConferencesTest do
   use Uni.DataCase
 
   alias Uni.Conferences
+  alias Uni.Conferences.Conference
 
   describe "conferences" do
-    alias Uni.Conferences.Conference
-
     @valid_attrs %{
       name: "some name",
       page_end: 42,
       page_start: 42,
       published: true,
       reported: true,
-      type: "some type"
+      type: "national"
     }
     @update_attrs %{
       name: "some updated name",
@@ -20,7 +19,7 @@ defmodule Uni.ConferencesTest do
       page_start: 43,
       published: false,
       reported: false,
-      type: "some updated type"
+      type: "international"
     }
     @invalid_attrs %{
       name: nil,
@@ -81,7 +80,7 @@ defmodule Uni.ConferencesTest do
       assert conference.page_start == 42
       assert conference.published == true
       assert conference.reported == true
-      assert conference.type == "some type"
+      assert conference.type == "national"
       assert conference.owner == owner
     end
 
@@ -101,7 +100,7 @@ defmodule Uni.ConferencesTest do
       assert conference.page_start == 43
       assert conference.published == false
       assert conference.reported == false
-      assert conference.type == "some updated type"
+      assert conference.type == "international"
       assert conference.owner == new_owner
     end
 
@@ -123,6 +122,227 @@ defmodule Uni.ConferencesTest do
     test "change_conference/1 returns a conference changeset" do
       conference = insert(:conference, owner: insert(:user))
       assert %Ecto.Changeset{} = Conferences.change_conference(conference)
+    end
+  end
+
+  describe "filter published" do
+    setup do
+      [
+        conference_1: insert(:conference, published: true),
+        conference_2: insert(:conference, published: false),
+        conference_3: insert(:conference, published: false)
+      ]
+    end
+
+    test "true", %{conference_1: conference} do
+      results = Conference |> Conferences.filter("published", "true") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == conference.id
+    end
+
+    test "false", %{conference_2: conference_2, conference_3: conference_3} do
+      results = Conference |> Conferences.filter("published", "false") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 2
+
+      [first, second] = results
+
+      assert first.id == conference_2.id
+      assert second.id == conference_3.id
+    end
+
+    test "all" do
+      results = Conference |> Conferences.filter("published", "all") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 3
+    end
+  end
+
+  describe "filter reported" do
+    setup do
+      [
+        conference_1: insert(:conference, reported: true),
+        conference_2: insert(:conference, reported: false),
+        conference_3: insert(:conference, reported: false)
+      ]
+    end
+
+    test "true", %{conference_1: conference} do
+      results = Conference |> Conferences.filter("reported", "true") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == conference.id
+    end
+
+    test "false", %{conference_2: conference_2, conference_3: conference_3} do
+      results = Conference |> Conferences.filter("reported", "false") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 2
+
+      [first, second] = results
+
+      assert first.id == conference_2.id
+      assert second.id == conference_3.id
+    end
+
+    test "all" do
+      results = Conference |> Conferences.filter("reported", "all") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 3
+    end
+  end
+
+  describe "filter type" do
+    setup do
+      [
+        conference_1: insert(:conference, type: "national"),
+        conference_2: insert(:conference, type: "international"),
+        conference_3: insert(:conference, type: "international")
+      ]
+    end
+
+    test "true", %{conference_1: conference} do
+      results = Conference |> Conferences.filter("type", "national") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == conference.id
+    end
+
+    test "false", %{conference_2: conference_2, conference_3: conference_3} do
+      results = Conference |> Conferences.filter("type", "international") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 2
+
+      [first, second] = results
+
+      assert first.id == conference_2.id
+      assert second.id == conference_3.id
+    end
+
+    test "all" do
+      results = Conference |> Conferences.filter("type", "all") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 3
+    end
+  end
+
+  describe "filter faculty" do
+    setup do
+      faculty = insert(:faculty)
+      another_faculty = insert(:faculty)
+      department = insert(:department, faculty: faculty)
+      another_department = insert(:department, faculty: another_faculty)
+
+      owner = insert(:user, email: "jon", name: "Jon", department: department, faculty: faculty)
+
+      another_owner =
+        insert(:user,
+          email: "rob",
+          name: "Rob",
+          department: another_department,
+          faculty: another_faculty
+        )
+
+      conference = insert(:conference, owner: owner)
+      conference_2 = insert(:conference, owner: another_owner)
+
+      [
+        conference: conference,
+        conference_2: conference_2,
+        faculty: faculty,
+        another_faculty: another_faculty
+      ]
+    end
+
+    test "returns correct conference", %{conference: conference, faculty: faculty} do
+      results =
+        Conference
+        |> Conferences.filter("faculty", faculty.id)
+        |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == conference.id
+    end
+
+    test "that it works with another", %{conference_2: conference, another_faculty: faculty} do
+      results =
+        Conference
+        |> Conferences.filter("faculty", faculty.id)
+        |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == conference.id
+    end
+  end
+
+  describe "filter department" do
+    setup do
+      faculty = insert(:faculty)
+      another_faculty = insert(:faculty)
+      department = insert(:department, faculty: faculty)
+      another_department = insert(:department, faculty: another_faculty)
+
+      owner = insert(:user, email: "jon", name: "Jon", department: department, faculty: faculty)
+
+      another_owner =
+        insert(:user,
+          email: "rob",
+          name: "Rob",
+          department: another_department,
+          faculty: another_faculty
+        )
+
+      conference = insert(:conference, owner: owner)
+      conference_2 = insert(:conference, owner: another_owner)
+
+      [
+        conference: conference,
+        conference_2: conference_2,
+        department: department,
+        another_department: another_department
+      ]
+    end
+
+    test "returns correct conference", %{conference: conference, department: department} do
+      results =
+        Conference
+        |> Conferences.filter("department", department.id)
+        |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == conference.id
+    end
+
+    test "that it works with another", %{conference_2: conference, another_department: department} do
+      results =
+        Conference
+        |> Conferences.filter("department", department.id)
+        |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == conference.id
     end
   end
 end

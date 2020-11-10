@@ -24,5 +24,8 @@ defmodule Uni.Conferences.Conference do
     |> cast(attrs, [:name, :type, :reported, :published, :page_start, :page_end])
     |> put_assoc(:owner, owner)
     |> validate_required([:name, :type, :reported, :published, :page_start, :page_end, :owner])
+    |> validate_inclusion(:type, valid_types())
   end
+
+  def valid_types, do: ~w(national international)
 end
