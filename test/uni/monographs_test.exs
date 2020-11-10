@@ -2,10 +2,9 @@ defmodule Uni.MonographsTest do
   use Uni.DataCase
 
   alias Uni.Monographs
+  alias Uni.Monographs.Monograph
 
   describe "monographs" do
-    alias Uni.Monographs.Monograph
-
     @valid_attrs %{name: "some name", publisher: "some publisher", year: 42}
     @update_attrs %{name: "some updated name", publisher: "some updated publisher", year: 43}
     @invalid_attrs %{name: nil, publisher: nil, year: nil}
@@ -110,6 +109,177 @@ defmodule Uni.MonographsTest do
     test "change_monograph/1 returns a monograph changeset" do
       monograph = insert(:monograph, owner: insert(:user))
       assert %Ecto.Changeset{} = Monographs.change_monograph(monograph)
+    end
+  end
+
+  describe "filter faculty" do
+    setup do
+      faculty = insert(:faculty)
+      another_faculty = insert(:faculty)
+      department = insert(:department, faculty: faculty)
+      another_department = insert(:department, faculty: another_faculty)
+
+      author = insert(:user, email: "jon", name: "Jon", department: department, faculty: faculty)
+
+      another_author =
+        insert(:user,
+          email: "rob",
+          name: "Rob",
+          department: another_department,
+          faculty: another_faculty
+        )
+
+      owner = insert(:user, email: "bob", name: "Bob", department: department, faculty: faculty)
+
+      monograph = insert(:monograph, owner: owner, authors: [author])
+      monograph_2 = insert(:monograph, owner: owner, authors: [another_author])
+
+      [monograph: monograph, monograph_2: monograph_2, faculty: faculty, another_faculty: another_faculty]
+    end
+
+    test "returns correct monograph", %{monograph: monograph, faculty: faculty} do
+      results =
+        Monograph
+        |> Monographs.filter("faculty", faculty.id)
+        |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == monograph.id
+    end
+
+    test "that it works with another", %{monograph_2: monograph, another_faculty: faculty} do
+      results =
+        Monograph
+        |> Monographs.filter("faculty", faculty.id)
+        |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == monograph.id
+    end
+  end
+
+  describe "filter department" do
+    setup do
+      faculty = insert(:faculty)
+      another_faculty = insert(:faculty)
+      department = insert(:department, faculty: faculty)
+      another_department = insert(:department, faculty: another_faculty)
+
+      author = insert(:user, email: "jon", name: "Jon", department: department, faculty: faculty)
+
+      another_author =
+        insert(:user,
+          email: "rob",
+          name: "Rob",
+          department: another_department,
+          faculty: another_faculty
+        )
+
+      owner = insert(:user, email: "bob", name: "Bob", department: department, faculty: faculty)
+
+      monograph = insert(:monograph, owner: owner, authors: [author])
+      monograph_2 = insert(:monograph, owner: owner, authors: [another_author])
+
+      [
+        monograph: monograph,
+        monograph_2: monograph_2,
+        department: department,
+        another_department: another_department
+      ]
+    end
+
+    test "returns correct monograph", %{monograph: monograph, department: department} do
+      results =
+        Monograph
+        |> Monographs.filter("department", department.id)
+        |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == monograph.id
+    end
+
+    test "that it works with another", %{monograph_2: monograph, another_department: department} do
+      results =
+        Monograph
+        |> Monographs.filter("department", department.id)
+        |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == monograph.id
+    end
+  end
+
+  describe "filter start_date" do
+    setup do
+      [
+        monograph_1: insert(:monograph, year: 1995),
+        monograph_2: insert(:monograph, year: 2005),
+        monograph_3: insert(:monograph, year: 2009),
+      ]
+    end
+
+    test "2006", %{monograph_3: monograph} do
+      results = Monograph |> Monographs.filter("start_date", "2006") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == monograph.id
+    end
+
+    test "2005", %{monograph_2: monograph_2, monograph_3: monograph_3} do
+      results = Monograph |> Monographs.filter("start_date", "2005") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 2
+
+      [first, second] = results
+
+      assert first.id == monograph_2.id
+      assert second.id == monograph_3.id
+    end
+  end
+
+  describe "filter end_date" do
+    setup do
+      [
+        monograph_1: insert(:monograph, year: 1995),
+        monograph_2: insert(:monograph, year: 2005),
+        monograph_3: insert(:monograph, year: 2009),
+      ]
+    end
+
+    test "2004", %{monograph_1: monograph} do
+      results = Monograph |> Monographs.filter("end_date", "2004") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 1
+
+      [first] = results
+
+      assert first.id == monograph.id
+    end
+
+    test "2005", %{monograph_1: monograph_1, monograph_2: monograph_2} do
+      results = Monograph |> Monographs.filter("end_date", "2005") |> Uni.Repo.all()
+
+      assert Enum.count(results) == 2
+
+      [first, second] = results
+
+      assert first.id == monograph_1.id
+      assert second.id == monograph_2.id
     end
   end
 end
