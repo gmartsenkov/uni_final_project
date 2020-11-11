@@ -1,4 +1,4 @@
-<div class="col-lg-10">
+<div class="col-sm-12 col-md-9 col-lg-6">
     <div class="card shadow">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary float-left">
@@ -63,7 +63,7 @@
               </div>
             </div>
             <%= link to: Routes.exports_path(@socket, :articles, @articles_params), class: "btn btn-primary text-white", target: "_none" do %>
-              Export (<%= @articles_count %>)
+              <%= gettext("Export") %> (<%= @articles_count %>)
             <% end %>
             </form>
             <% end %>
@@ -92,7 +92,7 @@
               </div>
             </div>
             <%= link to: Routes.exports_path(@socket, :monographs, @monographs_params), class: "btn btn-primary text-white", target: "_none" do %>
-              Export (<%= @monographs_count %>)
+              <%= gettext("Export") %> (<%= @monographs_count %>)
             <% end %>
             </form>
             <% end %>
@@ -121,7 +121,7 @@
               </div>
             </div>
             <%= link to: Routes.exports_path(@socket, :projects, @projects_params), class: "btn btn-primary text-white", target: "_none" do %>
-              Export (<%= @projects_count %>)
+              <%= gettext("Export") %> (<%= @projects_count %>)
             <% end %>
             </form>
             <% end %>
@@ -154,7 +154,7 @@
               </div>
             </div>
             <%= link to: Routes.exports_path(@socket, :conferences, @conferences_params), class: "btn btn-primary text-white", target: "_none" do %>
-              Export (<%= @conferences_count %>)
+              <%= gettext("Export") %> (<%= @conferences_count %>)
             <% end %>
             </form>
             <% end %>
