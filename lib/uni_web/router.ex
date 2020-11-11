@@ -33,6 +33,11 @@ defmodule UniWeb.Router do
     get "/users/autocomplete", UsersController, :autocomplete
     get "/logout", AuthenticationController, :logout
 
+    get "/exports/articles", ExportsController, :articles
+    get "/exports/monographs", ExportsController, :monographs
+    get "/exports/projects", ExportsController, :projects
+    get "/exports/conferences", ExportsController, :conferences
+
     live "/profile", UserLive.Profile, :my_profile
     live "/users", UserLive.Index, :users
     live "/users/new", UserLive.New, :users
@@ -55,6 +60,8 @@ defmodule UniWeb.Router do
     live "/monographs", MonographLive.Index, :monographs
     live "/monographs/new", MonographLive.New, :monographs
     live "/monographs/:id", MonographLive.Edit, :monographs
+
+    live "/exports", ExportsLive.Export, :exports
   end
 
   # Other scopes may use custom stacks.
