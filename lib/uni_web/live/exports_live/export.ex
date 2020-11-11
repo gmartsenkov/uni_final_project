@@ -33,6 +33,22 @@ defmodule MonographsForm do
   end
 end
 
+defmodule ProjectsForm do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  embedded_schema do
+    field :faculty
+    field :department
+    field :project_type
+    field :financing_type
+  end
+
+  def changeset(attrs) do
+    cast(%ProjectsForm{}, attrs, [:faculty, :department, :project_type, :financing_type])
+  end
+end
+
 defmodule UniWeb.ExportsLive.Export do
   use UniWeb, :live_view
 
@@ -40,6 +56,9 @@ defmodule UniWeb.ExportsLive.Export do
   alias Uni.Articles
   alias Uni.Monographs.Monograph
   alias Uni.Monographs
+  alias Uni.Projects.Project
+  alias Uni.Projects
+
   alias Uni.Faculties
 
   @impl true
@@ -51,10 +70,13 @@ defmodule UniWeb.ExportsLive.Export do
      |> assign(:faculty_id, "all")
      |> assign(:articles_params, %{})
      |> assign(:monographs_params, %{})
+     |> assign(:projects_params, %{})
      |> assign(:articles_form, ArticlesForm.changeset(%{faculty: "all"}))
      |> assign(:monographs_form, MonographsForm.changeset(%{faculty: "all"}))
+     |> assign(:projects_form, ProjectsForm.changeset(%{faculty: "all"}))
      |> assign(:articles_count, Articles.count(Article))
      |> assign(:monographs_count, Monographs.count(Monograph))
+     |> assign(:projects_count, Projects.count(Project))
      |> assign(:tab, "articles")}
   end
 
@@ -93,6 +115,21 @@ defmodule UniWeb.ExportsLive.Export do
      |> assign(:monographs_count, monographs_count)}
   end
 
+  @impl true
+  def handle_event("projects_change", %{"projects_form" => params}, socket) do
+    params = guard_params(params)
+    projects_count =
+      Project
+      |> Projects.filter(Map.to_list(params))
+      |> Projects.count()
+
+    {:noreply,
+     socket
+     |> assign(:projects_form, ProjectsForm.changeset(params))
+     |> assign(:projects_params, params)
+     |> assign(:projects_count, projects_count)}
+  end
+
   defp faculties() do
     Faculties.faculties()
     |> Enum.map(fn f -> {f.name, f.id} end)
@@ -120,6 +157,14 @@ defmodule UniWeb.ExportsLive.Export do
       {gettext("All"), "all"},
       {gettext("National"), "national"},
       {gettext("International"), "international"}
+    ]
+  end
+
+  def financing_types() do
+    [
+      {gettext("All"), "all"},
+      {gettext("Internal"), "internal"},
+      {gettext("External"), "external"}
     ]
   end
 

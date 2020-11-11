@@ -24,6 +24,8 @@
                         phx-value-tab="conferences"> <%= gettext("Conferences") %> </a>
                 </li>
             </ul>
+
+            <!-- ARTICLES -->
             <%= if @tab == "articles" do %>
             <%= f = form_for @articles_form, "/exports/articles", id: "articles", class: "m-3", phx_change: "articles_change" %>
             <div class="form-row">
@@ -65,6 +67,8 @@
             <% end %>
             </form>
             <% end %>
+
+            <!-- MONOGRAPHS -->
             <%= if @tab == "monographs" do %>
             <%= f = form_for @monographs_form, "/exports/monographs", id: "monographs", class: "m-3", phx_change: "monographs_change" %>
             <div class="form-row">
@@ -89,6 +93,35 @@
             </div>
             <%= link to: Routes.exports_path(@socket, :monographs, @monographs_params), class: "btn btn-primary text-white", target: "_none" do %>
               Export (<%= @monographs_count %>)
+            <% end %>
+            </form>
+            <% end %>
+
+            <!-- PROJECTS -->
+            <%= if @tab == "projects" do %>
+            <%= f = form_for @projects_form, "/exports/projects", id: "projects", class: "m-3", phx_change: "projects_change" %>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label><%= gettext("Faculty") %></label>
+                <%= select f, :faculty, @faculties, class: "custom-select form-control" %>
+              </div>
+              <div class="form-group col-md-6">
+                <label><%= gettext("Department") %></label>
+                <%= select f, :department, departments(@projects_form.changes.faculty), class: "custom-select form-control" %>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label><%= gettext("Project Type") %></label>
+                <%= select f, :project_type, types(), class: "custom-select form-control" %>
+              </div>
+              <div class="form-group col-md-6">
+                <label><%= gettext("Financing") %></label>
+                <%= select f, :financing_type, financing_types(), class: "custom-select form-control" %>
+              </div>
+            </div>
+            <%= link to: Routes.exports_path(@socket, :projects, @projects_params), class: "btn btn-primary text-white", target: "_none" do %>
+              Export (<%= @projects_count %>)
             <% end %>
             </form>
             <% end %>

@@ -29,6 +29,24 @@ defmodule Uni.Projects do
 
   def filter(query, "financing_type", "all"), do: query
   def filter(query, "financing_type", type), do: query |> where(financing_type: ^type)
+
+  def filter(query, _type, _value), do: query
+
+  def filter(query, [{type, value} | tail]) do
+    query
+    |> filter(type, value)
+    |> filter(tail)
+  end
+
+  def filter(query, _filters = []), do: query
+
+  def count(query), do: Repo.aggregate(query, :count)
+
+  def graph(query) do
+    query
+    |> preload(:owner)
+    |> Repo.all()
+  end
   @doc """
   Returns the list of projects.
 
