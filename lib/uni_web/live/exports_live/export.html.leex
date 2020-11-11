@@ -33,7 +33,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label><%= gettext("Department") %></label>
-                <%= select f, :department, departments(@faculty_id), class: "custom-select form-control" %>
+                <%= select f, :department, departments(@articles_form.changes.faculty), class: "custom-select form-control" %>
               </div>
             </div>
             <div class="form-row">
@@ -62,6 +62,33 @@
             </div>
             <%= link to: Routes.exports_path(@socket, :articles, @articles_params), class: "btn btn-primary text-white", target: "_none" do %>
               Export (<%= @articles_count %>)
+            <% end %>
+            </form>
+            <% end %>
+            <%= if @tab == "monographs" do %>
+            <%= f = form_for @monographs_form, "/exports/monographs", id: "monographs", class: "m-3", phx_change: "monographs_change" %>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label><%= gettext("Faculty") %></label>
+                <%= select f, :faculty, @faculties, class: "custom-select form-control" %>
+              </div>
+              <div class="form-group col-md-6">
+                <label><%= gettext("Department") %></label>
+                <%= select f, :department, departments(@monographs_form.changes.faculty), class: "custom-select form-control" %>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label><%= gettext("From (year)") %></label>
+                <%= number_input f, :start_date, class: "custom-select form-control" %>
+              </div>
+              <div class="form-group col-md-4">
+                <label><%= gettext("To (year)") %></label>
+                <%= number_input f, :end_date, class: "custom-select form-control" %>
+              </div>
+            </div>
+            <%= link to: Routes.exports_path(@socket, :monographs, @monographs_params), class: "btn btn-primary text-white", target: "_none" do %>
+              Export (<%= @monographs_count %>)
             <% end %>
             </form>
             <% end %>

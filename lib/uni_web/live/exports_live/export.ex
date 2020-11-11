@@ -17,11 +17,29 @@ defmodule ArticlesForm do
   end
 end
 
+defmodule MonographsForm do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  embedded_schema do
+    field :faculty
+    field :department
+    field :start_date
+    field :end_date
+  end
+
+  def changeset(attrs) do
+    cast(%MonographsForm{}, attrs, [:faculty, :department, :start_date, :end_date])
+  end
+end
+
 defmodule UniWeb.ExportsLive.Export do
   use UniWeb, :live_view
 
   alias Uni.Articles.Article
   alias Uni.Articles
+  alias Uni.Monographs.Monograph
+  alias Uni.Monographs
   alias Uni.Faculties
 
   @impl true
@@ -32,8 +50,11 @@ defmodule UniWeb.ExportsLive.Export do
      |> assign(:faculties, faculties())
      |> assign(:faculty_id, "all")
      |> assign(:articles_params, %{})
-     |> assign(:articles_form, ArticlesForm.changeset(%{}))
+     |> assign(:monographs_params, %{})
+     |> assign(:articles_form, ArticlesForm.changeset(%{faculty: "all"}))
+     |> assign(:monographs_form, MonographsForm.changeset(%{faculty: "all"}))
      |> assign(:articles_count, Articles.count(Article))
+     |> assign(:monographs_count, Monographs.count(Monograph))
      |> assign(:tab, "articles")}
   end
 
@@ -44,6 +65,7 @@ defmodule UniWeb.ExportsLive.Export do
 
   @impl true
   def handle_event("articles_change", %{"articles_form" => params}, socket) do
+    params = guard_params(params)
     articles_count =
       Article
       |> Articles.filter(Map.to_list(params))
@@ -51,10 +73,24 @@ defmodule UniWeb.ExportsLive.Export do
 
     {:noreply,
      socket
-     |> assign(:faculty_id, params["faculty"])
      |> assign(:articles_form, ArticlesForm.changeset(params))
      |> assign(:articles_params, params)
      |> assign(:articles_count, articles_count)}
+  end
+
+  @impl true
+  def handle_event("monographs_change", %{"monographs_form" => params}, socket) do
+    params = guard_params(params)
+    monographs_count =
+      Monograph
+      |> Monographs.filter(Map.to_list(params))
+      |> Monographs.count()
+
+    {:noreply,
+     socket
+     |> assign(:monographs_form, MonographsForm.changeset(params))
+     |> assign(:monographs_params, params)
+     |> assign(:monographs_count, monographs_count)}
   end
 
   defp faculties() do
@@ -85,6 +121,14 @@ defmodule UniWeb.ExportsLive.Export do
       {gettext("National"), "national"},
       {gettext("International"), "international"}
     ]
+  end
+
+  def guard_params(params) do
+    if Map.get(params, "faculty") == "all" do
+      Map.put(params, "department", "all")
+    else
+      params
+    end
   end
 
   defp active?(tab, expected) when tab == expected, do: "active"

@@ -23,9 +23,29 @@ defmodule Uni.Monographs do
     |> join(:inner, [a], authors in assoc(a, :authors))
     |> where([articles, users, authors], users.department_id == ^department_id)
   end
+  def filter(query, "start_date", ""), do: query
   def filter(query, "start_date", date), do: query |> where([a], a.year >= ^date)
+  def filter(query, "end_date", ""), do: query
   def filter(query, "end_date", date), do: query |> where([a], a.year <= ^date)
 
+  def filter(query, _type, _value), do: query
+
+  def filter(query, [{type, value} | tail]) do
+    query
+    |> filter(type, value)
+    |> filter(tail)
+  end
+
+  def filter(query, _filters = []), do: query
+
+  def count(query), do: Repo.aggregate(query, :count)
+
+  def graph(query) do
+    query
+    |> preload(:owner)
+    |> preload(:authors)
+    |> Repo.all()
+  end
   @doc """
   Returns the list of monographs.
 
