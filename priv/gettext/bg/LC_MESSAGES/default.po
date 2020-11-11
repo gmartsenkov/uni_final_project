@@ -382,40 +382,40 @@ msgstr "Обнови Парола"
 #: lib/uni_web/live/monograph_live/index.html.leex:45
 msgid "monograph"
 msgid_plural "monographs"
-msgstr[0] "монограф"
-msgstr[1] "монографи"
+msgstr[0] "монография"
+msgstr[1] "монографии"
 
 #, elixir-format
 #: lib/uni_web/live/monograph_live/edit.html.leex:4
 msgid "Edit Monograph"
-msgstr "Редактирай Монограф"
+msgstr "Редактирай Mонография"
 
 #, elixir-format
 #: lib/uni_web/live/monograph_live/form_component.ex:63
 msgid "Monograph created successfuly"
-msgstr "Потребителят беше създаден успешно"
+msgstr "Монографията беше създаден успешно"
 
 #, elixir-format
 #: lib/uni_web/live/monograph_live/edit.ex:19
 msgid "Monograph not found"
-msgstr "Монографът не съществува"
+msgstr "Монографията не съществува"
 
 #, elixir-format
 #: lib/uni_web/live/monograph_live/form_component.ex:76
 msgid "Monograph updated successfuly"
-msgstr "Имейлът беше успешно обновен"
+msgstr "Монографията беше успешно обновен"
 
 #, elixir-format
 #: lib/uni_web/live/monograph_live/index.ex:18
 #: lib/uni_web/live/monograph_live/index.html.leex:4 lib/uni_web/live/navigation_live.html.leex:22
 msgid "Monographs"
-msgstr "Монографи"
+msgstr "Монографии"
 
 #, elixir-format
 #: lib/uni_web/live/monograph_live/new.ex:8
 #: lib/uni_web/live/monograph_live/new.html.leex:4
 msgid "New Monograph"
-msgstr "Нов Монограф"
+msgstr "Нов Монография "
 
 #, elixir-format
 #: lib/uni_web/live/user_live/form_component.html.leex:19
