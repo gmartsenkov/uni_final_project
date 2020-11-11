@@ -1,0 +1,70 @@
+<div class="col-lg-10">
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary float-left">
+                <%= gettext("Reports") %>
+            </h6>
+        </div>
+        <div class="card-body">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link <%= active?(@tab, "articles") %>" href="#" phx-click="change_tab"
+                        phx-value-tab="articles"><%= gettext("Articles") %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= active?(@tab, "monographs") %>" href="#" phx-click="change_tab"
+                        phx-value-tab="monographs"> <%= gettext("Monographs") %> </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= active?(@tab, "projects") %>" href="#" phx-click="change_tab"
+                        phx-value-tab="projects"> <%= gettext("Projects") %> </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= active?(@tab, "conferences") %>" href="#" phx-click="change_tab"
+                        phx-value-tab="conferences"> <%= gettext("Conferences") %> </a>
+                </li>
+            </ul>
+            <%= if @tab == "articles" do %>
+            <%= f = form_for @articles_form, "/exports/articles", id: "articles", class: "m-3", phx_change: "articles_change" %>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label><%= gettext("Faculty") %></label>
+                <%= select f, :faculty, @faculties, class: "custom-select form-control" %>
+              </div>
+              <div class="form-group col-md-6">
+                <label><%= gettext("Department") %></label>
+                <%= select f, :department, departments(@faculty_id), class: "custom-select form-control" %>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label><%= gettext("Type") %></label>
+                <%= select f, :type, types(), class: "custom-select form-control" %>
+              </div>
+              <div class="form-group col-md-4">
+                <label><%= gettext("Scopus") %></label>
+                <%= select f, :scopus, boolean_choices(), class: "custom-select form-control" %>
+              </div>
+              <div class="form-group col-md-4">
+                <label><%= gettext("Wofscience") %></label>
+                <%= select f, :wofscience, boolean_choices(), class: "custom-select form-control" %>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label><%= gettext("From (year)") %></label>
+                <%= number_input f, :start_date, class: "custom-select form-control" %>
+              </div>
+              <div class="form-group col-md-4">
+                <label><%= gettext("To (year)") %></label>
+                <%= number_input f, :end_date, class: "custom-select form-control" %>
+              </div>
+            </div>
+            <%= link to: Routes.exports_path(@socket, :articles, @articles_params), class: "btn btn-primary text-white", target: "_none" do %>
+              Export (<%= @articles_count %>)
+            <% end %>
+            </form>
+            <% end %>
+        </div>
+    </div>
+</div>

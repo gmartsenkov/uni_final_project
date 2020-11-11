@@ -42,6 +42,12 @@
         <span><%= gettext("Users") %></span>
         <% end %>
     </li>
+    <li class="nav-item <%= if @navigation.action == :exports, do: "active"%>">
+        <%= live_redirect class: "nav-link", to: Routes.exports_export_path(@socket, :exports) do %>
+        <i class="fa fa-table"></i>
+        <span><%= gettext("Reports") %></span>
+        <% end %>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
     <li class="nav-item  <%= if @navigation.action == :my_profile, do: "active" %>">
