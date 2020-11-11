@@ -49,6 +49,23 @@ defmodule ProjectsForm do
   end
 end
 
+defmodule ConferencesForm do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  embedded_schema do
+    field :faculty
+    field :department
+    field :reported
+    field :published
+    field :type
+  end
+
+  def changeset(attrs) do
+    cast(%ConferencesForm{}, attrs, [:faculty, :department, :reported, :published])
+  end
+end
+
 defmodule UniWeb.ExportsLive.Export do
   use UniWeb, :live_view
 
@@ -58,6 +75,8 @@ defmodule UniWeb.ExportsLive.Export do
   alias Uni.Monographs
   alias Uni.Projects.Project
   alias Uni.Projects
+  alias Uni.Conferences.Conference
+  alias Uni.Conferences
 
   alias Uni.Faculties
 
@@ -71,12 +90,15 @@ defmodule UniWeb.ExportsLive.Export do
      |> assign(:articles_params, %{})
      |> assign(:monographs_params, %{})
      |> assign(:projects_params, %{})
+     |> assign(:conferences_params, %{})
      |> assign(:articles_form, ArticlesForm.changeset(%{faculty: "all"}))
      |> assign(:monographs_form, MonographsForm.changeset(%{faculty: "all"}))
      |> assign(:projects_form, ProjectsForm.changeset(%{faculty: "all"}))
+     |> assign(:conferences_form, ConferencesForm.changeset(%{faculty: "all"}))
      |> assign(:articles_count, Articles.count(Article))
      |> assign(:monographs_count, Monographs.count(Monograph))
      |> assign(:projects_count, Projects.count(Project))
+     |> assign(:conferences_count, Conferences.count(Conference))
      |> assign(:tab, "articles")}
   end
 
@@ -128,6 +150,21 @@ defmodule UniWeb.ExportsLive.Export do
      |> assign(:projects_form, ProjectsForm.changeset(params))
      |> assign(:projects_params, params)
      |> assign(:projects_count, projects_count)}
+  end
+
+  @impl true
+  def handle_event("conferences_change", %{"conferences_form" => params}, socket) do
+    params = guard_params(params)
+    conferences_count =
+      Conference
+      |> Conferences.filter(Map.to_list(params))
+      |> Conferences.count()
+
+    {:noreply,
+     socket
+     |> assign(:conferences_form, ConferencesForm.changeset(params))
+     |> assign(:conferences_params, params)
+     |> assign(:conferences_count, conferences_count)}
   end
 
   defp faculties() do

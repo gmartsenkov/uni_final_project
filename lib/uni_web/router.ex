@@ -36,6 +36,7 @@ defmodule UniWeb.Router do
     get "/exports/articles", ExportsController, :articles
     get "/exports/monographs", ExportsController, :monographs
     get "/exports/projects", ExportsController, :projects
+    get "/exports/conferences", ExportsController, :conferences
 
     live "/profile", UserLive.Profile, :my_profile
     live "/users", UserLive.Index, :users
