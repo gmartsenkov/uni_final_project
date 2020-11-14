@@ -9,6 +9,9 @@ defmodule Uni.Users.User do
     field :email, :string
     field :name, :string
     field :password, :string
+    field :admin, :boolean
+    field :head_faculty, :boolean
+    field :head_department, :boolean
 
     belongs_to(:faculty, Faculty)
     belongs_to(:department, Department)
