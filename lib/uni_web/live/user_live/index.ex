@@ -1,9 +1,33 @@
+defmodule Filters do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  embedded_schema do
+    field :query
+    field :per_page
+    field :admin
+    field :head_faculty
+    field :head_department
+  end
+
+  def changeset(attrs) do
+    cast(%Filters{}, attrs, [
+      :query,
+      :per_page,
+      :admin,
+      :head_faculty,
+      :head_department
+    ])
+  end
+end
+
 defmodule UniWeb.UserLive.Index do
   use UniWeb, :live_view
 
   alias Uni.Users
+  alias Uni.Users.User
 
-  @filters ["per_page", "query"]
+  @filters ["per_page", "query", "admin", "head_department", "head_faculty"]
 
   @impl true
   def mount(_params, session, socket) do
@@ -12,6 +36,7 @@ defmodule UniWeb.UserLive.Index do
     protected(socket, :admin, fn socket ->
       {:ok,
        socket
+       |> assign(:filters, Filters.changeset(%{query: "", per_page: 10}))
        |> assign(:query, "")
        |> assign(:per_page, 10)
        |> assign(:page_title, gettext("Users"))}
@@ -20,24 +45,26 @@ defmodule UniWeb.UserLive.Index do
 
   @impl true
   def handle_params(params, _uri, socket) do
-    query = Map.get(params, "query", "")
     page = Map.get(params, "page", "1")
     per_page = Map.get(params, "per_page", "10")
 
-    result = Users.paginate(query, page, per_page)
+    result =
+      User
+      |> Users.filter(Map.to_list(params))
+      |> Users.paginate(page, per_page)
 
     {:noreply,
      socket
      |> assign(:users, result.entries)
+     |> assign(:filters, Filters.changeset(params))
      |> assign(:page, result.page_number)
      |> assign(:total_pages, result.total_pages)
      |> assign(:per_page, per_page)
-     |> assign(:query, query)
      |> assign(:total, result.total_entries)}
   end
 
   @impl true
-  def handle_event("filter", params, socket) do
+  def handle_event("filter", %{"filters" => params}, socket) do
     params = Map.take(params, @filters)
     {:noreply, push_patch(socket, to: Routes.user_index_path(socket, :users, params))}
   end
@@ -54,4 +81,13 @@ defmodule UniWeb.UserLive.Index do
      socket
      |> push_patch(to: Routes.user_index_path(socket, :users, params))}
   end
+
+  defp per_page do
+    [
+      {"10", "10"},
+      {"25", "25"},
+      {"50", "50"}
+    ]
+  end
+
 end

@@ -39,10 +39,18 @@ defmodule UniWeb.UserLive.IndexTest do
 
     live
     |> form("#filters")
-    |> render_change(%{"query" => "user 15"})
+    |> render_change(%{ "filters" => %{"query" => "user 15"}})
 
-    assert_patch(live, Routes.user_index_path(conn, :users, per_page: "10", query: "user 15"))
-
+    assert_patch(
+      live,
+      Routes.user_index_path(conn, :users,
+        admin: "false",
+        head_department: "false",
+        head_faculty: "false",
+        per_page: "10",
+        query: "user 15"
+      )
+    )
     assert has_element?(live, "th", "User 15")
     assert has_element?(live, "caption", "Total of 1 user")
   end
@@ -53,9 +61,18 @@ defmodule UniWeb.UserLive.IndexTest do
 
     live
     |> form("#filters")
-    |> render_change(%{"per_page" => "25"})
+    |> render_change(%{"filters" => %{"per_page" => "25"}})
 
-    assert_patch(live, Routes.user_index_path(conn, :users, per_page: "25", query: ""))
+    assert_patch(
+      live,
+      Routes.user_index_path(conn, :users,
+        admin: "false",
+        head_department: "false",
+        head_faculty: "false",
+        per_page: "25",
+        query: ""
+      )
+    )
 
     Enum.each(1..25, fn i ->
       assert has_element?(live, "th", "User #{i}")

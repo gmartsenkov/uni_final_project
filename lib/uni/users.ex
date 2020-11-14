@@ -8,14 +8,42 @@ defmodule Uni.Users do
 
   alias Uni.Users.User
 
+  def filter(query, "query", ""), do: query
+  def filter(query, "query", q) do
+    #conditions = dyanamic([u, f, d], ilike(u.name, "%#{q}%") or ilike(f.name, "%#{q}%") or ilike(d.name, "%#{q}%"))
+
+    query
+    |> join(:inner, [a], faculty in assoc(a, :faculty))
+    |> join(:inner, [a], department in assoc(a, :department))
+    |> where([u,f,d], ilike(u.name, ^"%#{q}%") or ilike(f.name, ^"%#{q}%") or ilike(d.name, ^"%#{q}%"))
+  end
+  def filter(query, "admin", "true"), do: where(query, admin: true)
+  def filter(query, "admin", "false"), do: query
+
+  def filter(query, "head_faculty", "true"), do: where(query, head_faculty: true)
+  def filter(query, "head_faculty", "false"), do: query
+
+  def filter(query, "head_department", "true"), do: where(query, head_department: true)
+  def filter(query, "head_department", "false"), do: query
+
+  def filter(query, _type, _value), do: query
+
+  def filter(query, [{type, value} | tail]) do
+    query
+    |> filter(type, value)
+    |> filter(tail)
+  end
+
+  def filter(query, _filters = []), do: query
+
   def by_email(email) do
     User
     |> where(email: ^email)
     |> Repo.one()
   end
 
-  def paginate(query \\ "", page \\ 1, page_size \\ 10) do
-    search(query)
+  def paginate(query, page \\ 1, page_size \\ 10) do
+    query
     |> preload(:faculty)
     |> preload(:department)
     |> Repo.paginate(page: page, page_size: page_size)
