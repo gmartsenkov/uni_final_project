@@ -15,7 +15,7 @@ defmodule Uni.Exports.Monographs do
       authors(monograph),
       monograph.name,
       monograph.publisher,
-      monograph.year,
+      monograph.year
     ]
   end
 

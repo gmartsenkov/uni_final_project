@@ -37,10 +37,10 @@ defmodule Uni.Exports.ArticlesTest do
       ]
 
       assert Export.call(authors) == ~s"""
-      Създател,Автори,Име,Издателство,Година,Тип,Scopus,Wofscience\r\n\
-      Arya,"Jon, Rob\",Web,Pub,1001,Национален,Да,Не\r
-      Sansa,"Sam, Andy\",Mobile,Pub2,1002,Международен,Не,Да\r
-      """
+             Създател,Автори,Име,Издателство,Година,Тип,Scopus,Wofscience\r\n\
+             Arya,"Jon, Rob\",Web,Pub,1001,Национален,Да,Не\r
+             Sansa,"Sam, Andy\",Mobile,Pub2,1002,Международен,Не,Да\r
+             """
     end
   end
 end

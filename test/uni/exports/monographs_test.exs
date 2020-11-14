@@ -31,10 +31,10 @@ defmodule Uni.Exports.MonographsTest do
       ]
 
       assert Export.call(authors) == ~s"""
-      Създател,Автори,Име,Издателство,Година\r\n\
-      Arya,"Jon, Rob\",Web,Pub,1001\r
-      Sansa,"Sam, Andy\",Mobile,Pub2,1002\r
-      """
+             Създател,Автори,Име,Издателство,Година\r\n\
+             Arya,"Jon, Rob\",Web,Pub,1001\r
+             Sansa,"Sam, Andy\",Mobile,Pub2,1002\r
+             """
     end
   end
 end

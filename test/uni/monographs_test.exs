@@ -134,7 +134,12 @@ defmodule Uni.MonographsTest do
       monograph = insert(:monograph, owner: owner, authors: [author])
       monograph_2 = insert(:monograph, owner: owner, authors: [another_author])
 
-      [monograph: monograph, monograph_2: monograph_2, faculty: faculty, another_faculty: another_faculty]
+      [
+        monograph: monograph,
+        monograph_2: monograph_2,
+        faculty: faculty,
+        another_faculty: another_faculty
+      ]
     end
 
     test "returns correct monograph", %{monograph: monograph, faculty: faculty} do
@@ -226,7 +231,7 @@ defmodule Uni.MonographsTest do
       [
         monograph_1: insert(:monograph, year: 1995),
         monograph_2: insert(:monograph, year: 2005),
-        monograph_3: insert(:monograph, year: 2009),
+        monograph_3: insert(:monograph, year: 2009)
       ]
     end
 
@@ -257,7 +262,7 @@ defmodule Uni.MonographsTest do
       [
         monograph_1: insert(:monograph, year: 1995),
         monograph_2: insert(:monograph, year: 2005),
-        monograph_3: insert(:monograph, year: 2009),
+        monograph_3: insert(:monograph, year: 2009)
       ]
     end
 

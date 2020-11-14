@@ -16,7 +16,7 @@ defmodule Uni.Exports.Projects do
       project.project_id,
       project.participation_role,
       type(project.project_type),
-      financing(project.financing_type),
+      financing(project.financing_type)
     ]
   end
 

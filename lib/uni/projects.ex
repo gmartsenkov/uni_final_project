@@ -47,6 +47,7 @@ defmodule Uni.Projects do
     |> preload(:owner)
     |> Repo.all()
   end
+
   @doc """
   Returns the list of projects.
 

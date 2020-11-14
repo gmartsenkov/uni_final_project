@@ -35,10 +35,10 @@ defmodule Uni.Exports.ConferencesTest do
       ]
 
       assert Export.call(authors) == ~s"""
-      Създател,Име,Страници,Тип,Докладван,Публикуван\r
-      Bob,Web Conf,10 - 20,Национален,Да,Не\r
-      Jon,Mobile Conf,15 - 25,Международен,Да,Не\r
-      """
+             Създател,Име,Страници,Тип,Докладван,Публикуван\r
+             Bob,Web Conf,10 - 20,Национален,Да,Не\r
+             Jon,Mobile Conf,15 - 25,Международен,Да,Не\r
+             """
     end
   end
 end

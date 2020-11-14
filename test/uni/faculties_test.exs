@@ -7,7 +7,7 @@ defmodule Uni.FacultiesTest do
     setup do
       insert(:faculty, name: "Arts")
       insert(:faculty, name: "Physics")
-	    :ok
+      :ok
     end
 
     test "it returns all of the faculties" do
@@ -23,9 +23,9 @@ defmodule Uni.FacultiesTest do
   end
 
   describe "departments" do
-	  setup do
-	    faculty_1 = insert(:faculty)
-	    faculty_2 = insert(:faculty)
+    setup do
+      faculty_1 = insert(:faculty)
+      faculty_2 = insert(:faculty)
 
       insert(:department, faculty_id: faculty_1.id, name: "Tech")
       insert(:department, faculty_id: faculty_1.id, name: "Math")

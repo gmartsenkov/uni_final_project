@@ -23,6 +23,7 @@ defmodule Uni.Monographs do
     |> join(:inner, [a], authors in assoc(a, :authors))
     |> where([articles, users, authors], users.department_id == ^department_id)
   end
+
   def filter(query, "start_date", ""), do: query
   def filter(query, "start_date", date), do: query |> where([a], a.year >= ^date)
   def filter(query, "end_date", ""), do: query
@@ -46,6 +47,7 @@ defmodule Uni.Monographs do
     |> preload(:authors)
     |> Repo.all()
   end
+
   @doc """
   Returns the list of monographs.
 

@@ -33,10 +33,10 @@ defmodule Uni.Exports.ProjectsTest do
       ]
 
       assert Export.call(projects) == ~s"""
-      Създател,Име,Проект №,Роля,Вид,Финансиране\r
-      Bob,Web Proj,1,Manager,Национален,Вътрешно\r
-      Rob,Mobile Proj,2,Assistant,Международен,Външно\r
-      """
+             Създател,Име,Проект №,Роля,Вид,Финансиране\r
+             Bob,Web Proj,1,Manager,Национален,Вътрешно\r
+             Rob,Mobile Proj,2,Assistant,Международен,Външно\r
+             """
     end
   end
 end

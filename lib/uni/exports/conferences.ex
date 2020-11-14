@@ -16,7 +16,7 @@ defmodule Uni.Exports.Conferences do
       "#{conference.page_start} - #{conference.page_end}",
       type(conference.type),
       bool(conference.reported),
-      bool(conference.published),
+      bool(conference.published)
     ]
   end
 

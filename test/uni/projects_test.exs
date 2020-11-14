@@ -231,7 +231,7 @@ defmodule Uni.ProjectsTest do
       [
         project_1: insert(:project, project_type: "national"),
         project_2: insert(:project, project_type: "international"),
-        project_3: insert(:project, project_type: "international"),
+        project_3: insert(:project, project_type: "international")
       ]
     end
 
@@ -268,7 +268,7 @@ defmodule Uni.ProjectsTest do
       [
         project_1: insert(:project, financing_type: "internal"),
         project_2: insert(:project, financing_type: "external"),
-        project_3: insert(:project, financing_type: "external"),
+        project_3: insert(:project, financing_type: "external")
       ]
     end
 

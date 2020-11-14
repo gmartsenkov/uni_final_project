@@ -13,7 +13,15 @@ defmodule ArticlesForm do
   end
 
   def changeset(attrs) do
-    cast(%ArticlesForm{}, attrs, [:faculty, :department, :type, :scopus, :wofscience, :start_date, :end_date])
+    cast(%ArticlesForm{}, attrs, [
+      :faculty,
+      :department,
+      :type,
+      :scopus,
+      :wofscience,
+      :start_date,
+      :end_date
+    ])
   end
 end
 
@@ -110,6 +118,7 @@ defmodule UniWeb.ExportsLive.Export do
   @impl true
   def handle_event("articles_change", %{"articles_form" => params}, socket) do
     params = guard_params(params)
+
     articles_count =
       Article
       |> Articles.filter(Map.to_list(params))
@@ -125,6 +134,7 @@ defmodule UniWeb.ExportsLive.Export do
   @impl true
   def handle_event("monographs_change", %{"monographs_form" => params}, socket) do
     params = guard_params(params)
+
     monographs_count =
       Monograph
       |> Monographs.filter(Map.to_list(params))
@@ -140,6 +150,7 @@ defmodule UniWeb.ExportsLive.Export do
   @impl true
   def handle_event("projects_change", %{"projects_form" => params}, socket) do
     params = guard_params(params)
+
     projects_count =
       Project
       |> Projects.filter(Map.to_list(params))
@@ -155,6 +166,7 @@ defmodule UniWeb.ExportsLive.Export do
   @impl true
   def handle_event("conferences_change", %{"conferences_form" => params}, socket) do
     params = guard_params(params)
+
     conferences_count =
       Conference
       |> Conferences.filter(Map.to_list(params))

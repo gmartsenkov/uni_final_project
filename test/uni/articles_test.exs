@@ -214,7 +214,12 @@ defmodule Uni.ArticlesTest do
       article = insert(:article, owner: owner, authors: [author])
       article_2 = insert(:article, owner: owner, authors: [another_author])
 
-      [article: article, article_2: article_2, department: department, another_department: another_department]
+      [
+        article: article,
+        article_2: article_2,
+        department: department,
+        another_department: another_department
+      ]
     end
 
     test "returns correct article", %{article: article, department: department} do
@@ -249,7 +254,7 @@ defmodule Uni.ArticlesTest do
       [
         article_1: insert(:article, scopus: true),
         article_2: insert(:article, scopus: false),
-        article_3: insert(:article, scopus: false),
+        article_3: insert(:article, scopus: false)
       ]
     end
 
@@ -286,7 +291,7 @@ defmodule Uni.ArticlesTest do
       [
         article_1: insert(:article, wofscience: true),
         article_2: insert(:article, wofscience: false),
-        article_3: insert(:article, wofscience: false),
+        article_3: insert(:article, wofscience: false)
       ]
     end
 
@@ -323,7 +328,7 @@ defmodule Uni.ArticlesTest do
       [
         article_1: insert(:article, year: 1995),
         article_2: insert(:article, year: 2005),
-        article_3: insert(:article, year: 2009),
+        article_3: insert(:article, year: 2009)
       ]
     end
 
@@ -354,7 +359,7 @@ defmodule Uni.ArticlesTest do
       [
         article_1: insert(:article, year: 1995),
         article_2: insert(:article, year: 2005),
-        article_3: insert(:article, year: 2009),
+        article_3: insert(:article, year: 2009)
       ]
     end
 
@@ -385,7 +390,7 @@ defmodule Uni.ArticlesTest do
       [
         article_1: insert(:article, type: "national"),
         article_2: insert(:article, type: "international"),
-        article_3: insert(:article, type: "international"),
+        article_3: insert(:article, type: "international")
       ]
     end
 

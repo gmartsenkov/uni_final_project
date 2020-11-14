@@ -22,7 +22,11 @@ defmodule UniWeb.UserLive.FormComponent do
   end
 
   @impl true
-  def handle_event("profile_on_change", %{"user" => %{"faculty_id" => faculty_id} = params}, socket) do
+  def handle_event(
+        "profile_on_change",
+        %{"user" => %{"faculty_id" => faculty_id} = params},
+        socket
+      ) do
     {:noreply,
      socket
      |> assign(:changeset, Users.change_user(socket.assigns.user, params))
