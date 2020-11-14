@@ -7,6 +7,14 @@ defmodule UniWeb.Helpers.LiveHelpers do
     |> assign_navigation()
   end
 
+  def protected(socket, role, callback) do
+	  if Map.get(socket.assigns.current_user, role) == true do
+      callback.(socket)
+    else
+      {:ok, push_redirect(socket, to: "/")}
+    end
+  end
+
   defp assign_current_user(socket, %{"user_id" => user_id}) do
     assign_new(
       socket,
@@ -23,9 +31,8 @@ defmodule UniWeb.Helpers.LiveHelpers do
   defp assign_navigation(%{assigns: %{logged_in: false}} = socket), do: socket
 
   defp assign_navigation(%{assigns: %{logged_in: true}} = socket) do
-    assign(socket, :navigation, %{
-      action: socket.assigns.live_action,
-      user_name: socket.assigns.current_user.name
-    })
+    socket
+    |> assign(:navigation, %{action: socket.assigns.live_action})
+    |> assign(:current_user, socket.assigns.current_user)
   end
 end

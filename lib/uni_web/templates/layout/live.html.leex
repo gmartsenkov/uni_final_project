@@ -1,5 +1,5 @@
 <div id="wrapper">
-    <%= if @logged_in, do: live_render @socket, UniWeb.NavigationLive, id: "navigation", session: %{"navigation" => @navigation} %>
+    <%= if @logged_in, do: live_component @socket, UniWeb.NavigationComponent, id: "navigation", current_user: @current_user, navigation: @navigation %>
 
     <!-- End of Topbar -->
     <!-- Begin Page Content -->

@@ -9,11 +9,13 @@ defmodule UniWeb.UserLive.Index do
   def mount(_params, session, socket) do
     socket = assign_defaults(socket, session)
 
-    {:ok,
-     socket
-     |> assign(:query, "")
-     |> assign(:per_page, 10)
-     |> assign(:page_title, gettext("Users"))}
+    protected(socket, :admin, fn socket ->
+      {:ok,
+       socket
+       |> assign(:query, "")
+       |> assign(:per_page, 10)
+       |> assign(:page_title, gettext("Users"))}
+    end)
   end
 
   @impl true

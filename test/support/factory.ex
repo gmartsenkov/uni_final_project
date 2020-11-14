@@ -6,7 +6,10 @@ defmodule Uni.Factory do
     %Uni.Users.User{
       name: "Jon Snow",
       email: "jon@snow.com",
-      password: Bcrypt.hash_pwd_salt("1234")
+      password: Bcrypt.hash_pwd_salt("1234"),
+      admin: false,
+      head_department: false,
+      head_faculty: false
     }
   end
 

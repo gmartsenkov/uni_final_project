@@ -60,7 +60,10 @@ defmodule UniWeb.UserLive.ProfileTest do
         "user" => %{
           "name" => "Arnold",
           "department_id" => department.id,
-          "faculty_id" => faculty.id
+          "faculty_id" => faculty.id,
+          "admin" => true,
+          "head_department" => true,
+          "head_faculty" => true,
         }
       })
       |> follow_redirect(conn, Routes.user_profile_path(conn, :my_profile))
@@ -74,6 +77,9 @@ defmodule UniWeb.UserLive.ProfileTest do
 
     assert user.faculty.id == faculty.id
     assert user.department.id == department.id
+    assert user.admin == false
+    assert user.head_department == false
+    assert user.head_faculty == false
   end
 
   describe "updating the password" do

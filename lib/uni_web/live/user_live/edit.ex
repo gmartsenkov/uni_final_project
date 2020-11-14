@@ -7,15 +7,17 @@ defmodule UniWeb.UserLive.Edit do
   def mount(%{"id" => id}, session, socket) do
     socket = assign_defaults(socket, session)
 
-    user = Users.get_user(id)
+    protected(socket, :admin, fn socket ->
+      user = Users.get_user(id)
 
-    if user do
-      {:ok, assign(socket, :user, user)}
-    else
-      {:ok,
-       socket
-       |> put_flash(:error, gettext("User not found"))
-       |> push_redirect(to: Routes.user_index_path(socket, :users))}
-    end
+      if user do
+        {:ok, assign(socket, :user, user)}
+      else
+        {:ok,
+         socket
+         |> put_flash(:error, gettext("User not found"))
+         |> push_redirect(to: Routes.user_index_path(socket, :users))}
+      end
+    end)
   end
 end

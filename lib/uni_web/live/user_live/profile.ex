@@ -3,6 +3,8 @@ defmodule UniWeb.UserLive.Profile do
   alias Uni.Users
   alias Uni.Faculties
 
+  @allowed_params ["email", "name", "faculty_id", "department_id"]
+
   @impl true
   def mount(_params, session, socket) do
     socket = assign_defaults(socket, session)
@@ -31,7 +33,7 @@ defmodule UniWeb.UserLive.Profile do
 
   @impl true
   def handle_event("save_profile", %{"user" => params}, socket) do
-    case Users.update_user(socket.assigns.current_user, params) do
+    case Users.update_user(socket.assigns.current_user, Map.take(params, @allowed_params)) do
       {:ok, user} ->
         {:noreply,
          socket

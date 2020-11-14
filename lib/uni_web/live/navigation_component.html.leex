@@ -36,12 +36,14 @@
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
+    <%= if @current_user.admin do %>
     <li class="nav-item <%= if @navigation.action == :users, do: "active"%>">
         <%= live_redirect class: "nav-link", to: Routes.user_index_path(@socket, :users) do %>
         <i class="fas fa-users"></i>
         <span><%= gettext("Users") %></span>
         <% end %>
     </li>
+    <% end %>
     <li class="nav-item <%= if @navigation.action == :exports, do: "active"%>">
         <%= live_redirect class: "nav-link", to: Routes.exports_export_path(@socket, :exports) do %>
         <i class="fa fa-table"></i>
@@ -53,7 +55,7 @@
     <li class="nav-item  <%= if @navigation.action == :my_profile, do: "active" %>">
         <%= live_redirect class: "nav-link", to: Routes.user_profile_path(@socket, :my_profile) do %>
         <i class="far fa-user"></i>
-        <span><%= @navigation.user_name %></span>
+        <span><%= @current_user.name %></span>
         <% end %>
     </li>
     <li class="nav-item">

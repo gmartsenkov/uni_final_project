@@ -28,6 +28,20 @@
   <%= select f, :department_id, departments(@faculty_id), class: "custom-select form-control" %>
   <%= error_tag f, :department_id %>
 </div>
+<div class="form-group">
+    <div class="form-check form-check-inline">
+        <%= checkbox f, :admin, class: "form-check-input" %>
+        <label class="form-check-label"><%= gettext("Admin") %></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <%= checkbox f, :head_faculty, class: "form-check-input" %>
+        <label class="form-check-label"><%= gettext("Head of faculty") %></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <%= checkbox f, :head_department, class: "form-check-input" %>
+        <label class="form-check-label"><%= gettext("Head of department") %></label>
+    </div>
+</div>
 <button type="submit" class="btn btn-primary">
   <%= gettext("Update") %>
 </button>

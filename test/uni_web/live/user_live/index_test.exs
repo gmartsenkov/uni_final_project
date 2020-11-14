@@ -16,7 +16,7 @@ defmodule UniWeb.UserLive.IndexTest do
       )
     end)
 
-    [user: insert(:user, name: "Jon Snow", faculty: faculty, department: department)]
+    [user: insert(:user, admin: true, name: "Jon Snow", faculty: faculty, department: department)]
   end
 
   test "renders the users", %{conn: conn, user: user} do
