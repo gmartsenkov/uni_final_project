@@ -12,16 +12,30 @@ defmodule Uni.Articles do
 
   def filter(query, "faculty", faculty_id) do
     query
-    |> join(:inner, [a], authors in assoc(a, :authors))
-    |> where([articles, users, authors], users.faculty_id == ^faculty_id)
+    |> join(:left, [a], owners in assoc(a, :owner))
+    |> join(:left, [a], authors in assoc(a, :authors))
+    |> where(
+      [articles, owner, users, authors],
+      owner.faculty_id == ^faculty_id or users.faculty_id == ^faculty_id
+    )
+  end
+
+  def filter(query, "user", id) do
+    query
+    |> join(:left, [a], authors in assoc(a, :authors))
+    |> where([articles, users, authors], users.id == ^id or articles.owner_id == ^id)
   end
 
   def filter(query, "department", "all"), do: query
 
   def filter(query, "department", department_id) do
     query
-    |> join(:inner, [a], authors in assoc(a, :authors))
-    |> where([articles, users, authors], users.department_id == ^department_id)
+    |> join(:left, [a], owners in assoc(a, :owner))
+    |> join(:left, [a], authors in assoc(a, :authors))
+    |> where(
+      [articles, owners, users, authors],
+      owners.department_id == ^department_id or users.department_id == ^department_id
+    )
   end
 
   def filter(query, "scopus", "all"), do: query
@@ -50,12 +64,13 @@ defmodule Uni.Articles do
 
   def filter(query, _filters = []), do: query
 
-  def count(query), do: Repo.aggregate(query, :count)
+  def count(query), do: query |> distinct([a], a.id) |> Repo.aggregate(:count)
 
   def graph(query) do
     query
     |> preload(:owner)
     |> preload(:authors)
+    |> distinct([a], a.id)
     |> Repo.all()
   end
 

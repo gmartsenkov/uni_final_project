@@ -8,7 +8,7 @@ defmodule UniWeb.Helpers.LiveHelpers do
   end
 
   def protected(socket, role, callback) do
-	  if Map.get(socket.assigns.current_user, role) == true do
+    if Map.get(socket.assigns.current_user, role) == true do
       callback.(socket)
     else
       {:ok, push_redirect(socket, to: "/")}

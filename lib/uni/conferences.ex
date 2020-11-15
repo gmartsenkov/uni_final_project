@@ -16,6 +16,8 @@ defmodule Uni.Conferences do
     |> where([conferences, users], users.faculty_id == ^faculty_id)
   end
 
+  def filter(query, "user", id), do: where(query, owner_id: ^id)
+
   def filter(query, "department", "all"), do: query
 
   def filter(query, "department", department_id) do

@@ -89,5 +89,4 @@ defmodule UniWeb.UserLive.Index do
       {"50", "50"}
     ]
   end
-
 end

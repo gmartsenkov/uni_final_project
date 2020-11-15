@@ -131,8 +131,16 @@ defmodule Uni.MonographsTest do
 
       owner = insert(:user, email: "bob", name: "Bob", department: department, faculty: faculty)
 
+      another_owner =
+        insert(:user,
+          email: "bob2",
+          name: "Bob",
+          department: another_department,
+          faculty: another_faculty
+        )
+
       monograph = insert(:monograph, owner: owner, authors: [author])
-      monograph_2 = insert(:monograph, owner: owner, authors: [another_author])
+      monograph_2 = insert(:monograph, owner: another_owner, authors: [another_author])
 
       [
         monograph: monograph,
@@ -188,8 +196,16 @@ defmodule Uni.MonographsTest do
 
       owner = insert(:user, email: "bob", name: "Bob", department: department, faculty: faculty)
 
+      another_owner =
+        insert(:user,
+          email: "bob2",
+          name: "Bob",
+          department: another_department,
+          faculty: another_faculty
+        )
+
       monograph = insert(:monograph, owner: owner, authors: [author])
-      monograph_2 = insert(:monograph, owner: owner, authors: [another_author])
+      monograph_2 = insert(:monograph, owner: another_owner, authors: [another_author])
 
       [
         monograph: monograph,

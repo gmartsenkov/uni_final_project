@@ -159,8 +159,16 @@ defmodule Uni.ArticlesTest do
 
       owner = insert(:user, email: "bob", name: "Bob", department: department, faculty: faculty)
 
+      another_owner =
+        insert(:user,
+          email: "bob2",
+          name: "Bob",
+          department: another_department,
+          faculty: another_faculty
+        )
+
       article = insert(:article, owner: owner, authors: [author])
-      article_2 = insert(:article, owner: owner, authors: [another_author])
+      article_2 = insert(:article, owner: another_owner, authors: [another_author])
 
       [article: article, article_2: article_2, faculty: faculty, another_faculty: another_faculty]
     end
@@ -211,8 +219,16 @@ defmodule Uni.ArticlesTest do
 
       owner = insert(:user, email: "bob", name: "Bob", department: department, faculty: faculty)
 
+      another_owner =
+        insert(:user,
+          email: "bob2",
+          name: "Bob",
+          department: another_department,
+          faculty: another_faculty
+        )
+
       article = insert(:article, owner: owner, authors: [author])
-      article_2 = insert(:article, owner: owner, authors: [another_author])
+      article_2 = insert(:article, owner: another_owner, authors: [another_author])
 
       [
         article: article,

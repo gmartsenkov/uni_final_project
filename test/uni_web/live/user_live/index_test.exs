@@ -39,7 +39,7 @@ defmodule UniWeb.UserLive.IndexTest do
 
     live
     |> form("#filters")
-    |> render_change(%{ "filters" => %{"query" => "user 15"}})
+    |> render_change(%{"filters" => %{"query" => "user 15"}})
 
     assert_patch(
       live,
@@ -51,6 +51,7 @@ defmodule UniWeb.UserLive.IndexTest do
         query: "user 15"
       )
     )
+
     assert has_element?(live, "th", "User 15")
     assert has_element?(live, "caption", "Total of 1 user")
   end

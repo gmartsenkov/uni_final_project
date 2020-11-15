@@ -24,7 +24,7 @@ msgstr "Статията не съществува"
 #, elixir-format
 #: lib/uni_web/live/article_live/index.ex:18
 #: lib/uni_web/live/article_live/index.html.leex:4 lib/uni_web/live/exports_live/export.html.leex:12
-#: lib/uni_web/live/navigation_component.html.leex:16
+#: lib/uni_web/live/exports_live/export.html.leex:46 lib/uni_web/live/navigation_component.html.leex:16
 msgid "Articles"
 msgstr "Статии"
 
@@ -63,7 +63,7 @@ msgstr "Изход"
 #: lib/uni_web/live/conference_live/form_component.html.leex:8 lib/uni_web/live/conference_live/index.html.leex:48
 #: lib/uni_web/live/monograph_live/form_component.html.leex:8 lib/uni_web/live/monograph_live/index.html.leex:48
 #: lib/uni_web/live/project_live/form_component.html.leex:8 lib/uni_web/live/project_live/index.html.leex:48
-#: lib/uni_web/live/user_live/form_component.html.leex:9 lib/uni_web/live/user_live/index.html.leex:40
+#: lib/uni_web/live/user_live/form_component.html.leex:9 lib/uni_web/live/user_live/index.html.leex:49
 #: lib/uni_web/live/user_live/profile.html.leex:28
 msgid "Name"
 msgstr "Име"
@@ -84,8 +84,8 @@ msgstr "Издателство"
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.html.leex:21
 #: lib/uni_web/live/article_live/index.html.leex:50 lib/uni_web/live/conference_live/form_component.html.leex:28
-#: lib/uni_web/live/conference_live/index.html.leex:49 lib/uni_web/live/exports_live/export.html.leex:43
-#: lib/uni_web/live/exports_live/export.html.leex:144
+#: lib/uni_web/live/conference_live/index.html.leex:49 lib/uni_web/live/exports_live/export.html.leex:53
+#: lib/uni_web/live/exports_live/export.html.leex:181
 msgid "Type"
 msgstr "Тип"
 
@@ -146,14 +146,14 @@ msgstr[1] "статии"
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:30
 #: lib/uni_web/live/conference_live/index.html.leex:30 lib/uni_web/live/monograph_live/index.html.leex:30
-#: lib/uni_web/live/project_live/index.html.leex:30 lib/uni_web/live/user_live/index.html.leex:28
+#: lib/uni_web/live/project_live/index.html.leex:30 lib/uni_web/live/user_live/index.html.leex:24
 msgid "Search"
 msgstr "Търсене"
 
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:45
 #: lib/uni_web/live/conference_live/index.html.leex:45 lib/uni_web/live/monograph_live/index.html.leex:45
-#: lib/uni_web/live/project_live/index.html.leex:45 lib/uni_web/live/user_live/index.html.leex:37
+#: lib/uni_web/live/project_live/index.html.leex:45 lib/uni_web/live/user_live/index.html.leex:46
 msgid "Total of"
 msgstr "Общо"
 
@@ -182,7 +182,7 @@ msgstr "Покажи"
 #, elixir-format
 #: lib/uni_web/live/article_live/index.html.leex:23
 #: lib/uni_web/live/conference_live/index.html.leex:23 lib/uni_web/live/monograph_live/index.html.leex:23
-#: lib/uni_web/live/project_live/index.html.leex:23 lib/uni_web/live/user_live/index.html.leex:21
+#: lib/uni_web/live/project_live/index.html.leex:23 lib/uni_web/live/user_live/index.html.leex:17
 msgid "entries"
 msgstr "резултата"
 
@@ -199,7 +199,7 @@ msgstr "Предишна"
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:10
 #: lib/uni_web/live/article_live/index.ex:81 lib/uni_web/live/conference_live/form_component.ex:89
-#: lib/uni_web/live/conference_live/index.ex:88 lib/uni_web/live/exports_live/export.ex:208
+#: lib/uni_web/live/conference_live/index.ex:88 lib/uni_web/live/exports_live/export.ex:235
 #: lib/uni_web/live/project_live/form_component.ex:89 lib/uni_web/live/project_live/index.ex:81
 msgid "International"
 msgstr "Международен"
@@ -207,7 +207,7 @@ msgstr "Международен"
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:9
 #: lib/uni_web/live/article_live/index.ex:80 lib/uni_web/live/conference_live/form_component.ex:88
-#: lib/uni_web/live/conference_live/index.ex:87 lib/uni_web/live/exports_live/export.ex:207
+#: lib/uni_web/live/conference_live/index.ex:87 lib/uni_web/live/exports_live/export.ex:234
 #: lib/uni_web/live/project_live/form_component.ex:88 lib/uni_web/live/project_live/index.ex:80
 msgid "National"
 msgstr "Национален"
@@ -225,19 +225,19 @@ msgid "Edit Project"
 msgstr "Редактирай Проект"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.ex:216
+#: lib/uni_web/live/exports_live/export.ex:243
 #: lib/uni_web/live/project_live/form_component.ex:95 lib/uni_web/live/project_live/index.ex:84
 msgid "External"
 msgstr "Външно"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.html.leex:119
+#: lib/uni_web/live/exports_live/export.html.leex:147
 #: lib/uni_web/live/project_live/form_component.html.leex:29 lib/uni_web/live/project_live/index.html.leex:51
 msgid "Financing"
 msgstr "Финансиране"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.ex:215
+#: lib/uni_web/live/exports_live/export.ex:242
 #: lib/uni_web/live/project_live/form_component.ex:94 lib/uni_web/live/project_live/index.ex:83
 msgid "Internal"
 msgstr "Вътрешно"
@@ -261,7 +261,7 @@ msgid "Project ID"
 msgstr "Проект №"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.html.leex:115
+#: lib/uni_web/live/exports_live/export.html.leex:143
 #: lib/uni_web/live/project_live/form_component.html.leex:21 lib/uni_web/live/project_live/index.html.leex:50
 msgid "Project Type"
 msgstr "Вид проект"
@@ -283,8 +283,8 @@ msgstr "Статията беше успешно обновена"
 
 #, elixir-format
 #: lib/uni_web/live/exports_live/export.html.leex:20
-#: lib/uni_web/live/navigation_component.html.leex:28 lib/uni_web/live/project_live/index.ex:18
-#: lib/uni_web/live/project_live/index.html.leex:4
+#: lib/uni_web/live/exports_live/export.html.leex:137 lib/uni_web/live/navigation_component.html.leex:28
+#: lib/uni_web/live/project_live/index.ex:18 lib/uni_web/live/project_live/index.html.leex:4
 msgid "Projects"
 msgstr "Проекти"
 
@@ -313,7 +313,7 @@ msgstr "Конференцията беше успешно обновена"
 #, elixir-format
 #: lib/uni_web/live/conference_live/index.ex:19
 #: lib/uni_web/live/conference_live/index.html.leex:4 lib/uni_web/live/exports_live/export.html.leex:24
-#: lib/uni_web/live/navigation_component.html.leex:34
+#: lib/uni_web/live/exports_live/export.html.leex:175 lib/uni_web/live/navigation_component.html.leex:34
 msgid "Conferences"
 msgstr "Конференции"
 
@@ -345,19 +345,19 @@ msgstr "Начална страница"
 
 #, elixir-format
 #: lib/uni_web/live/conference_live/form_component.html.leex:36
-#: lib/uni_web/live/conference_live/index.html.leex:52 lib/uni_web/live/exports_live/export.html.leex:152
+#: lib/uni_web/live/conference_live/index.html.leex:52 lib/uni_web/live/exports_live/export.html.leex:189
 msgid "Published"
 msgstr "Публикуван"
 
 #, elixir-format
 #: lib/uni_web/live/conference_live/form_component.html.leex:41
-#: lib/uni_web/live/conference_live/index.html.leex:51 lib/uni_web/live/exports_live/export.html.leex:148
+#: lib/uni_web/live/conference_live/index.html.leex:51 lib/uni_web/live/exports_live/export.html.leex:185
 msgid "Reported"
 msgstr "Докладван"
 
 #, elixir-format
 #: lib/uni_web/live/user_live/form_component.html.leex:4
-#: lib/uni_web/live/user_live/index.html.leex:41 lib/uni_web/live/user_live/profile.html.leex:23
+#: lib/uni_web/live/user_live/index.html.leex:50 lib/uni_web/live/user_live/profile.html.leex:23
 msgid "Email"
 msgstr "Имейл"
 
@@ -412,8 +412,8 @@ msgstr "Монографията беше успешно обновен"
 
 #, elixir-format
 #: lib/uni_web/live/exports_live/export.html.leex:16
-#: lib/uni_web/live/monograph_live/index.ex:18 lib/uni_web/live/monograph_live/index.html.leex:4
-#: lib/uni_web/live/navigation_component.html.leex:22
+#: lib/uni_web/live/exports_live/export.html.leex:99 lib/uni_web/live/monograph_live/index.ex:18
+#: lib/uni_web/live/monograph_live/index.html.leex:4 lib/uni_web/live/navigation_component.html.leex:22
 msgid "Monographs"
 msgstr "Монографии"
 
@@ -424,18 +424,20 @@ msgid "New Monograph"
 msgstr "Нов Монография "
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.html.leex:37
-#: lib/uni_web/live/exports_live/export.html.leex:80 lib/uni_web/live/exports_live/export.html.leex:109
-#: lib/uni_web/live/exports_live/export.html.leex:138 lib/uni_web/live/user_live/form_component.html.leex:27
-#: lib/uni_web/live/user_live/index.html.leex:43 lib/uni_web/live/user_live/profile.html.leex:38
+#: lib/uni_web/live/exports_live/export.ex:275
+#: lib/uni_web/live/exports_live/export.ex:282 lib/uni_web/live/exports_live/export.html.leex:38
+#: lib/uni_web/live/exports_live/export.html.leex:92 lib/uni_web/live/exports_live/export.html.leex:130
+#: lib/uni_web/live/exports_live/export.html.leex:168 lib/uni_web/live/user_live/form_component.html.leex:27
+#: lib/uni_web/live/user_live/index.html.leex:52 lib/uni_web/live/user_live/profile.html.leex:38
 msgid "Department"
 msgstr "Катедра"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.html.leex:33
-#: lib/uni_web/live/exports_live/export.html.leex:76 lib/uni_web/live/exports_live/export.html.leex:105
-#: lib/uni_web/live/exports_live/export.html.leex:134 lib/uni_web/live/user_live/form_component.html.leex:22
-#: lib/uni_web/live/user_live/index.html.leex:42 lib/uni_web/live/user_live/profile.html.leex:33
+#: lib/uni_web/live/exports_live/export.ex:274
+#: lib/uni_web/live/exports_live/export.ex:289 lib/uni_web/live/exports_live/export.html.leex:34
+#: lib/uni_web/live/exports_live/export.html.leex:88 lib/uni_web/live/exports_live/export.html.leex:126
+#: lib/uni_web/live/exports_live/export.html.leex:164 lib/uni_web/live/user_live/form_component.html.leex:22
+#: lib/uni_web/live/user_live/index.html.leex:51 lib/uni_web/live/user_live/profile.html.leex:33
 msgid "Faculty"
 msgstr "Факултет"
 
@@ -451,12 +453,12 @@ msgstr "Грешна парола"
 
 #, elixir-format
 #: lib/uni_web/live/navigation_component.html.leex:43
-#: lib/uni_web/live/user_live/index.ex:17 lib/uni_web/live/user_live/index.html.leex:4
+#: lib/uni_web/live/user_live/index.ex:42 lib/uni_web/live/user_live/index.html.leex:4
 msgid "Users"
 msgstr "Потребители"
 
 #, elixir-format
-#: lib/uni_web/live/user_live/index.html.leex:37
+#: lib/uni_web/live/user_live/index.html.leex:46
 msgid "user"
 msgid_plural "users"
 msgstr[0] "потребител"
@@ -488,16 +490,16 @@ msgid "User updated successfully"
 msgstr "Профилът беше успешно обновен"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.ex:185
-#: lib/uni_web/live/exports_live/export.ex:188 lib/uni_web/live/exports_live/export.ex:193
-#: lib/uni_web/live/exports_live/export.ex:198 lib/uni_web/live/exports_live/export.ex:206
-#: lib/uni_web/live/exports_live/export.ex:214
+#: lib/uni_web/live/exports_live/export.ex:212
+#: lib/uni_web/live/exports_live/export.ex:215 lib/uni_web/live/exports_live/export.ex:220
+#: lib/uni_web/live/exports_live/export.ex:225 lib/uni_web/live/exports_live/export.ex:233
+#: lib/uni_web/live/exports_live/export.ex:241
 msgid "All"
 msgstr "Всички"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.html.leex:57
-#: lib/uni_web/live/exports_live/export.html.leex:86
+#: lib/uni_web/live/exports_live/export.html.leex:67
+#: lib/uni_web/live/exports_live/export.html.leex:105
 msgid "From (year)"
 msgstr "От (година)"
 
@@ -507,7 +509,7 @@ msgid "New User"
 msgstr "Нов потребител"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.ex:200
+#: lib/uni_web/live/exports_live/export.ex:227
 msgid "No"
 msgstr "Не"
 
@@ -518,13 +520,13 @@ msgid "Reports"
 msgstr "Доклади"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.html.leex:47
+#: lib/uni_web/live/exports_live/export.html.leex:57
 msgid "Scopus"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.html.leex:61
-#: lib/uni_web/live/exports_live/export.html.leex:90
+#: lib/uni_web/live/exports_live/export.html.leex:71
+#: lib/uni_web/live/exports_live/export.html.leex:109
 msgid "To (year)"
 msgstr "До (година)"
 
@@ -534,36 +536,42 @@ msgid "User created successfully"
 msgstr "Потребителят беше създаден успешно"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.html.leex:51
+#: lib/uni_web/live/exports_live/export.html.leex:61
 msgid "Wofscience"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.ex:199
+#: lib/uni_web/live/exports_live/export.ex:226
 msgid "Yes"
 msgstr "Да"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.html.leex:66
-#: lib/uni_web/live/exports_live/export.html.leex:95 lib/uni_web/live/exports_live/export.html.leex:124
-#: lib/uni_web/live/exports_live/export.html.leex:157
+#: lib/uni_web/live/exports_live/export.html.leex:76
+#: lib/uni_web/live/exports_live/export.html.leex:114 lib/uni_web/live/exports_live/export.html.leex:152
+#: lib/uni_web/live/exports_live/export.html.leex:194
 msgid "Export"
 msgstr "Свали"
 
 #, elixir-format
 #: lib/uni_web/live/user_live/form_component.html.leex:34
-#: lib/uni_web/live/user_live/profile.html.leex:45
+#: lib/uni_web/live/user_live/index.html.leex:33 lib/uni_web/live/user_live/profile.html.leex:45
 msgid "Admin"
 msgstr "Администратор"
 
 #, elixir-format
 #: lib/uni_web/live/user_live/form_component.html.leex:42
-#: lib/uni_web/live/user_live/profile.html.leex:53
+#: lib/uni_web/live/user_live/index.html.leex:41 lib/uni_web/live/user_live/profile.html.leex:53
 msgid "Head of department"
 msgstr "Ръководител катедра"
 
 #, elixir-format
 #: lib/uni_web/live/user_live/form_component.html.leex:38
-#: lib/uni_web/live/user_live/profile.html.leex:49
+#: lib/uni_web/live/user_live/index.html.leex:37 lib/uni_web/live/user_live/profile.html.leex:49
 msgid "Head of faculty"
 msgstr "Декан"
+
+#, elixir-format
+#: lib/uni_web/live/exports_live/export.ex:273
+#: lib/uni_web/live/exports_live/export.ex:281 lib/uni_web/live/exports_live/export.ex:288
+msgid "Myself"
+msgstr "Лични"

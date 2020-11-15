@@ -63,7 +63,7 @@ defmodule UniWeb.UserLive.ProfileTest do
           "faculty_id" => faculty.id,
           "admin" => true,
           "head_department" => true,
-          "head_faculty" => true,
+          "head_faculty" => true
         }
       })
       |> follow_redirect(conn, Routes.user_profile_path(conn, :my_profile))

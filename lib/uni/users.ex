@@ -9,14 +9,19 @@ defmodule Uni.Users do
   alias Uni.Users.User
 
   def filter(query, "query", ""), do: query
+
   def filter(query, "query", q) do
-    #conditions = dyanamic([u, f, d], ilike(u.name, "%#{q}%") or ilike(f.name, "%#{q}%") or ilike(d.name, "%#{q}%"))
+    # conditions = dyanamic([u, f, d], ilike(u.name, "%#{q}%") or ilike(f.name, "%#{q}%") or ilike(d.name, "%#{q}%"))
 
     query
     |> join(:inner, [a], faculty in assoc(a, :faculty))
     |> join(:inner, [a], department in assoc(a, :department))
-    |> where([u,f,d], ilike(u.name, ^"%#{q}%") or ilike(f.name, ^"%#{q}%") or ilike(d.name, ^"%#{q}%"))
+    |> where(
+      [u, f, d],
+      ilike(u.name, ^"%#{q}%") or ilike(f.name, ^"%#{q}%") or ilike(d.name, ^"%#{q}%")
+    )
   end
+
   def filter(query, "admin", "true"), do: where(query, admin: true)
   def filter(query, "admin", "false"), do: query
 
