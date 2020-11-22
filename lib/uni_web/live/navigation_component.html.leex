@@ -50,6 +50,14 @@
         <span><%= gettext("Reports") %></span>
         <% end %>
     </li>
+    <%= if @current_user.admin do %>
+    <li class="nav-item <%= if @navigation.action == :faculties, do: "active"%>">
+        <%= live_redirect class: "nav-link", to: Routes.faculty_index_path(@socket, :faculties) do %>
+        <i class="fas fa-university"></i>
+        <span><%= gettext("Faculties") %></span>
+        <% end %>
+    </li>
+    <% end %>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
     <li class="nav-item  <%= if @navigation.action == :my_profile, do: "active" %>">

@@ -1,0 +1,15 @@
+<div class="col-md-7">
+  <div class="card shadow">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary float-left"><%= gettext("New Faculty") %></h6>
+    </div>
+    <div class="card-body">
+        <%= live_component @socket,
+        UniWeb.FacultyLive.FormComponent,
+        id: "new-faculty",
+        action: :new,
+        faculty: @faculty,
+        user: @current_user%>
+    </div>
+  </div>
+</div>

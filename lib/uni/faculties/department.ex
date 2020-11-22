@@ -15,7 +15,7 @@ defmodule Uni.Faculties.Department do
   @doc false
   def changeset(department, attrs) do
     department
-    |> cast(attrs, [:name])
-    |> validate_required([:name])
+    |> cast(attrs, [:name, :faculty_id])
+    |> validate_required([:name, :faculty_id])
   end
 end

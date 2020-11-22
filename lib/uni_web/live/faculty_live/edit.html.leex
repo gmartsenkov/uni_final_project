@@ -1,0 +1,46 @@
+<div class="col-md-7">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary float-left"><%= gettext("Edit Faculty") %></h6>
+        </div>
+        <div class="card-body">
+            <%= live_component @socket,
+            UniWeb.FacultyLive.FormComponent,
+            id: "edit-faculty",
+            action: :update,
+            faculty: @faculty,
+            user: @current_user%>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary float-left">
+                <%= gettext("Departments") %>
+            </h6>
+            <%= live_redirect id: "new-department", class: "btn btn-success btn-circle btn-sm float-right", to: Routes.department_new_path(@socket, :faculties) do %>
+                <i class="fas fa-plus"></i>
+            <% end %>
+        </div>
+        <table class="table">
+            <tbody>
+                <%= for department <- @faculty.departments do %>
+                    <tr>
+                        <th class="font-weight-normal"><%= department.name %></th>
+                        <th>
+                            <%= live_redirect id: "department-edit-#{department.id}", to: Routes.department_edit_path(@socket, :faculties, department) do  %>
+                                <i class="fas fa-edit"></i>
+                            <% end %>
+                        </th>
+                    </tr>
+                <% end %>
+
+                <%= if Enum.empty?(@faculty.departments) do %>
+                    <div class="p-3 font-weight-bold mx-auto">
+                        <%= gettext("Departments don't exist for this faculty") %>
+                    </div>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

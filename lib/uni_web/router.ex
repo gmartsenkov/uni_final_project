@@ -61,6 +61,13 @@ defmodule UniWeb.Router do
     live "/monographs/new", MonographLive.New, :monographs
     live "/monographs/:id", MonographLive.Edit, :monographs
 
+    live "/faculties", FacultyLive.Index, :faculties
+    live "/faculties/new", FacultyLive.New, :faculties
+    live "/faculties/:id", FacultyLive.Edit, :faculties
+
+    live "/departments/new", DepartmentLive.New, :faculties
+    live "/departments/:id", DepartmentLive.Edit, :faculties
+
     live "/exports", ExportsLive.Export, :exports
   end
 

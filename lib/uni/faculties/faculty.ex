@@ -6,6 +6,7 @@ defmodule Uni.Faculties.Faculty do
     field :name, :string
 
     timestamps()
+    has_many(:departments, Uni.Faculties.Department)
   end
 
   @doc false
