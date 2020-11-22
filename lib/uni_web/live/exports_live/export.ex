@@ -107,6 +107,7 @@ defmodule UniWeb.ExportsLive.Export do
     {:ok,
      socket
      |> assign(:faculties, faculties())
+     |> assign(:page_title, gettext("Reports"))
      |> assign(:faculty_id, "all")
      |> assign(:articles_params, params_for_role(%{}, user))
      |> assign(:monographs_params, params_for_role(%{}, user))
