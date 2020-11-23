@@ -8,6 +8,7 @@ defmodule Uni.Faculties.Department do
     field :name, :string
 
     belongs_to(:faculty, Faculty)
+    has_many(:users, Uni.Users.User)
 
     timestamps()
   end

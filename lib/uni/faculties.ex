@@ -13,7 +13,7 @@ defmodule Uni.Faculties do
   def faculties_graph(), do: Faculty |> preload(:departments) |> preload(:users) |> Repo.all()
 
   def by_id(id) do
-    where(Faculty, id: ^id) |> preload(:departments) |> preload(:users) |> Repo.one
+    where(Faculty, id: ^id) |> preload(departments: :users) |> preload(:users) |> Repo.one
   end
 
   def department_by_id(id) do

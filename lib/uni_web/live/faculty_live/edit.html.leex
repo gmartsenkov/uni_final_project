@@ -62,6 +62,11 @@
                             <%= live_redirect id: "department-edit-#{department.id}", to: Routes.department_edit_path(@socket, :faculties, department) do  %>
                                 <i class="fas fa-edit"></i>
                             <% end %>
+                            <%= if deleteable?(department) do %>
+                                <%= link to: "#", phx_click: "delete", phx_value_id: "#{department.id}", data_confirm: gettext("Are you sure?") do %>
+                                    <i class="fas fa-trash text-danger"></i>
+                                <% end %>
+                            <% end %>
                         </th>
                     </tr>
                 <% end %>

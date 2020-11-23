@@ -42,7 +42,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/edit.ex:25
-#: lib/uni_web/live/conference_live/edit.ex:25 lib/uni_web/live/faculty_live/edit.ex:30
+#: lib/uni_web/live/conference_live/edit.ex:25 lib/uni_web/live/faculty_live/edit.ex:41
 #: lib/uni_web/live/monograph_live/edit.ex:25 lib/uni_web/live/project_live/edit.ex:25
 msgid "Edit"
 msgstr ""
@@ -590,6 +590,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, elixir-format
+#: lib/uni_web/live/faculty_live/edit.html.leex:66
 #: lib/uni_web/live/faculty_live/index.html.leex:27
 msgid "Are you sure?"
 msgstr ""
@@ -615,7 +616,7 @@ msgid "Departments"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/faculty_live/edit.html.leex:71
+#: lib/uni_web/live/faculty_live/edit.html.leex:76
 msgid "Departments don't exist for this faculty"
 msgstr ""
 
@@ -630,7 +631,7 @@ msgid "Edit Faculty"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/faculty_live/index.ex:14
+#: lib/uni_web/live/faculty_live/index.ex:13
 #: lib/uni_web/live/faculty_live/index.html.leex:4 lib/uni_web/live/navigation_component.html.leex:57
 msgid "Faculties"
 msgstr ""
@@ -641,12 +642,12 @@ msgid "Faculty created successfuly"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/faculty_live/index.ex:36
+#: lib/uni_web/live/faculty_live/index.ex:35
 msgid "Faculty deleted successfuly"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/faculty_live/edit.ex:24
+#: lib/uni_web/live/faculty_live/edit.ex:35
 msgid "Faculty not found"
 msgstr ""
 
@@ -675,4 +676,9 @@ msgstr ""
 #, elixir-format
 #: lib/uni_web/live/faculty_live/edit.html.leex:40
 msgid "Department doesn't have a Head of department or faculty"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/faculty_live/edit.ex:29
+msgid "Department deleted successfuly"
 msgstr ""

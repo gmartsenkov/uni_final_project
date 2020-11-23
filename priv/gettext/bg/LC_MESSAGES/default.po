@@ -43,7 +43,7 @@ msgstr "Създай"
 
 #, elixir-format
 #: lib/uni_web/live/article_live/edit.ex:25
-#: lib/uni_web/live/conference_live/edit.ex:25 lib/uni_web/live/faculty_live/edit.ex:30
+#: lib/uni_web/live/conference_live/edit.ex:25 lib/uni_web/live/faculty_live/edit.ex:41
 #: lib/uni_web/live/monograph_live/edit.ex:25 lib/uni_web/live/project_live/edit.ex:25
 msgid "Edit"
 msgstr "Редактирай"
@@ -591,6 +591,7 @@ msgstr[0] "Факултет"
 msgstr[1] "Факултети"
 
 #, elixir-format
+#: lib/uni_web/live/faculty_live/edit.html.leex:66
 #: lib/uni_web/live/faculty_live/index.html.leex:27
 msgid "Are you sure?"
 msgstr "Сигурни ли сте?"
@@ -616,7 +617,7 @@ msgid "Departments"
 msgstr "Катедри"
 
 #, elixir-format
-#: lib/uni_web/live/faculty_live/edit.html.leex:71
+#: lib/uni_web/live/faculty_live/edit.html.leex:76
 msgid "Departments don't exist for this faculty"
 msgstr "Не съществуват катедри за този факултет"
 
@@ -631,7 +632,7 @@ msgid "Edit Faculty"
 msgstr "Редактирай факултет"
 
 #, elixir-format
-#: lib/uni_web/live/faculty_live/index.ex:14
+#: lib/uni_web/live/faculty_live/index.ex:13
 #: lib/uni_web/live/faculty_live/index.html.leex:4 lib/uni_web/live/navigation_component.html.leex:57
 msgid "Faculties"
 msgstr "Факултети"
@@ -642,12 +643,12 @@ msgid "Faculty created successfuly"
 msgstr "Статията беше създаден успешно"
 
 #, elixir-format
-#: lib/uni_web/live/faculty_live/index.ex:36
+#: lib/uni_web/live/faculty_live/index.ex:35
 msgid "Faculty deleted successfuly"
 msgstr "Статията беше създаден успешно"
 
 #, elixir-format
-#: lib/uni_web/live/faculty_live/edit.ex:24
+#: lib/uni_web/live/faculty_live/edit.ex:35
 msgid "Faculty not found"
 msgstr "Статията не съществува"
 
@@ -677,3 +678,8 @@ msgstr "Състав"
 #: lib/uni_web/live/faculty_live/edit.html.leex:40
 msgid "Department doesn't have a Head of department or faculty"
 msgstr "Факултетът няма Декан и Ръководител на катедра"
+
+#, elixir-format, fuzzy
+#: lib/uni_web/live/faculty_live/edit.ex:29
+msgid "Department deleted successfuly"
+msgstr "Катедрата беше успешно обновен"
