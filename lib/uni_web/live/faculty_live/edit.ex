@@ -30,4 +30,10 @@ defmodule UniWeb.FacultyLive.Edit do
     |> assign(:page_title, "#{gettext("Edit")} - #{faculty.name}")
     |> assign(:faculty, faculty)
   end
+
+  defp important_people(users) do
+    users
+    |> Enum.filter(fn u -> u.head_department || u.head_faculty end)
+    |> Enum.sort(fn u, _ -> u.head_faculty end)
+  end
 end

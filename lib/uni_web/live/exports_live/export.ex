@@ -309,8 +309,8 @@ defmodule UniWeb.ExportsLive.Export do
   defp parse_selection(params, _user), do: params
 
   defp params_for_role(_params, %{admin: true}), do: %{}
-  defp params_for_role(%{"selection" => _selection}, user), do: %{}
-  defp params_for_role(params, user), do: %{"user" => user.id}
+  defp params_for_role(%{"selection" => _selection}, _user), do: %{}
+  defp params_for_role(_params, user), do: %{"user" => user.id}
 
   defp active?(tab, expected) when tab == expected, do: "active"
   defp active?(_tab, _expected), do: ""

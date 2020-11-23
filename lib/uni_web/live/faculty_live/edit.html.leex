@@ -16,6 +16,37 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary float-left">
+                <%= gettext("Staff") %>
+            </h6>
+        </div>
+        <table class="table">
+            <tbody>
+                <%= for user <- important_people(@faculty.users) do %>
+                    <tr>
+                        <th class="font-weight-normal">
+                            <%= user.name %>
+                            <%= if user.head_faculty, do: "(#{gettext("Head of faculty")})" %>
+                            <%= if user.head_department, do: "(#{gettext("Head of department")})" %>
+                        </th>
+                        <th>
+                            <%= live_redirect id: "user-edit-#{user.id}", to: Routes.user_edit_path(@socket, :users, user) do  %>
+                                <i class="fas fa-edit"></i>
+                            <% end %>
+                        </th>
+                    </tr>
+                <% end %>
+                <%= if Enum.empty?(important_people(@faculty.users)) do %>
+                    <div class="p-3 font-weight-bold mx-auto">
+                        <%= gettext("Department doesn't have a Head of department or faculty") %>
+                    </div>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary float-left">
                 <%= gettext("Departments") %>
             </h6>
             <%= live_redirect id: "new-department", class: "btn btn-success btn-circle btn-sm float-right", to: Routes.department_new_path(@socket, :faculties) do %>

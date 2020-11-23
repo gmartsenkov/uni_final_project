@@ -203,7 +203,7 @@ msgstr "Предишна"
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:10
 #: lib/uni_web/live/article_live/index.ex:81 lib/uni_web/live/conference_live/form_component.ex:89
-#: lib/uni_web/live/conference_live/index.ex:88 lib/uni_web/live/exports_live/export.ex:241
+#: lib/uni_web/live/conference_live/index.ex:88 lib/uni_web/live/exports_live/export.ex:242
 #: lib/uni_web/live/project_live/form_component.ex:89 lib/uni_web/live/project_live/index.ex:81
 msgid "International"
 msgstr "Международен"
@@ -211,7 +211,7 @@ msgstr "Международен"
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:9
 #: lib/uni_web/live/article_live/index.ex:80 lib/uni_web/live/conference_live/form_component.ex:88
-#: lib/uni_web/live/conference_live/index.ex:87 lib/uni_web/live/exports_live/export.ex:240
+#: lib/uni_web/live/conference_live/index.ex:87 lib/uni_web/live/exports_live/export.ex:241
 #: lib/uni_web/live/project_live/form_component.ex:88 lib/uni_web/live/project_live/index.ex:80
 msgid "National"
 msgstr "Национален"
@@ -229,7 +229,7 @@ msgid "Edit Project"
 msgstr "Редактирай Проект"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.ex:249
+#: lib/uni_web/live/exports_live/export.ex:250
 #: lib/uni_web/live/project_live/form_component.ex:95 lib/uni_web/live/project_live/index.ex:84
 msgid "External"
 msgstr "Външно"
@@ -241,7 +241,7 @@ msgid "Financing"
 msgstr "Финансиране"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.ex:248
+#: lib/uni_web/live/exports_live/export.ex:249
 #: lib/uni_web/live/project_live/form_component.ex:94 lib/uni_web/live/project_live/index.ex:83
 msgid "Internal"
 msgstr "Вътрешно"
@@ -428,8 +428,8 @@ msgid "New Monograph"
 msgstr "Нов Монография "
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.ex:281
-#: lib/uni_web/live/exports_live/export.ex:288 lib/uni_web/live/exports_live/export.html.leex:38
+#: lib/uni_web/live/exports_live/export.ex:282
+#: lib/uni_web/live/exports_live/export.ex:289 lib/uni_web/live/exports_live/export.html.leex:38
 #: lib/uni_web/live/exports_live/export.html.leex:92 lib/uni_web/live/exports_live/export.html.leex:130
 #: lib/uni_web/live/exports_live/export.html.leex:168 lib/uni_web/live/user_live/form_component.html.leex:27
 #: lib/uni_web/live/user_live/index.html.leex:52 lib/uni_web/live/user_live/profile.html.leex:38
@@ -438,7 +438,7 @@ msgstr "Катедра"
 
 #, elixir-format
 #: lib/uni_web/live/department_live/form_component.html.leex:13
-#: lib/uni_web/live/exports_live/export.ex:280 lib/uni_web/live/exports_live/export.ex:295
+#: lib/uni_web/live/exports_live/export.ex:281 lib/uni_web/live/exports_live/export.ex:296
 #: lib/uni_web/live/exports_live/export.html.leex:34 lib/uni_web/live/exports_live/export.html.leex:88
 #: lib/uni_web/live/exports_live/export.html.leex:126 lib/uni_web/live/exports_live/export.html.leex:164
 #: lib/uni_web/live/user_live/form_component.html.leex:22 lib/uni_web/live/user_live/index.html.leex:51
@@ -495,10 +495,10 @@ msgid "User updated successfully"
 msgstr "Профилът беше успешно обновен"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.ex:218
-#: lib/uni_web/live/exports_live/export.ex:221 lib/uni_web/live/exports_live/export.ex:226
-#: lib/uni_web/live/exports_live/export.ex:231 lib/uni_web/live/exports_live/export.ex:239
-#: lib/uni_web/live/exports_live/export.ex:247
+#: lib/uni_web/live/exports_live/export.ex:219
+#: lib/uni_web/live/exports_live/export.ex:222 lib/uni_web/live/exports_live/export.ex:227
+#: lib/uni_web/live/exports_live/export.ex:232 lib/uni_web/live/exports_live/export.ex:240
+#: lib/uni_web/live/exports_live/export.ex:248
 msgid "All"
 msgstr "Всички"
 
@@ -514,13 +514,13 @@ msgid "New User"
 msgstr "Нов потребител"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.ex:233
+#: lib/uni_web/live/exports_live/export.ex:234
 msgid "No"
 msgstr "Не"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.html.leex:5
-#: lib/uni_web/live/navigation_component.html.leex:50
+#: lib/uni_web/live/exports_live/export.ex:110
+#: lib/uni_web/live/exports_live/export.html.leex:5 lib/uni_web/live/navigation_component.html.leex:50
 msgid "Reports"
 msgstr "Доклади"
 
@@ -546,7 +546,7 @@ msgid "Wofscience"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.ex:232
+#: lib/uni_web/live/exports_live/export.ex:233
 msgid "Yes"
 msgstr "Да"
 
@@ -564,24 +564,26 @@ msgid "Admin"
 msgstr "Администратор"
 
 #, elixir-format
-#: lib/uni_web/live/user_live/form_component.html.leex:42
-#: lib/uni_web/live/user_live/index.html.leex:41 lib/uni_web/live/user_live/profile.html.leex:53
+#: lib/uni_web/live/faculty_live/edit.html.leex:29
+#: lib/uni_web/live/user_live/form_component.html.leex:42 lib/uni_web/live/user_live/index.html.leex:41
+#: lib/uni_web/live/user_live/profile.html.leex:53
 msgid "Head of department"
 msgstr "Ръководител катедра"
 
 #, elixir-format
-#: lib/uni_web/live/user_live/form_component.html.leex:38
-#: lib/uni_web/live/user_live/index.html.leex:37 lib/uni_web/live/user_live/profile.html.leex:49
+#: lib/uni_web/live/faculty_live/edit.html.leex:28
+#: lib/uni_web/live/user_live/form_component.html.leex:38 lib/uni_web/live/user_live/index.html.leex:37
+#: lib/uni_web/live/user_live/profile.html.leex:49
 msgid "Head of faculty"
 msgstr "Декан"
 
 #, elixir-format
-#: lib/uni_web/live/exports_live/export.ex:279
-#: lib/uni_web/live/exports_live/export.ex:287 lib/uni_web/live/exports_live/export.ex:294
+#: lib/uni_web/live/exports_live/export.ex:280
+#: lib/uni_web/live/exports_live/export.ex:288 lib/uni_web/live/exports_live/export.ex:295
 msgid "Myself"
 msgstr "Лични"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/faculty_live/index.html.leex:11
 msgid "faculty"
 msgid_plural "faculties"
@@ -593,58 +595,58 @@ msgstr[1] "Факултети"
 msgid "Are you sure?"
 msgstr "Сигурни ли сте?"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/department_live/form_component.ex:42
 msgid "Department created successfuly"
 msgstr "Потребителят беше създаден успешно"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/department_live/edit.ex:18
 msgid "Department not found"
 msgstr "Катедра"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/department_live/form_component.ex:55
 msgid "Department updated successfuly"
 msgstr "Профилът беше успешно обновен"
 
-#, elixir-format, fuzzy
-#: lib/uni_web/live/faculty_live/edit.html.leex:19
+#, elixir-format
+#: lib/uni_web/live/faculty_live/edit.html.leex:50
 msgid "Departments"
 msgstr "Катедри"
 
 #, elixir-format
-#: lib/uni_web/live/faculty_live/edit.html.leex:40
+#: lib/uni_web/live/faculty_live/edit.html.leex:71
 msgid "Departments don't exist for this faculty"
 msgstr "Не съществуват катедри за този факултет"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/department_live/edit.html.leex:4
 msgid "Edit Department"
 msgstr "Катедра"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/faculty_live/edit.html.leex:4
 msgid "Edit Faculty"
 msgstr "Редактирай факултет"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/faculty_live/index.ex:14
 #: lib/uni_web/live/faculty_live/index.html.leex:4 lib/uni_web/live/navigation_component.html.leex:57
 msgid "Faculties"
 msgstr "Факултети"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/faculty_live/form_component.ex:41
 msgid "Faculty created successfuly"
 msgstr "Статията беше създаден успешно"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/faculty_live/index.ex:36
 msgid "Faculty deleted successfuly"
 msgstr "Статията беше създаден успешно"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/faculty_live/edit.ex:24
 msgid "Faculty not found"
 msgstr "Статията не съществува"
@@ -654,14 +656,24 @@ msgstr "Статията не съществува"
 msgid "Faculty updated successfuly"
 msgstr "Факултетът беше успешно обновен"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/department_live/new.ex:7
 #: lib/uni_web/live/department_live/new.html.leex:4
 msgid "New Department"
 msgstr "Нова Катедра"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/faculty_live/new.ex:7
 #: lib/uni_web/live/faculty_live/new.html.leex:4
 msgid "New Faculty"
 msgstr "Нов Факултет"
+
+#, elixir-format
+#: lib/uni_web/live/faculty_live/edit.html.leex:19
+msgid "Staff"
+msgstr "Състав"
+
+#, elixir-format
+#: lib/uni_web/live/faculty_live/edit.html.leex:40
+msgid "Department doesn't have a Head of department or faculty"
+msgstr "Факултетът няма Декан и Ръководител на катедра"

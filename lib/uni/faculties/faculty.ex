@@ -7,6 +7,7 @@ defmodule Uni.Faculties.Faculty do
 
     timestamps()
     has_many(:departments, Uni.Faculties.Department)
+    has_many(:users, Uni.Users.User)
   end
 
   @doc false

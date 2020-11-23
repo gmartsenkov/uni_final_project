@@ -9,10 +9,11 @@ defmodule Uni.Faculties do
   alias Uni.Faculties.Faculty
   alias Uni.Faculties.Department
 
-  def faculties(), do: Faculty |> preload(:departments) |> Repo.all()
+  def faculties(), do: Repo.all(Faculty)
+  def faculties_graph(), do: Faculty |> preload(:departments) |> preload(:users) |> Repo.all()
 
   def by_id(id) do
-    where(Faculty, id: ^id) |> preload(:departments) |> Repo.one
+    where(Faculty, id: ^id) |> preload(:departments) |> preload(:users) |> Repo.one
   end
 
   def department_by_id(id) do

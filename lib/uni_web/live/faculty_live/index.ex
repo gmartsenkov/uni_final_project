@@ -2,7 +2,6 @@ defmodule UniWeb.FacultyLive.Index do
   use UniWeb, :live_view
 
   alias Uni.Faculties
-  alias Uni.Faculties.Faculty
 
   @impl true
   def mount(_params, session, socket) do
@@ -17,7 +16,7 @@ defmodule UniWeb.FacultyLive.Index do
 
   @impl true
   def handle_params(params, _uri, socket) do
-    result = Faculties.faculties()
+    result = Faculties.faculties_graph()
 
     {:noreply,
      socket
@@ -38,6 +37,6 @@ defmodule UniWeb.FacultyLive.Index do
   end
 
   def deleteable?(faculty) do
-    Enum.empty?(faculty.departments)
+    Enum.empty?(faculty.departments) && Enum.empty?(faculty.users)
   end
 end
