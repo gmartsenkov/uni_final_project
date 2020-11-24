@@ -20,6 +20,11 @@ defmodule Uni.Monographs do
     )
   end
 
+  def filter(query, "query", ""), do: query
+  def filter(query, "query", q) do
+    where(query, [m], ilike(m.name, ^"%#{q}%"))
+  end
+
   def filter(query, "user", id) do
     query
     |> join(:left, [a], authors in assoc(a, :authors))
@@ -52,6 +57,12 @@ defmodule Uni.Monographs do
   end
 
   def filter(query, _filters = []), do: query
+
+  def paginate(query, page \\ 1, page_size \\ 10) do
+    query
+    |> distinct([m], m.id)
+    |> Repo.paginate(page: page, page_size: page_size)
+  end
 
   def count(query), do: query |> distinct([m], m.id) |> Repo.aggregate(:count)
 

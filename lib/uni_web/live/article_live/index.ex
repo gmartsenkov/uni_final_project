@@ -2,6 +2,7 @@ defmodule UniWeb.ArticleLive.Index do
   use UniWeb, :live_view
 
   alias Uni.Articles
+  alias Uni.Articles.Article
 
   @impl true
   def mount(params, session, socket) do
@@ -10,7 +11,11 @@ defmodule UniWeb.ArticleLive.Index do
     per_page = Map.get(params, "per_page", "10")
     query = Map.get(params, "query", "")
 
-    result = Articles.paginate_articles(socket.assigns.current_user.id, query, page, per_page)
+    result =
+      Article
+      |> Articles.filter("user", socket.assigns.current_user.id)
+      |> Articles.filter("query", query)
+      |> Articles.paginate(page, per_page)
 
     {:ok,
      socket
@@ -23,7 +28,10 @@ defmodule UniWeb.ArticleLive.Index do
   @impl true
   def handle_info({:page_change, page}, %{assigns: assigns} = socket) do
     result =
-      Articles.paginate_articles(assigns.current_user.id, assigns.query, page, assigns.per_page)
+      Article
+      |> Articles.filter("user", socket.assigns.current_user.id)
+      |> Articles.filter("query", assigns.query)
+      |> Articles.paginate(page, assigns.per_page)
 
     {:noreply,
      socket
@@ -37,7 +45,11 @@ defmodule UniWeb.ArticleLive.Index do
         %{"per_page" => per_page, "query" => query},
         %{assigns: assigns} = socket
       ) do
-    result = Articles.paginate_articles(assigns.current_user.id, query, assigns.page, per_page)
+    result =
+      Article
+      |> Articles.filter("user", socket.assigns.current_user.id)
+      |> Articles.filter("query", query)
+      |> Articles.paginate(assigns.page, per_page)
 
     {:noreply,
      socket

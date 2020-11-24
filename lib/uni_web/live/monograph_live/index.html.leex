@@ -58,7 +58,7 @@
                             <th><%= monograph.publisher %></th>
                             <th><%= monograph.year %></th>
                             <th>
-                                <%= live_redirect id: "monograph-edit-#{monograph.id}", to: Routes.monograph_edit_path(@socket, :monographs, monograph) do  %>
+                                <%= live_redirect id: "monograph-edit-#{monograph.id}", to: Routes.monograph_edit_path(@socket, :monographs, monograph) do %>
                                     <i class="fas fa-edit"></i>
                                 <% end %>
                             </th>

@@ -22,7 +22,7 @@ defmodule UniWeb.AuthorMultiSelectComponent do
       phx-update="ignore">
       <label><%= gettext("Add Author")%></label>
       <div class="input-group">
-          <select class="form-control" id="autocompleteAuthor" style="width: 100%"></select>
+          <select class="form-control" id="autocompleteAuthor" style="width: 100%" <%= if @disabled, do: "disabled" %>></select>
       </div>
     </div>
     <%= if @error do %>
@@ -36,6 +36,7 @@ defmodule UniWeb.AuthorMultiSelectComponent do
           <input type="text" style="display: none" name="authors[]" value="<%= author["id"] %>">
           <i class="fas fa-user-graduate"></i>
             <%= author["text"] %>
+          <%= unless @disabled do %>
           <a
             href="#"
             id="remove-author-<%= author["id"] %>"
@@ -45,6 +46,7 @@ defmodule UniWeb.AuthorMultiSelectComponent do
             phx-click="remove_author">
             <i class="far fa-times-circle"></i>
           <a/>
+            <% end %>
         </li>
       <% end %>
     </ul>

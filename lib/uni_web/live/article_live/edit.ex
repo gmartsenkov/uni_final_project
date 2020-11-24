@@ -21,8 +21,15 @@ defmodule UniWeb.ArticleLive.Edit do
   end
 
   defp maybe_get_article(socket, %Article{} = article) do
-    socket
-    |> assign(:page_title, "#{gettext("Edit")} - #{article.name}")
-    |> assign(:article, article)
+    user = socket.assigns.current_user
+
+    if user.admin || Enum.member?([article.owner.id | Enum.map(article.authors, &(Map.get(&1, :id)))], user.id) do
+      socket
+      |> assign(:page_title, "#{gettext("Edit")} - #{article.name}")
+      |> assign(:article, article)
+      |> assign(:disabled, !user.admin && article.owner.id != user.id)
+    else
+      maybe_get_article(socket, nil)
+    end
   end
 end

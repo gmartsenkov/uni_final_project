@@ -21,8 +21,14 @@ defmodule UniWeb.ConferenceLive.Edit do
   end
 
   defp maybe_get_conference(socket, %Conference{} = conference) do
-    socket
-    |> assign(:page_title, "#{gettext("Edit")} - #{conference.name}")
-    |> assign(:conference, conference)
+    user = socket.assigns.current_user
+
+    if user.admin || conference.owner.id == user.id do
+      socket
+      |> assign(:page_title, "#{gettext("Edit")} - #{conference.name}")
+      |> assign(:conference, conference)
+    else
+      maybe_get_conference(socket, nil)
+    end
   end
 end

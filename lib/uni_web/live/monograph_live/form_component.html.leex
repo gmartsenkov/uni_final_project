@@ -6,19 +6,19 @@ phx_target: @myself
 %>
 <div class="form-group">
     <label><%= gettext("Name") %></label>
-    <%= text_input f, :name, class: input_class(f, :name) %>
+    <%= text_input f, :name, class: input_class(f, :name), disabled: @disabled %>
     <%= error_tag f, :name %>
 </div>
 
 <div class="form-row">
     <div class="form-group col-md-6">
         <label><%= gettext("Year") %></label>
-        <%= number_input f, :year, class: input_class(f, :year) %>
+        <%= number_input f, :year, class: input_class(f, :year), disabled: @disabled %>
         <%= error_tag f, :year %>
     </div>
     <div class="form-group col-md-6">
         <label><%= gettext("Publisher") %></label>
-        <%= text_input f, :publisher, class: input_class(f, :publisher) %>
+        <%= text_input f, :publisher, class: input_class(f, :publisher), disabled: @disabled %>
         <%= error_tag f, :publisher %>
     </div>
 </div>
@@ -27,7 +27,8 @@ phx_target: @myself
     <%= live_component @socket,
     UniWeb.AuthorMultiSelectComponent,
     authors: @authors,
+    disabled: @disabled,
     id: "author-multiselect-component"%>
 </div>
-<button type="submit" class="btn btn-primary"><%= @submit_button %></button>
+<button type="submit" class="btn btn-primary" <%= if @disabled, do: "disabled"%>><%= @submit_button %></button>
 </form>

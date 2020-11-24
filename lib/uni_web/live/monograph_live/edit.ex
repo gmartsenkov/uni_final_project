@@ -21,8 +21,15 @@ defmodule UniWeb.MonographLive.Edit do
   end
 
   defp maybe_get_monograph(socket, %Monograph{} = monograph) do
-    socket
-    |> assign(:page_title, "#{gettext("Edit")} - #{monograph.name}")
-    |> assign(:monograph, monograph)
+    user = socket.assigns.current_user
+
+    if user.admin || Enum.member?([monograph.owner.id | Enum.map(monograph.authors, &(Map.get(&1, :id)))], user.id) do
+      socket
+      |> assign(:page_title, "#{gettext("Edit")} - #{monograph.name}")
+      |> assign(:monograph, monograph)
+      |> assign(:disabled, !user.admin && monograph.owner.id != user.id)
+    else
+      maybe_get_monograph(socket, nil)
+    end
   end
 end

@@ -26,6 +26,11 @@ defmodule Uni.Articles do
     |> where([articles, users, authors], users.id == ^id or articles.owner_id == ^id)
   end
 
+  def filter(query, "query", ""), do: query
+  def filter(query, "query", q) do
+    where(query, [a], ilike(a.name, ^"%#{q}%"))
+  end
+
   def filter(query, "department", "all"), do: query
 
   def filter(query, "department", department_id) do
@@ -72,6 +77,12 @@ defmodule Uni.Articles do
     |> preload(:authors)
     |> distinct([a], a.id)
     |> Repo.all()
+  end
+
+  def paginate(query, page \\ 1, page_size \\ 10) do
+    query
+    |> distinct([a], a.id)
+    |> Repo.paginate(page: page, page_size: page_size)
   end
 
   @doc """

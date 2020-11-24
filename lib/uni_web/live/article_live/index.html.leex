@@ -64,7 +64,7 @@
                             <th><%= article.wofscience %></th>
                             <th><%= article.year %></th>
                             <th>
-                                <%= live_redirect id: "article-edit-#{article.id}", to: Routes.article_edit_path(@socket, :articles, article) do  %>
+                                <%= live_redirect id: "article-edit-#{article.id}", to: Routes.article_edit_path(@socket, :articles, article) do %>
                                     <i class="fas fa-edit"></i>
                                 <% end %>
                             </th>

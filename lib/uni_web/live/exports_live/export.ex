@@ -297,6 +297,13 @@ defmodule UniWeb.ExportsLive.Export do
     ]
   end
 
+  defp admin_select() do
+    [
+      {gettext("All"), "all"},
+      {gettext("Myself"), "myself"}
+    ]
+  end
+
   defp parse_selection(%{"selection" => "myself"} = params, user),
     do: Map.put(params, "user", user.id)
 

@@ -21,8 +21,14 @@ defmodule UniWeb.ProjectLive.Edit do
   end
 
   defp maybe_get_project(socket, %Project{} = project) do
-    socket
-    |> assign(:page_title, "#{gettext("Edit")} - #{project.name}")
-    |> assign(:project, project)
+    user = socket.assigns.current_user
+
+    if user.admin || project.owner.id == user.id do
+      socket
+      |> assign(:page_title, "#{gettext("Edit")} - #{project.name}")
+      |> assign(:project, project)
+    else
+      maybe_get_project(socket, nil)
+    end
   end
 end

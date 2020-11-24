@@ -2,6 +2,7 @@ defmodule UniWeb.MonographLive.Index do
   use UniWeb, :live_view
 
   alias Uni.Monographs
+  alias Uni.Monographs.Monograph
 
   @impl true
   def mount(params, session, socket) do
@@ -10,7 +11,11 @@ defmodule UniWeb.MonographLive.Index do
     per_page = Map.get(params, "per_page", "10")
     query = Map.get(params, "query", "")
 
-    result = Monographs.paginate_monographs(socket.assigns.current_user.id, query, page, per_page)
+    result =
+      Monograph
+      |> Monographs.filter("user", socket.assigns.current_user.id)
+      |> Monographs.filter("query", query)
+      |> Monographs.paginate(page, per_page)
 
     {:ok,
      socket
@@ -23,12 +28,10 @@ defmodule UniWeb.MonographLive.Index do
   @impl true
   def handle_info({:page_change, page}, %{assigns: assigns} = socket) do
     result =
-      Monographs.paginate_monographs(
-        assigns.current_user.id,
-        assigns.query,
-        page,
-        assigns.per_page
-      )
+      Monograph
+      |> Monographs.filter("user", socket.assigns.current_user.id)
+      |> Monographs.filter("query", assigns.query)
+      |> Monographs.paginate(page, assigns.per_page)
 
     {:noreply,
      socket
@@ -43,7 +46,10 @@ defmodule UniWeb.MonographLive.Index do
         %{assigns: assigns} = socket
       ) do
     result =
-      Monographs.paginate_monographs(assigns.current_user.id, query, assigns.page, per_page)
+      Monograph
+      |> Monographs.filter("user", socket.assigns.current_user.id)
+      |> Monographs.filter("query", query)
+      |> Monographs.paginate(assigns.page, per_page)
 
     {:noreply,
      socket

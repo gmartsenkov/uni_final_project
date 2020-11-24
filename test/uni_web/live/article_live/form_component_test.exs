@@ -9,7 +9,7 @@ defmodule UniWeb.ArticleLive.FormComponentTest do
     component =
       render_component(
         FormComponent,
-        %{article: %Article{authors: []}, myself: nil, action: :new}
+        %{article: %Article{authors: []}, myself: nil, action: :new, disabled: false}
       )
 
     assert component =~ "Name"

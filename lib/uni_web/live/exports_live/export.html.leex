@@ -30,11 +30,16 @@
             <%= f = form_for @articles_form, "/exports/articles", id: "articles", class: "m-3", phx_change: "articles_change" %>
             <%= if @current_user.admin do %>
             <div class="form-row">
-              <div class="form-group col-md-6">
+
+                <div class="form-group col-md-4">
+                    <label><%= gettext("Articles") %></label>
+                    <%= select f, :selection, admin_select(), class: "custom-select form-control" %>
+                </div>
+              <div class="form-group col-md-4">
                 <label><%= gettext("Faculty") %></label>
                 <%= select f, :faculty, @faculties, class: "custom-select form-control" %>
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-4">
                 <label><%= gettext("Department") %></label>
                 <%= select f, :department, departments(@articles_form.changes.faculty), class: "custom-select form-control" %>
               </div>
@@ -84,11 +89,15 @@
 
             <%= if @current_user.admin do %>
             <div class="form-row">
-              <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
+                    <label><%= gettext("Monographs") %></label>
+                    <%= select f, :selection, admin_select(), class: "custom-select form-control" %>
+                </div>
+              <div class="form-group col-md-4">
                 <label><%= gettext("Faculty") %></label>
                 <%= select f, :faculty, @faculties, class: "custom-select form-control" %>
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-4">
                 <label><%= gettext("Department") %></label>
                 <%= select f, :department, departments(@monographs_form.changes.faculty), class: "custom-select form-control" %>
               </div>
@@ -122,11 +131,15 @@
 
             <%= if @current_user.admin do %>
             <div class="form-row">
-              <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
+                    <label><%= gettext("Projects") %></label>
+                    <%= select f, :selection, admin_select(), class: "custom-select form-control" %>
+                </div>
+              <div class="form-group col-md-4">
                 <label><%= gettext("Faculty") %></label>
                 <%= select f, :faculty, @faculties, class: "custom-select form-control" %>
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-4">
                 <label><%= gettext("Department") %></label>
                 <%= select f, :department, departments(@projects_form.changes.faculty), class: "custom-select form-control" %>
               </div>
@@ -160,11 +173,15 @@
 
             <%= if @current_user.admin do %>
             <div class="form-row">
-              <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
+                    <label><%= gettext("Conferences") %></label>
+                    <%= select f, :selection, admin_select(), class: "custom-select form-control" %>
+                </div>
+              <div class="form-group col-md-4">
                 <label><%= gettext("Faculty") %></label>
                 <%= select f, :faculty, @faculties, class: "custom-select form-control" %>
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-4">
                 <label><%= gettext("Department") %></label>
                 <%= select f, :department, departments(@conferences_form.changes.faculty), class: "custom-select form-control" %>
               </div>
