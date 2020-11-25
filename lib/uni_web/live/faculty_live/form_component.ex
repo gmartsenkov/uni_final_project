@@ -20,7 +20,7 @@ defmodule UniWeb.FacultyLive.FormComponent do
   end
 
   @impl true
-  def handle_event("validate", %{"faculty" => faculty} = params, socket) do
+  def handle_event("validate", %{"faculty" => faculty}, socket) do
     changeset =
       socket.assigns.faculty
       |> Faculties.change_faculty(faculty)

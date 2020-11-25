@@ -52,6 +52,13 @@ defmodule UniWeb.ArticleLive.FormComponent do
      |> assign(:authors, socket.assigns.authors ++ [author])}
   end
 
+  def handle_event("save", _params, %{assigns: %{disabled: true}} = socket) do
+    {:noreply,
+     socket
+     |> put_flash(:error, gettext("Not allowed"))
+     |> push_redirect(to: Routes.article_edit_path(socket, :articles, socket.assigns.article.id))}
+  end
+
   def handle_event("save", %{"article" => article} = params, socket) do
     article =
       article
@@ -102,7 +109,7 @@ defmodule UniWeb.ArticleLive.FormComponent do
         %{"id" => author.id, "text" => author.name}
       end)
     )
-  end
+   end
 
   defp get_authors(authors) when is_list(authors), do: Uni.Users.get_users(authors)
   defp get_authors(_), do: []

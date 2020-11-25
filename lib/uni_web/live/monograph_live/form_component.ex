@@ -46,6 +46,13 @@ defmodule UniWeb.MonographLive.FormComponent do
      |> assign(:authors, socket.assigns.authors ++ [author])}
   end
 
+  def handle_event("save", _params, %{assigns: %{disabled: true}} = socket) do
+    {:noreply,
+     socket
+     |> put_flash(:error, gettext("Not allowed"))
+     |> push_redirect(to: Routes.monograph_edit_path(socket, :monographs, socket.assigns.monograph.id))}
+  end
+
   def handle_event("save", %{"monograph" => monograph} = params, socket) do
     monograph =
       monograph
