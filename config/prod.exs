@@ -17,6 +17,7 @@ config :uni, UniWeb.Endpoint,
 
 # Do not print debug messages in production
 config :logger, level: :info
+config :gettext, :default_locale, "bg"
 
 # ## SSL Support
 #
@@ -55,4 +56,3 @@ config :logger, level: :info
 # Finally import the config/prod.secret.exs which loads secrets
 # and configuration from environment variables.
 import_config "prod.secret.exs"
-config :gettext, :default_locale, "bg"

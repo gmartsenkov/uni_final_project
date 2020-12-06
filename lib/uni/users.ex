@@ -47,6 +47,12 @@ defmodule Uni.Users do
     |> Repo.one()
   end
 
+  def by_id(id) do
+    User
+    |> where(id: ^id)
+    |> Repo.one()
+  end
+
   def paginate(query, page \\ 1, page_size \\ 10) do
     query
     |> preload(:faculty)

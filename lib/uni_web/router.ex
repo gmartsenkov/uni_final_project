@@ -24,6 +24,8 @@ defmodule UniWeb.Router do
     live "/register", AuthenticationLive.Register, :register
     post "/login", AuthenticationController, :login
     get "/login", AuthenticationController, :login_page
+    live "/forgotten_password", AuthenticationLive.ForgottenPass, :forgoten_pass
+    live "/reset_password", AuthenticationLive.ResetPass, :reset_pass
   end
 
   # Protected routes

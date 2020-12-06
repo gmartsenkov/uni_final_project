@@ -75,3 +75,12 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 config :gettext, :default_locale, "bg"
+config :joken, default_signer: "secret", default_exp: 30 * 60 # 30 minutes
+
+config :uni, UniWeb.Mailer,
+  adapter: Bamboo.SendGridAdapter,
+  api_key: "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",
+  hackney_opts: [
+    recv_timeout: :timer.minutes(1),
+    connect_timeout: :timer.minutes(1)
+  ]

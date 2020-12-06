@@ -93,10 +93,11 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:117
-#: lib/uni_web/live/conference_live/form_component.ex:84 lib/uni_web/live/department_live/form_component.ex:64
-#: lib/uni_web/live/faculty_live/form_component.ex:63 lib/uni_web/live/monograph_live/form_component.ex:111
-#: lib/uni_web/live/project_live/form_component.ex:84 lib/uni_web/live/user_live/form_component.html.leex:46
-#: lib/uni_web/live/user_live/profile.html.leex:57 lib/uni_web/live/user_live/profile.html.leex:78
+#: lib/uni_web/live/authentication_live/reset_pass.html.leex:25 lib/uni_web/live/conference_live/form_component.ex:84
+#: lib/uni_web/live/department_live/form_component.ex:64 lib/uni_web/live/faculty_live/form_component.ex:63
+#: lib/uni_web/live/monograph_live/form_component.ex:111 lib/uni_web/live/project_live/form_component.ex:84
+#: lib/uni_web/live/user_live/form_component.html.leex:46 lib/uni_web/live/user_live/profile.html.leex:57
+#: lib/uni_web/live/user_live/profile.html.leex:78
 msgid "Update"
 msgstr ""
 
@@ -113,12 +114,13 @@ msgid "Year"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/authentication_live/register.html.leex:17
-#: lib/uni_web/templates/authentication/login.html.leex:10
+#: lib/uni_web/live/authentication_live/forgotten_pass.html.leex:11
+#: lib/uni_web/live/authentication_live/register.html.leex:17 lib/uni_web/templates/authentication/login.html.leex:10
 msgid "Email address"
 msgstr ""
 
 #, elixir-format
+#: lib/uni_web/live/authentication_live/forgotten_pass.html.leex:19
 #: lib/uni_web/templates/authentication/login.html.leex:18
 msgid "Login"
 msgstr ""
@@ -368,8 +370,8 @@ msgid "Email"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/user_live/form_component.html.leex:16
-#: lib/uni_web/live/user_live/profile.html.leex:73
+#: lib/uni_web/live/authentication_live/reset_pass.html.leex:18
+#: lib/uni_web/live/user_live/form_component.html.leex:16 lib/uni_web/live/user_live/profile.html.leex:73
 msgid "New Password"
 msgstr ""
 
@@ -692,4 +694,59 @@ msgstr ""
 #: lib/uni_web/live/article_live/form_component.ex:58
 #: lib/uni_web/live/monograph_live/form_component.ex:52
 msgid "Not allowed"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/templates/authentication/login.html.leex:22
+msgid "Forgotten Password"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/reset_pass.ex:98
+msgid "Link is invalid"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/reset_pass.ex:55
+msgid "Password needs to be at least 8 characters"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/forgotten_pass.ex:34
+msgid "Password reset email sent."
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/reset_pass.ex:91
+msgid "Passwords don't match"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/reset_pass.html.leex:22
+msgid "Repeat Password"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/forgotten_pass.html.leex:15
+msgid "Reset"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/forgotten_pass.html.leex:5
+msgid "Reset Password"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/reset_pass.html.leex:5
+msgid "Update Password"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/reset_pass.ex:76
+msgid "User password updated"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/forgotten_pass.ex:22
+msgid "User with that email address does not exist."
 msgstr ""

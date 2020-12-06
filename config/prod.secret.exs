@@ -30,6 +30,26 @@ config :uni, UniWeb.Endpoint,
   ],
   secret_key_base: secret_key_base
 
+jwt_secret = System.get_env("JWT_SECRET") ||
+    raise """
+    environment variable JWT_SECRET is missing.
+    """
+
+config :joken, default_signer: jwt_secret
+
+sendgrid_api_key = System.get_env("SENDGRID_API_KEY") ||
+    raise """
+    environment variable SENDGRID_API_KEY is missing.
+    """
+
+config :uni, UniWeb.Mailer,
+  adapter: Bamboo.SendGridAdapter,
+  api_key: sendgrid_api_key,
+  hackney_opts: [
+    recv_timeout: :timer.minutes(1),
+    connect_timeout: :timer.minutes(1)
+  ]
+
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix

@@ -94,10 +94,11 @@ msgstr "Тип"
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:117
-#: lib/uni_web/live/conference_live/form_component.ex:84 lib/uni_web/live/department_live/form_component.ex:64
-#: lib/uni_web/live/faculty_live/form_component.ex:63 lib/uni_web/live/monograph_live/form_component.ex:111
-#: lib/uni_web/live/project_live/form_component.ex:84 lib/uni_web/live/user_live/form_component.html.leex:46
-#: lib/uni_web/live/user_live/profile.html.leex:57 lib/uni_web/live/user_live/profile.html.leex:78
+#: lib/uni_web/live/authentication_live/reset_pass.html.leex:25 lib/uni_web/live/conference_live/form_component.ex:84
+#: lib/uni_web/live/department_live/form_component.ex:64 lib/uni_web/live/faculty_live/form_component.ex:63
+#: lib/uni_web/live/monograph_live/form_component.ex:111 lib/uni_web/live/project_live/form_component.ex:84
+#: lib/uni_web/live/user_live/form_component.html.leex:46 lib/uni_web/live/user_live/profile.html.leex:57
+#: lib/uni_web/live/user_live/profile.html.leex:78
 msgid "Update"
 msgstr "Обнови"
 
@@ -114,12 +115,13 @@ msgid "Year"
 msgstr "Година"
 
 #, elixir-format
-#: lib/uni_web/live/authentication_live/register.html.leex:17
-#: lib/uni_web/templates/authentication/login.html.leex:10
+#: lib/uni_web/live/authentication_live/forgotten_pass.html.leex:11
+#: lib/uni_web/live/authentication_live/register.html.leex:17 lib/uni_web/templates/authentication/login.html.leex:10
 msgid "Email address"
 msgstr "Имейл адрес"
 
 #, elixir-format
+#: lib/uni_web/live/authentication_live/forgotten_pass.html.leex:19
 #: lib/uni_web/templates/authentication/login.html.leex:18
 msgid "Login"
 msgstr "Вход"
@@ -369,8 +371,8 @@ msgid "Email"
 msgstr "Имейл"
 
 #, elixir-format
-#: lib/uni_web/live/user_live/form_component.html.leex:16
-#: lib/uni_web/live/user_live/profile.html.leex:73
+#: lib/uni_web/live/authentication_live/reset_pass.html.leex:18
+#: lib/uni_web/live/user_live/form_component.html.leex:16 lib/uni_web/live/user_live/profile.html.leex:73
 msgid "New Password"
 msgstr "Нова Парола"
 
@@ -694,3 +696,58 @@ msgstr "Катедрата беше успешно обновен"
 #: lib/uni_web/live/monograph_live/form_component.ex:52
 msgid "Not allowed"
 msgstr "Не е позволено"
+
+#, elixir-format
+#: lib/uni_web/templates/authentication/login.html.leex:22
+msgid "Forgotten Password"
+msgstr "Забравена Парола"
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/reset_pass.ex:98
+msgid "Link is invalid"
+msgstr "Линкът е навалиден"
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/reset_pass.ex:55
+msgid "Password needs to be at least 8 characters"
+msgstr "Паролата трябва да е поне 8 символа"
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/forgotten_pass.ex:34
+msgid "Password reset email sent."
+msgstr "Имейл с инструкции за обновяване на паролата беше изпратен"
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/reset_pass.ex:91
+msgid "Passwords don't match"
+msgstr "Паролите не са еднакви"
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/reset_pass.html.leex:22
+msgid "Repeat Password"
+msgstr "Повтори Парола"
+
+#, elixir-format, fuzzy
+#: lib/uni_web/live/authentication_live/forgotten_pass.html.leex:15
+msgid "Reset"
+msgstr "Обнови"
+
+#, elixir-format, fuzzy
+#: lib/uni_web/live/authentication_live/forgotten_pass.html.leex:5
+msgid "Reset Password"
+msgstr "Нова Парола"
+
+#, elixir-format, fuzzy
+#: lib/uni_web/live/authentication_live/reset_pass.html.leex:5
+msgid "Update Password"
+msgstr "Обнови Парола"
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/reset_pass.ex:76
+msgid "User password updated"
+msgstr "Паролата беше успешно обновена"
+
+#, elixir-format
+#: lib/uni_web/live/authentication_live/forgotten_pass.ex:22
+msgid "User with that email address does not exist."
+msgstr "Потребител с този имейл не съществува"

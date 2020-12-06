@@ -33,6 +33,7 @@ defmodule Uni.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bamboo, "~> 1.6"},
       {:bcrypt_elixir, "2.2.0"},
       {:csv, "~> 2.4"},
       {:ecto_sql, "~> 3.4"},
@@ -42,6 +43,7 @@ defmodule Uni.MixProject do
       {:gettext, "~> 0.11"},
       {:httpoison, "~> 1.6"},
       {:jason, "~> 1.0"},
+      {:joken, "~> 2.0"},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:phoenix, "~> 1.5.1"},
       {:phoenix_ecto, "~> 4.1"},

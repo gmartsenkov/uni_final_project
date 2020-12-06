@@ -109,7 +109,7 @@ defmodule UniWeb.ArticleLive.FormComponent do
         %{"id" => author.id, "text" => author.name}
       end)
     )
-   end
+  end
 
   defp get_authors(authors) when is_list(authors), do: Uni.Users.get_users(authors)
   defp get_authors(_), do: []
