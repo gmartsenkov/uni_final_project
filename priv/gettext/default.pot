@@ -16,7 +16,7 @@ msgid "Add Author"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/article_live/edit.ex:19
+#: lib/uni_web/live/article_live/edit.ex:43
 msgid "Article not found"
 msgstr ""
 
@@ -42,9 +42,9 @@ msgid "Create"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/article_live/edit.ex:28
-#: lib/uni_web/live/conference_live/edit.ex:28 lib/uni_web/live/faculty_live/edit.ex:41
-#: lib/uni_web/live/monograph_live/edit.ex:28 lib/uni_web/live/project_live/edit.ex:28
+#: lib/uni_web/live/article_live/edit.ex:52
+#: lib/uni_web/live/conference_live/edit.ex:44 lib/uni_web/live/faculty_live/edit.ex:41
+#: lib/uni_web/live/monograph_live/edit.ex:52 lib/uni_web/live/project_live/edit.ex:44
 msgid "Edit"
 msgstr ""
 
@@ -93,7 +93,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:117
-#: lib/uni_web/live/authentication_live/reset_pass.html.leex:25 lib/uni_web/live/conference_live/form_component.ex:84
+#: lib/uni_web/live/authentication_live/reset_pass.html.leex:26 lib/uni_web/live/conference_live/form_component.ex:84
 #: lib/uni_web/live/department_live/form_component.ex:64 lib/uni_web/live/faculty_live/form_component.ex:63
 #: lib/uni_web/live/monograph_live/form_component.ex:111 lib/uni_web/live/project_live/form_component.ex:84
 #: lib/uni_web/live/user_live/form_component.html.leex:46 lib/uni_web/live/user_live/profile.html.leex:57
@@ -278,7 +278,7 @@ msgid "Project created successfuly"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/project_live/edit.ex:19
+#: lib/uni_web/live/project_live/edit.ex:35
 msgid "Project not found"
 msgstr ""
 
@@ -308,7 +308,7 @@ msgid "Conference created successfuly"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/conference_live/edit.ex:19
+#: lib/uni_web/live/conference_live/edit.ex:35
 msgid "Conference not found"
 msgstr ""
 
@@ -370,7 +370,7 @@ msgid "Email"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/authentication_live/reset_pass.html.leex:18
+#: lib/uni_web/live/authentication_live/reset_pass.html.leex:19
 #: lib/uni_web/live/user_live/form_component.html.leex:16 lib/uni_web/live/user_live/profile.html.leex:73
 msgid "New Password"
 msgstr ""
@@ -409,7 +409,7 @@ msgid "Monograph created successfuly"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/monograph_live/edit.ex:19
+#: lib/uni_web/live/monograph_live/edit.ex:43
 msgid "Monograph not found"
 msgstr ""
 
@@ -597,8 +597,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, elixir-format
-#: lib/uni_web/live/faculty_live/edit.html.leex:66
-#: lib/uni_web/live/faculty_live/index.html.leex:27
+#: lib/uni_web/live/article_live/edit.html.leex:6
+#: lib/uni_web/live/conference_live/edit.html.leex:5 lib/uni_web/live/faculty_live/edit.html.leex:66
+#: lib/uni_web/live/faculty_live/index.html.leex:27 lib/uni_web/live/monograph_live/edit.html.leex:6
+#: lib/uni_web/live/project_live/edit.html.leex:5
 msgid "Are you sure?"
 msgstr ""
 
@@ -691,7 +693,8 @@ msgid "Department deleted successfuly"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/article_live/form_component.ex:58
+#: lib/uni_web/live/article_live/edit.ex:21
+#: lib/uni_web/live/article_live/form_component.ex:58 lib/uni_web/live/monograph_live/edit.ex:21
 #: lib/uni_web/live/monograph_live/form_component.ex:52
 msgid "Not allowed"
 msgstr ""
@@ -722,7 +725,7 @@ msgid "Passwords don't match"
 msgstr ""
 
 #, elixir-format
-#: lib/uni_web/live/authentication_live/reset_pass.html.leex:22
+#: lib/uni_web/live/authentication_live/reset_pass.html.leex:23
 msgid "Repeat Password"
 msgstr ""
 
@@ -749,4 +752,31 @@ msgstr ""
 #, elixir-format
 #: lib/uni_web/live/authentication_live/forgotten_pass.ex:22
 msgid "User with that email address does not exist."
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/edit.ex:36
+#: lib/uni_web/live/conference_live/edit.ex:28 lib/uni_web/live/monograph_live/edit.ex:36
+#: lib/uni_web/live/project_live/edit.ex:28
+msgid "An error occured"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/article_live/edit.ex:31
+msgid "Article deleted successfuly"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/conference_live/edit.ex:23
+msgid "Conference deleted successfuly"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/monograph_live/edit.ex:31
+msgid "Monograph deleted successfuly"
+msgstr ""
+
+#, elixir-format
+#: lib/uni_web/live/project_live/edit.ex:23
+msgid "Project deleted successfuly"
 msgstr ""
