@@ -13,7 +13,7 @@ defmodule Uni.Articles.Article do
     field :year, :integer
 
     belongs_to(:owner, User, on_replace: :nilify)
-    many_to_many(:authors, User, join_through: Author, on_replace: :delete)
+    many_to_many(:authors, User, join_through: Author, on_replace: :delete, on_delete: :delete_all)
 
     timestamps()
   end
