@@ -765,19 +765,19 @@ msgstr ""
 #, elixir-format, fuzzy
 #: lib/uni_web/live/article_live/edit.ex:31
 msgid "Article deleted successfuly"
-msgstr "Статията беше успешно обновена"
+msgstr "Статията беше изтрита успешно"
 
 #, elixir-format, fuzzy
 #: lib/uni_web/live/conference_live/edit.ex:23
 msgid "Conference deleted successfuly"
-msgstr "Конференцията беше успешно обновена"
+msgstr "Конференцията беше изтрита успешно"
 
 #, elixir-format, fuzzy
 #: lib/uni_web/live/monograph_live/edit.ex:31
 msgid "Monograph deleted successfuly"
-msgstr "Монографията беше успешно обновен"
+msgstr "Монографията беше изтрита успешно"
 
 #, elixir-format, fuzzy
 #: lib/uni_web/live/project_live/edit.ex:23
 msgid "Project deleted successfuly"
-msgstr "Статията беше успешно обновена"
+msgstr "Статията беше изтрита успешно"
