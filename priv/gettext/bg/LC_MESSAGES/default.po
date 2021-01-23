@@ -431,7 +431,7 @@ msgstr "Монографии"
 #: lib/uni_web/live/monograph_live/new.ex:8
 #: lib/uni_web/live/monograph_live/new.html.leex:4
 msgid "New Monograph"
-msgstr "Нов Монография "
+msgstr "Нова Монография"
 
 #, elixir-format
 #: lib/uni_web/live/exports_live/export.ex:282
