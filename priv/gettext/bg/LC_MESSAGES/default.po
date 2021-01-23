@@ -733,12 +733,12 @@ msgstr "Повтори Парола"
 #, elixir-format
 #: lib/uni_web/live/authentication_live/forgotten_pass.html.leex:15
 msgid "Reset"
-msgstr "Обнови"
+msgstr "Възстанови"
 
 #, elixir-format
 #: lib/uni_web/live/authentication_live/forgotten_pass.html.leex:5
 msgid "Reset Password"
-msgstr "Нова Парола"
+msgstr "Възстановяване на парола"
 
 #, elixir-format
 #: lib/uni_web/live/authentication_live/reset_pass.html.leex:5

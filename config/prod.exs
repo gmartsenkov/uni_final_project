@@ -19,6 +19,13 @@ config :uni, UniWeb.Endpoint,
 config :logger, level: :info
 config :gettext, :default_locale, "bg"
 
+config :uni, UniWeb.Mailer,
+  adapter: Bamboo.SendGridAdapter,
+  api_key: "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",
+  hackney_opts: [
+    recv_timeout: :timer.minutes(1),
+    connect_timeout: :timer.minutes(1)
+  ]
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
