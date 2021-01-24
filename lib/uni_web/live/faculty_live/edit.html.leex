@@ -25,8 +25,8 @@
                     <tr>
                         <th class="font-weight-normal">
                             <%= user.name %>
-                            <%= if user.head_faculty, do: " <b>(#{gettext("Head of faculty")})</b>" %>
-                            <%= if user.head_department, do: " <b>(#{gettext("Head of department")})</b>" %>
+                            <%= if user.head_faculty, do: raw(" <b>(#{gettext("Head of faculty")})</b>") %>
+                            <%= if user.head_department, do: raw(" <b>(#{gettext("Head of department")})</b>") %>
                         </th>
                         <th>
                             <%= live_redirect id: "user-edit-#{user.id}", to: Routes.user_edit_path(@socket, :users, user) do  %>
