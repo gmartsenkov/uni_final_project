@@ -276,7 +276,7 @@ msgstr "Вид проект"
 #, elixir-format
 #: lib/uni_web/live/project_live/form_component.ex:55
 msgid "Project created successfuly"
-msgstr "Статията беше създаден успешно"
+msgstr "Проектът беше създаден успешно"
 
 #, elixir-format
 #: lib/uni_web/live/project_live/edit.ex:35
@@ -286,7 +286,7 @@ msgstr "Проектът не съществува"
 #, elixir-format
 #: lib/uni_web/live/project_live/form_component.ex:68
 msgid "Project updated successfuly"
-msgstr "Статията беше успешно обновена"
+msgstr "Проектът беше успешно обновена"
 
 #, elixir-format
 #: lib/uni_web/live/exports_live/export.html.leex:20
