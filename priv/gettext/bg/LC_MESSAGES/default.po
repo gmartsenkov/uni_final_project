@@ -259,7 +259,7 @@ msgstr "Нов Проект"
 #: lib/uni_web/live/project_live/form_component.html.leex:35
 #: lib/uni_web/live/project_live/index.html.leex:52
 msgid "Participation Role"
-msgstr "Участие роля"
+msgstr "Роля"
 
 #, elixir-format
 #: lib/uni_web/live/project_live/form_component.html.leex:15
