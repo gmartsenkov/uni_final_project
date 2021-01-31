@@ -10,12 +10,13 @@ defmodule UniWeb.UserLive.FormComponent do
   end
 
   @impl true
-  def update(%{user: user} = assigns, socket) do
+  def update(%{user: user, action: action} = assigns, socket) do
     changeset = Users.change_user(user)
 
     {:ok,
      socket
      |> assign(:changeset, changeset)
+     |> assign(:submit_button, submit_button(action))
      |> assign(:faculties, faculties())
      |> assign(:faculty_id, user.faculty_id)
      |> assign(assigns)}
@@ -88,4 +89,7 @@ defmodule UniWeb.UserLive.FormComponent do
     Faculties.departments(%{id: faculty_id})
     |> Enum.map(fn f -> {f.name, f.id} end)
   end
+
+  defp submit_button(:new), do: gettext("Create")
+  defp submit_button(:update), do: gettext("Update")
 end
