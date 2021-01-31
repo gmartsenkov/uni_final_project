@@ -32,22 +32,6 @@ defmodule Mix.Tasks.FetchLecturers do
     |> Task.async_stream(&insert_user/1, timeout: :infinity)
     |> Tqdm.tqdm(total: Enum.count(data))
     |> Enum.to_list()
-
-    # lecturers = lecturer_links
-    # |> Task.async_stream(&get_user/1, max_concurrency: @max_concurrency)
-    # |> Tqdm.tqdm(total: Enum.count(lecturer_links))
-    # |> Enum.to_list()
-
-    # IO.puts("--------------------------")
-    # IO.puts("Saving lecturers to the database...")
-
-    # lecturers
-    # |> Task.async_stream(&insert_user/1, max_concurrency: @max_concurrency)
-    # |> Tqdm.tqdm(total: Enum.count(lecturer_links))
-    # |> Enum.to_list()
-
-    # IO.puts("--------------------------")
-    # IO.puts("DONE")
   end
 
   def get_data do
