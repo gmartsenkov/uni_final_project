@@ -455,7 +455,7 @@ msgstr "Факултет"
 #, elixir-format
 #: lib/uni_web/live/user_live/profile.ex:67
 msgid "Password updated successfully"
-msgstr "Имейлът беше успешно обновен"
+msgstr "Паролата беше успешно обновен"
 
 #, elixir-format
 #: lib/uni_web/live/user_live/profile.ex:75
