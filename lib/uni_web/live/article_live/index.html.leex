@@ -60,8 +60,8 @@
                             <th><%= article.name %></th>
                             <th><%= article.publisher %></th>
                             <th><%= translate_type(article.type) %></th>
-                            <th><%= article.scopus %></th>
-                            <th><%= article.wofscience %></th>
+                            <th><%= raw bool_icon(article.scopus) %></th>
+                            <th><%= raw bool_icon(article.wofscience) %></th>
                             <th><%= article.year %></th>
                             <th>
                                 <%= live_redirect id: "article-edit-#{article.id}", to: Routes.article_edit_path(@socket, :articles, article) do %>

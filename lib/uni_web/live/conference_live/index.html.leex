@@ -59,8 +59,8 @@
                             <th><%= conference.name %></th>
                             <th><%= translate_conference_type(conference.type) %></th>
                             <th><%= "#{conference.page_start} - #{conference.page_end}" %></th>
-                            <th><%= conference.reported %></th>
-                            <th><%= conference.published %></th>
+                            <th><%= raw bool_icon(conference.reported) %></th>
+                            <th><%= raw bool_icon(conference.published) %></th>
                             <th>
                                 <%= live_redirect id: "conference-edit-#{conference.id}", to: Routes.conference_edit_path(@socket, :conferences, conference) do  %>
                                     <i class="fas fa-edit"></i>

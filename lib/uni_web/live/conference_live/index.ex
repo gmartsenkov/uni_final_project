@@ -84,6 +84,9 @@ defmodule UniWeb.ConferenceLive.Index do
     )
   end
 
+  defp bool_icon(true), do: "<i class=\"fas fa-check text-success\">"
+  defp bool_icon(false), do: "<i class=\"fas fa-times text-danger\">"
+
   defp translate_conference_type("national"), do: gettext("National")
   defp translate_conference_type("international"), do: gettext("International")
 end

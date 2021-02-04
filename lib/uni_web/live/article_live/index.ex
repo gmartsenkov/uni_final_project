@@ -91,4 +91,9 @@ defmodule UniWeb.ArticleLive.Index do
 
   defp translate_type("national"), do: gettext("National")
   defp translate_type("international"), do: gettext("International")
+
+  defp bool_icon(true), do: "<i class=\"fas fa-check text-success\">"
+  defp bool_icon(false), do: "<i class=\"fas fa-times text-danger\">"
+
+  defp bool_icon(other), do: other
 end
