@@ -7,7 +7,7 @@ defmodule Uni.Exports.ConferencesTest do
 
   describe "when no conferences" do
     test "it returns the correct csv string" do
-      assert Export.call([]) == "Създател,Име,Страници,Тип,Докладван,Публикуван\r\n"
+      assert Export.call([]) == "Създател,Тема,Страници,Тип,Докладван,Публикуван\r\n"
     end
   end
 
@@ -35,7 +35,7 @@ defmodule Uni.Exports.ConferencesTest do
       ]
 
       assert Export.call(authors) == ~s"""
-             Създател,Име,Страници,Тип,Докладван,Публикуван\r
+             Създател,Тема,Страници,Тип,Докладван,Публикуван\r
              Bob,Web Conf,10 - 20,Национален,Да,Не\r
              Jon,Mobile Conf,15 - 25,Международен,Да,Не\r
              """

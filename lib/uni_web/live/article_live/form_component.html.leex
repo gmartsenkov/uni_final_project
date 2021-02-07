@@ -5,7 +5,7 @@ phx_submit: "save",
 phx_target: @myself
 %>
 <div class="form-group">
-    <label><%= gettext("Name") %></label>
+    <label><%= gettext("Title") %></label>
     <%= text_input f, :name, class: input_class(f, :name), disabled: @disabled %>
     <%= error_tag f, :name %>
 </div>
@@ -46,7 +46,7 @@ phx_target: @myself
 
     <div class="form-check form-check-inline">
         <%= checkbox f, :wofscience, class: "form-check-input", disabled: @disabled %>
-        <label class="form-check-label">Wofsciense</label>
+        <label class="form-check-label">Web of Science</label>
     </div>
 </div>
 <button type="submit" class="btn btn-primary" <%= if @disabled, do: "disabled"%>><%= @submit_button %></button>

@@ -1,5 +1,5 @@
 defmodule Uni.Exports.Conferences do
-  @columns ["Създател", "Име", "Страници", "Тип", "Докладван", "Публикуван"]
+  @columns ["Създател", "Тема", "Страници", "Тип", "Докладван", "Публикуван"]
 
   def call(conferences) do
     conferences

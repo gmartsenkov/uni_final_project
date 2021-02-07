@@ -12,7 +12,7 @@ defmodule UniWeb.ConferenceLive.FormComponentTest do
         %{conference: %Conference{}, myself: nil, action: :new}
       )
 
-    assert component =~ "Name"
+    assert component =~ "Topic"
     assert component =~ "Type"
     assert component =~ "Published"
     assert component =~ "Reported"

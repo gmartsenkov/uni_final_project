@@ -38,7 +38,7 @@ msgstr "Авторът е вече в списъка"
 #: lib/uni_web/live/article_live/form_component.ex:116
 #: lib/uni_web/live/conference_live/form_component.ex:83 lib/uni_web/live/department_live/form_component.ex:63
 #: lib/uni_web/live/faculty_live/form_component.ex:62 lib/uni_web/live/monograph_live/form_component.ex:110
-#: lib/uni_web/live/project_live/form_component.ex:83
+#: lib/uni_web/live/project_live/form_component.ex:83 lib/uni_web/live/user_live/form_component.ex:93
 msgid "Create"
 msgstr "Създай"
 
@@ -60,12 +60,9 @@ msgid "Logout"
 msgstr "Изход"
 
 #, elixir-format
-#: lib/uni_web/live/article_live/form_component.html.leex:8
-#: lib/uni_web/live/article_live/index.html.leex:48 lib/uni_web/live/authentication_live/register.html.leex:12
-#: lib/uni_web/live/conference_live/form_component.html.leex:8 lib/uni_web/live/conference_live/index.html.leex:48
+#: lib/uni_web/live/authentication_live/register.html.leex:12
 #: lib/uni_web/live/department_live/form_component.html.leex:8 lib/uni_web/live/faculty_live/form_component.html.leex:8
-#: lib/uni_web/live/faculty_live/index.html.leex:14 lib/uni_web/live/monograph_live/form_component.html.leex:8
-#: lib/uni_web/live/monograph_live/index.html.leex:48 lib/uni_web/live/project_live/form_component.html.leex:8
+#: lib/uni_web/live/faculty_live/index.html.leex:14 lib/uni_web/live/project_live/form_component.html.leex:8
 #: lib/uni_web/live/project_live/index.html.leex:48 lib/uni_web/live/user_live/form_component.html.leex:9
 #: lib/uni_web/live/user_live/index.html.leex:49 lib/uni_web/live/user_live/profile.html.leex:28
 msgid "Name"
@@ -97,7 +94,7 @@ msgstr "Тип"
 #: lib/uni_web/live/authentication_live/reset_pass.html.leex:26 lib/uni_web/live/conference_live/form_component.ex:84
 #: lib/uni_web/live/department_live/form_component.ex:64 lib/uni_web/live/faculty_live/form_component.ex:63
 #: lib/uni_web/live/monograph_live/form_component.ex:111 lib/uni_web/live/project_live/form_component.ex:84
-#: lib/uni_web/live/user_live/form_component.html.leex:46 lib/uni_web/live/user_live/profile.html.leex:57
+#: lib/uni_web/live/user_live/form_component.ex:94 lib/uni_web/live/user_live/profile.html.leex:57
 #: lib/uni_web/live/user_live/profile.html.leex:78
 msgid "Update"
 msgstr "Обнови"
@@ -206,7 +203,7 @@ msgstr "Предишна"
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:10
 #: lib/uni_web/live/article_live/index.ex:93 lib/uni_web/live/conference_live/form_component.ex:89
-#: lib/uni_web/live/conference_live/index.ex:88 lib/uni_web/live/exports_live/export.ex:242
+#: lib/uni_web/live/conference_live/index.ex:91 lib/uni_web/live/exports_live/export.ex:242
 #: lib/uni_web/live/project_live/form_component.ex:89 lib/uni_web/live/project_live/index.ex:81
 msgid "International"
 msgstr "Международен"
@@ -214,7 +211,7 @@ msgstr "Международен"
 #, elixir-format
 #: lib/uni_web/live/article_live/form_component.ex:9
 #: lib/uni_web/live/article_live/index.ex:92 lib/uni_web/live/conference_live/form_component.ex:88
-#: lib/uni_web/live/conference_live/index.ex:87 lib/uni_web/live/exports_live/export.ex:241
+#: lib/uni_web/live/conference_live/index.ex:90 lib/uni_web/live/exports_live/export.ex:241
 #: lib/uni_web/live/project_live/form_component.ex:88 lib/uni_web/live/project_live/index.ex:80
 msgid "National"
 msgstr "Национален"
@@ -496,7 +493,7 @@ msgid "User not found"
 msgstr "Потребителят не съществува"
 
 #, elixir-format
-#: lib/uni_web/live/user_live/form_component.ex:52
+#: lib/uni_web/live/user_live/form_component.ex:53
 msgid "User updated successfully"
 msgstr "Профилът беше успешно обновен"
 
@@ -542,7 +539,7 @@ msgid "To (year)"
 msgstr "До (година)"
 
 #, elixir-format
-#: lib/uni_web/live/user_live/form_component.ex:68
+#: lib/uni_web/live/user_live/form_component.ex:69
 msgid "User created successfully"
 msgstr "Потребителят беше създаден успешно"
 
@@ -762,22 +759,35 @@ msgstr "Потребител с този имейл не съществува"
 msgid "An error occured"
 msgstr ""
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/article_live/edit.ex:31
 msgid "Article deleted successfuly"
 msgstr "Статията беше изтрита успешно"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/conference_live/edit.ex:23
 msgid "Conference deleted successfuly"
 msgstr "Конференцията беше изтрита успешно"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/monograph_live/edit.ex:31
 msgid "Monograph deleted successfuly"
 msgstr "Монографията беше изтрита успешно"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/uni_web/live/project_live/edit.ex:23
 msgid "Project deleted successfuly"
 msgstr "Статията беше изтрита успешно"
+
+#, elixir-format
+#: lib/uni_web/live/article_live/form_component.html.leex:8
+#: lib/uni_web/live/article_live/index.html.leex:48 lib/uni_web/live/monograph_live/form_component.html.leex:8
+#: lib/uni_web/live/monograph_live/index.html.leex:48
+msgid "Title"
+msgstr "Заглавие"
+
+#, elixir-format
+#: lib/uni_web/live/conference_live/form_component.html.leex:8
+#: lib/uni_web/live/conference_live/index.html.leex:48
+msgid "Topic"
+msgstr "Тема"

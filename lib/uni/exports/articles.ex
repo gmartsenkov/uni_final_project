@@ -1,5 +1,5 @@
 defmodule Uni.Exports.Articles do
-  @columns ["Създател", "Автори", "Име", "Издателство", "Година", "Тип", "Scopus", "Wofscience"]
+  @columns ["Създател", "Автори", "Заглавие", "Издателство", "Година", "Тип", "Scopus", "Web of Science"]
 
   def call(articles) do
     articles

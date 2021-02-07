@@ -12,11 +12,11 @@ defmodule UniWeb.ArticleLive.FormComponentTest do
         %{article: %Article{authors: []}, myself: nil, action: :new, disabled: false}
       )
 
-    assert component =~ "Name"
+    assert component =~ "Title"
     assert component =~ "Year"
     assert component =~ "Type"
     assert component =~ "Publisher"
     assert component =~ "Scopus"
-    assert component =~ "Wofsciense"
+    assert component =~ "Web of Science"
   end
 end

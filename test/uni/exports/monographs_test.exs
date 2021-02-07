@@ -7,7 +7,7 @@ defmodule Uni.Exports.MonographsTest do
 
   describe "when no monographs" do
     test "it returns the correct csv string" do
-      assert Export.call([]) == "Създател,Автори,Име,Издателство,Година\r\n"
+      assert Export.call([]) == "Създател,Автори,Заглавие,Издателство,Година\r\n"
     end
   end
 
@@ -31,7 +31,7 @@ defmodule Uni.Exports.MonographsTest do
       ]
 
       assert Export.call(authors) == ~s"""
-             Създател,Автори,Име,Издателство,Година\r\n\
+             Създател,Автори,Заглавие,Издателство,Година\r\n\
              Arya,"Jon, Rob\",Web,Pub,1001\r
              Sansa,"Sam, Andy\",Mobile,Pub2,1002\r
              """

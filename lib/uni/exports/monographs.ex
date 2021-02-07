@@ -1,5 +1,5 @@
 defmodule Uni.Exports.Monographs do
-  @columns ["Създател", "Автори", "Име", "Издателство", "Година"]
+  @columns ["Създател", "Автори", "Заглавие", "Издателство", "Година"]
 
   def call(monographs) do
     monographs
