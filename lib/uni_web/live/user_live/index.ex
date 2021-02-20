@@ -47,6 +47,7 @@ defmodule UniWeb.UserLive.Index do
   def handle_params(params, _uri, socket) do
     page = Map.get(params, "page", "1")
     per_page = Map.get(params, "per_page", "10")
+    query = Map.get(params, "query", "")
 
     result =
       User
@@ -58,6 +59,7 @@ defmodule UniWeb.UserLive.Index do
      |> assign(:users, result.entries)
      |> assign(:filters, Filters.changeset(params))
      |> assign(:page, result.page_number)
+     |> assign(:query, query)
      |> assign(:total_pages, result.total_pages)
      |> assign(:per_page, per_page)
      |> assign(:total, result.total_entries)}
