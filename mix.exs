@@ -34,7 +34,7 @@ defmodule Uni.MixProject do
   defp deps do
     [
       {:bamboo, "~> 1.6"},
-      {:bcrypt_elixir, "2.2.0"},
+      {:bcrypt_elixir, "3.0.0"},
       {:csv, "~> 2.4"},
       {:ecto_sql, "~> 3.4"},
       {:ex_machina, "~> 2.4", only: :test},
@@ -56,7 +56,7 @@ defmodule Uni.MixProject do
       {:scrivener_ecto, "~> 2.0"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
-      {:tqdm, "~> 0.0.2"}
+      {:tqdm, "~> 0.0.2"},
     ]
   end
 
